@@ -39,7 +39,7 @@ Route::get('categorias/{id}/destroy','CategoriasController@destroy')->middleware
 Route::get('noticias', 'NoticiasController@index')->middleware('auth');
 Route::get('noticias/{id}/show', 'NoticiasController@show');
 Route::get('noticias/{id}/create', 'NoticiasController@create')->middleware('auth');
-Route::post('noticias/store',  'NoticiasController@store')->middleware('auth');
+Route::post('noticias/{id}/store',  'NoticiasController@store')->middleware('auth');
 Route::get('noticias/search', 'NoticiasController@search')->middleware('auth');
 Route::get('noticias/autocomplete', 'NoticiasController@autocomplete')->name('autocomplete')->middleware('auth');
 Route::get('noticias/{id}/edit','NoticiasController@edit')->middleware('auth');

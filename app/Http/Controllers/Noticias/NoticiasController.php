@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Mail;
+use App\User;
 use App\Categoria;
 use App\Noticia;
 use App\Imagens;
@@ -23,7 +24,8 @@ class NoticiasController extends Controller
 	{
 		$noticias = Noticia::orderBy('id', 'desc')->paginate(5);
 		$categorias = Categoria::all();
-		return view('noticias.index', ['noticias' => $noticias, 'categorias' => $categorias]);
+		$users = User::all();
+		return view('noticias.index', ['noticias' => $noticias, 'categorias' => $categorias, 'users' => $users]);
 	}
 	//Metodo que exibe a Noticia por completo
 	//link leia mais deve redirecionar para esta action
@@ -41,7 +43,8 @@ class NoticiasController extends Controller
 	}
 	public function create($id)
 	{
-		$categoria = Categoria::find($id);
+		$categoria = Categoria::findOrFail($id);
+		
 		$categorias = Categoria::all();
 		return view('noticias.create', compact('categoria', 'categorias'));
 	}

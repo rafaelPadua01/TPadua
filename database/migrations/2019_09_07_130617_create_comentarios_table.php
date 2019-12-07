@@ -17,7 +17,7 @@ class CreateComentariosTable extends Migration
             $table->increments('id');
 			$table->string('nome');
 			$table->string('comentario');
-			$table->integer('id_noticia')->unsigned();
+			$table->BigInteger('id_noticia')->unsigned();
 			$table->foreign('id_noticia')->references('id')->on('noticias');
 			$table->timestamps();
         });

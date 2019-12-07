@@ -19,7 +19,9 @@ class CreateImagemEventosTable extends Migration
 			$table->string('descricao');
 			$table->integer('id_evento')->unsigned();
 			$table->foreign('id_evento')->references('id')->on('eventos');
-            $table->timestamps();
+			$table->integer('id_user')->unsigned();
+			$table->foreign('id_user')->references('id')->on('users');
+			$table->timestamps();
         });
     }
 

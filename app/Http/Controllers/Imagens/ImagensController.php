@@ -38,8 +38,8 @@ class ImagensController extends Controller
 		//Verifica se informou um arqivo e se ele é válido
 		if($request->hasfile('nome_imagem') && $request->file('nome_imagem')->isValid())
 		{
-
-					//Imagens::create($data);
+			$id_user = $request->id_user;
+			
 			//Define um nome aleatorio, 
 			//Baseado no timestamp atual
 			$name = uniqid(date('HisYmd'));
@@ -55,31 +55,16 @@ class ImagensController extends Controller
 			
 			
 				
-			//$input = $request->nome_imagem::all();
-		//	Imagens::create($input);
+			
 			//faz o upload
-			//$upload = $request->nome_imagem->storeAs('/../../../public_html/tpadua/storage/imagem_noticias', $nameFile); // teste hospedagem 
-			$upload = $request->nome_imagem->move('storage/imagem_noticias', $nameFile);
+			$upload = $request->nome_imagem->move('storage/imagem_noticias', $nameFile);  // teste hospedagem 
 			
 			Imagens::create([
 				'nome_imagem' => $upload,
 				'id_noticia' => $id,
+				'id_user' => $id_user,
 				
 			]);
-			//Se estive funcionando o arquivo será armazenado em 
-			//storage/app/public/noticias/nomedinamico.extensao
-			
-			/*
-			if(!$upload){
-			return redirect()
-						->back()
-						->with('error', 'Falha ao fazer upload da imagem')
-						->withInput();
-		
-				
-			}
-			*/	
-			//$update = $request->update($data);
 			
 			if($upload)
 			{

@@ -17,6 +17,7 @@ class Noticia extends Model
     //
 	protected $fillable = [
 		'id_categoria',
+		'id_user',
 		'titulo',
 		'conteudo',
 		'fonte',

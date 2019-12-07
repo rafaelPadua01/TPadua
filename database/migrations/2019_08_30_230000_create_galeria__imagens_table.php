@@ -16,8 +16,10 @@ class CreateGaleriaImagensTable extends Migration
         Schema::create('galeria__imagens', function (Blueprint $table) {
             $table->increments('id');
 			$table->string('nome_imagem');
-			$table->integer('id_noticia')->unsigned();
+			$table->BigInteger('id_noticia')->unsigned();
 			$table->foreign('id_noticia')->references('id')->on('noticias');
+			$table->integer('id_user')->unsigned();
+			$table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();
         });
     }

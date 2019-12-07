@@ -14,7 +14,7 @@
 <div class="container">
 	<h1>Cadastro de notícias</h1>
 	<!--Inicia o form  -->
-		{!! Form::open(['url' => 'noticias/store']) !!}
+		{!! Form::open(['url' => "noticias/$categoria->id/store", 'method' => 'post']) !!}
 		<!-- Div 'Destaque' da notícia -->
 		<div class='form-group'>
 			{!! Form::label('destaque', 'Destaque:') !!}
@@ -39,6 +39,7 @@
 		
 			{!! Form::label('categoria', 'Categoria da noticia:') !!}
 				{!! Form::hidden('id_categoria', $categoria->id, ['class' => 'form-control']) !!}
+					{!! Form::hidden('id_user', Auth::user()->id) !!}
 					{!!Form::text('nome_categoria', $categoria->nome_categoria, ['class' => 'form-control']) !!}
 			
 		</div>

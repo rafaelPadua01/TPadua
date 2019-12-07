@@ -1,6 +1,6 @@
-@extends('layouts.app');
+@extends('layouts.app')
 
-@section('content');
+@section('content')
 
 <div class='container'>
 	<h1>Upload de imagens</h1>
@@ -18,10 +18,11 @@
 	
 	<!--<input type='hidden' name='id_noticia' id='id_noticia' value='{{$noticias->id}}'>-->
 	<a href='/noticias' class='btn btn-danger'>Voltar</a>
+	{!! Form::hidden('id_user', Auth::user()->id) !!}
 	{!! Form::submit('Salvar Imagem', ['class' => 'btn btn-success'])!!}
 	{!! Form::close()!!}
 
 </div>
 
 
-@endsection;
+@endsection

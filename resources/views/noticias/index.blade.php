@@ -36,6 +36,7 @@
 		<thead>
 				<th>Id</th>
 				<th>Categoria</th>
+				<th>Usuario</th>
 				<th>Titulo</th>
 				<th>Conteudo</th>
 				<th>Fonte</th>
@@ -56,6 +57,13 @@
 						@endif
 					@endforeach
 					
+				</td>
+				<td>
+					@foreach($users as $user) 
+						@if($user->id === $noticia->id_user)
+							{{$user->name}}
+						@endif
+					@endforeach
 				</td>
 				<td>{{$noticia->titulo}}</td>
 				<td>{!! str_limit($noticia->conteudo, 100, '...') !!}</td>
