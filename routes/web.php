@@ -67,11 +67,11 @@ route::get('imagens/{id}/destroy', 'ImagensController@destroy')->middleware('aut
 #Route::get('profile/{id}/destroy', 'Profile_UsersController@destroy');
 
 //Rotas do upload de imagens do profile
-Route::get('imagem_profile', 'Imagem_ProfileController@index');
-Route::get('imagem_profile/{id}/create', 'Imagem_ProfileController@create');
-Route::post('imagem_profile/{id}/upload', 'Imagem_ProfileController@upload');
-Route::get('imagem_profile/{id}/remove', 'Imagem_ProfileController@remove');
-Route::get('imagem_profile/{id}/destroy', 'Imagem_ProfileController@destroy');
+#Route::get('imagem_profile', 'Imagem_ProfileController@index');
+#Route::get('imagem_profile/{id}/create', 'Imagem_ProfileController@create');
+#Route::post('imagem_profile/{id}/upload', 'Imagem_ProfileController@upload');
+#Route::get('imagem_profile/{id}/remove', 'Imagem_ProfileController@remove');
+#Route::get('imagem_profile/{id}/destroy', 'Imagem_ProfileController@destroy');
 
 //Rotas da NewsLetter
 /* Rotas com middlewares só serão acessadas por usuarios autenticados */	

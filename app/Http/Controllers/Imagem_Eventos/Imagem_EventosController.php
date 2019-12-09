@@ -26,6 +26,7 @@ class Imagem_EventosController extends Controller
 	}
 	public function upload(Imagem_EventosRequest $request, $id_evento)
 	{
+		
 		//Define um valor padrão para a imagem 
 		$nameImage = null;
 		
@@ -52,6 +53,7 @@ class Imagem_EventosController extends Controller
 			Imagem_Eventos::create([
 				
 				'id_evento' => $id_evento,
+				'id_user' => $request->id_user,
 				'nome_imagem' => $upload,
 				'descricao' => $request->descricao,
 			]);

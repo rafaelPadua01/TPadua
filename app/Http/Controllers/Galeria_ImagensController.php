@@ -17,7 +17,7 @@ class Galeria_ImagensController extends Controller
 {
 	public function index()
 	{
-		$galerias = Galeria_Imagens::paginate(10);
+		$galerias = Galeria_Imagens::orderBy('id', 'desc')->paginate(10);
 		$noticias = Noticia::all();
 		
 		return view('galeria_imagens.index', ['galerias' => $galerias, 'noticias' => $noticias]);
@@ -31,6 +31,8 @@ class Galeria_ImagensController extends Controller
 	
 	public function upload(Request $request, $id)
 	{
+		$id_user = $request->id_user;
+		
 		$images = array();
 		if($files = $request->file('nome_imagem'))
 		{
@@ -42,8 +44,10 @@ class Galeria_ImagensController extends Controller
 				
 				//Insere na tabela
 				DB::table('galeria__imagens')->insert([
+					'nome_galeria' => $request->nome_galeria,
 					'nome_imagem' => $name,
 					'id_noticia' => $id,
+					'id_user' => $id_user,
 				]);
 				//Dados inseridos
 			}

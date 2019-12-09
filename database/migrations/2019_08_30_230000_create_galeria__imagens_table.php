@@ -14,7 +14,8 @@ class CreateGaleriaImagensTable extends Migration
     public function up()
     {
         Schema::create('galeria__imagens', function (Blueprint $table) {
-            $table->increments('id');
+            $table->BigIncrements('id');
+			$table->string('nome_galeria');
 			$table->string('nome_imagem');
 			$table->BigInteger('id_noticia')->unsigned();
 			$table->foreign('id_noticia')->references('id')->on('noticias');

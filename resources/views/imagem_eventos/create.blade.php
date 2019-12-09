@@ -31,6 +31,7 @@
 					<div class='btn-group'>
 						<a href='/eventos' class='btn btn-danger'>Voltar para a página anterior</a>
 						<button type='submit' class='btn btn-success'>Upload</button>
+						{!! Form::hidden('id_user', Auth::user()->id) !!}
 					</div>
 				</div>
 			{!! Form::close() !!}
