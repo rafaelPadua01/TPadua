@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Storage;
 use DB;
 use Validator;
 use Redirect;
@@ -17,10 +18,11 @@ class Galeria_ImagensController extends Controller
 {
 	public function index()
 	{
-		$galerias = Galeria_Imagens::orderBy('id', 'desc')->paginate(10);
+		$galerias = Galeria_Imagens::orderBy('id', 'desc')->paginate(100);
 		$noticias = Noticia::all();
+		$diretorios = Storage::allDirectories('galeria_imagens/');
 		
-		return view('galeria_imagens.index', ['galerias' => $galerias, 'noticias' => $noticias]);
+		return view('galeria_imagens.index', ['galerias' => $galerias, 'noticias' => $noticias, 'diretorios' => $diretorios]);
 	}
 	public function create($id)
 	{
@@ -32,33 +34,45 @@ class Galeria_ImagensController extends Controller
 	public function upload(Request $request, $id)
 	{
 		$id_user = $request->id_user;
-		
+		$nome_galeria = $request->nome_galeria;
 		$images = array();
 		if($files = $request->file('nome_imagem'))
 		{
 			foreach($files as $file)
 			{
-				$name = $file->getClientOriginalName();
-				$file->move('storage/galeria_imagens', $name);
-				$images[] = $name;
+				if($nome_galeria == '' || $nome_galeria == null)
+				{
+					echo "<script>alert('você deve escolher um nome para sua galeria')</script>";
+					return redirect()->back()->with('error', 'Você deve escolher um nome para sua nova galeria');
+				}
+				else
+				{
+					$diretorio = Storage::makeDirectory("galeria_imagens/".$nome_galeria);
 				
-				//Insere na tabela
-				DB::table('galeria__imagens')->insert([
-					'nome_galeria' => $request->nome_galeria,
-					'nome_imagem' => $name,
-					'id_noticia' => $id,
-					'id_user' => $id_user,
-				]);
-				//Dados inseridos
+					$name = $file->getClientOriginalName();
+					$file->move("storage/galeria_imagens/".$nome_galeria, $name);
+					$images[] = $name;
+				
+					//Insere na tabela
+					DB::table('galeria__imagens')->insert([
+						'nome_galeria' => $request->nome_galeria,
+						'nome_imagem' => $name,
+						'id_noticia' => $id,
+						'id_user' => $id_user,
+						'created_at' => $request->created_at,
+						'updated_at' => $request->updated_at,
+					]);
+					//Dados inseridos
+				}
 			}
 		}
 		else
 		{
-				var_dump($iiles);
+				var_dump($files);
 		}
 		
 		
-		return redirect()->back()->with('message', 'Upload realizado com sucesso');
+		return redirect()->back()->with('success', 'Upload realizado com sucesso');
 		
 	}
 	

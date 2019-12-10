@@ -11,9 +11,20 @@
 		</a>
 		<br><br>
 			<div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>
-			
+				
 			</div>
-			@foreach($galerias as $galeria)
+			<br>
+			@foreach($diretorios as $diretorio)
+				<a align='center' href='#'>
+					<div align='center' class='col-xs-4 col-sm-4 col-md-4 col-lg-4'  style='border: 1px solid #ddd; padding: 1%; margin-left: 0%'>
+						<span class='glyphicon glyphicon-folder-open' style='font-size: 6rem'></span>
+						<p style='font-size: 1rem'>{{$diretorio}}</p>
+						
+					</div>
+				</a>
+			@endforeach
+			
+			<!--@foreach($galerias as $galeria)
 			<div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'  style='border: 1px solid #ddd'>
 				
 				@foreach($noticias as $noticia)
@@ -22,8 +33,8 @@
 						<hr>
 					@endif	
 				@endforeach
-						<a href='/storage/galeria_imagens/{{$galeria->nome_imagem}}'>
-							<img src='/storage/galeria_imagens/{{$galeria->nome_imagem}}'
+						<a href='/storage/galeria_imagens/{{$galeria->nome_galeria}}/{{$galeria->nome_imagem}}'>
+							<img src='/storage/galeria_imagens/{{$galeria->nome_galeria}}/{{$galeria->nome_imagem}}'
 										alt='{{$galeria->nome_imagem}}' class='img-thumbnail img-fluid'>
 						</a>
 						<p style='font-size: 0.9rem' align='center'>{{$galeria->created_at}}</p>
@@ -36,7 +47,7 @@
 						<br>
 						
 			</div>
-			@endforeach
+			@endforeach -->
 			<div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'></div>
 		
 	</div>
