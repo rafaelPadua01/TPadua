@@ -104,8 +104,12 @@ Route::get('imagem_parceiros/{id}/destroy', 'Imagem_ParceirosController@destroy'
 Route::get('galeria_imagens/index', 'Galeria_ImagensController@index');
 Route::get('galeria_imagens/{id}/create', 'Galeria_ImagensController@create');
 Route::post('galeria_imagens/{id}/upload', 'Galeria_ImagensController@upload');
-Route::get('galeria_imagens/{id}/remove', 'Galeria_ImagensController@remove');
-Route::get('galeria_imagens/{id}/destroy', 'Galeria_ImagensController@destroy');
+#Route::get('galeria_imagens/{id}/remove', 'Galeria_ImagensController@remove');
+#Route::get('galeria_imagens/{id}/destroy', 'Galeria_ImagensController@destroy');
+Route::get('galeria_imagens/{galeria_diretorio}/show', 'Galeria_ImagensController@show');
+Route::get('galeria_imagens/{id}/destroyGaleria', 'Galeria_ImagensController@destroyGaleria');
+Route::get('galeria_imagens/{galeria_diretorio}/remove', 'Galeria_ImagensController@remove');
+Route::get('galeria_imagens/removeAll', 'Galeria_ImagensController@removeAll');
 
 //Rota Comentarios
 Route::get('comentarios', 'ComentariosController@index')->middleware('auth');

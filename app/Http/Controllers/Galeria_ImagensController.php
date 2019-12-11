@@ -18,7 +18,7 @@ class Galeria_ImagensController extends Controller
 {
 	public function index()
 	{
-		$galerias = Galeria_Imagens::orderBy('id', 'desc')->paginate(100);
+		$galerias = Galeria_Imagens::orderBy('id', 'desc')->paginate(10);
 		$noticias = Noticia::all();
 		$diretorios = Storage::allDirectories('galeria_imagens/');
 		
@@ -63,6 +63,7 @@ class Galeria_ImagensController extends Controller
 						'updated_at' => $request->updated_at,
 					]);
 					//Dados inseridos
+					echo "<script>window.alert('Upload realizado com sucesso.')</script>";
 				}
 			}
 		}
@@ -76,14 +77,71 @@ class Galeria_ImagensController extends Controller
 		
 	}
 	
-	public function remove($id)
+	/*public function remove($id)
 	{
 		$galerias = Galeria_Imagens::find($id);
 		
 		return view('galeria_imagens.remove', compact('galerias'));
+	}*/
+	public function show($diretorio)
+	{
+		
+		$galerias = Galeria_Imagens::all()->where('nome_galeria', '=', $diretorio);
+		
+		return view('galeria_imagens.show', compact('galerias', 'diretorio'));
 	}
-	
-	public function destroy($id)
+	public function remove(Request $request, $diretorio)
+	{
+		
+		$galerias = Galeria_Imagens::all();
+		$galeria_diretorio = $diretorio;
+		
+		return view('galeria_imagens.remove', compact('galerias', 'galeria_diretorio'));
+		
+	}
+	public function RemoveAll()
+	{
+		$galerias = Galeria_Imagens::all();
+		$diretorio = 'galeria_imagens/';
+		$galeria = Galeria_Imagens::select('*')->delete();
+		
+		foreach($galerias as $galeria)
+		{
+			$remove = Storage::deleteDirectory($diretorio);
+			#dd($galeria->nome_galeria);
+			echo "<script>window.alert('Todas as galerias foram removidas')</script>";
+			return redirect()->back()->with('success', 'galerias removidas com sucesso');
+		}
+		
+		
+		//$galeria = Galeria_Imagens::select('*')->where('id', '=', 'id')->delete();
+		
+		
+		//
+	}
+	public function destroyGaleria($galeria_diretorio)
+	{
+		
+		$diretorio = 'galeria_imagens/';
+		$remove = Storage::deleteDirectory($diretorio.$galeria_diretorio);
+		
+		if($remove == true)
+		{
+			$galeria = Galeria_Imagens::select('nome_galeria')->where('nome_galeria', '=', $galeria_diretorio)->delete();
+			if($galeria == true)
+			{
+				echo "<script>window.alert('removido com sucesso')</script>";
+				return redirect()->back()->with('success', 'Galeria Removida com sucesso');
+			}
+			else
+			{
+				return redirect()->back()->with('error', 'falha ao remover galeria, contate um administrador');
+			}
+		}
+		
+	}
+	/*
+	public function destroy(Request $request, $id)
 	{
 		$galerias = Galeria_Imagens::find($id);
 		
@@ -94,4 +152,5 @@ class Galeria_ImagensController extends Controller
 		return redirect('galeria_imagens/index')
 				->with('message', 'Imagem Removida com sucesso');
 	}
+	*/
 }

@@ -2,25 +2,30 @@
 
 @section('content')
 <div class='container'>
-	<h1>Remover a Imagem da Galeria? </h1>
-	<hr>
+	<div class='row'>
+		<div class='col-xs-2 col-sm-2 col-xmd-2 col-lg-2'></div>
 	
-	<p>Você tem certeza que quer remover a imagem ? </p>
-	<br>
+		<div class='col-xs-6 col-sm-6 col-md-6 col-lg-6'>
+		
+			<h1 align='center'>Remover Galeria ?</h1>
+			<hr>
 	
-	<a href='/storage/galeria_imagens/{{$galerias->nome_imagem}}'>
-		<img src='/storage/galeria_imagens/{{$galerias->nome_imagem}}' alt='{{$galerias->nome_imagem}}' style='width: 25%; border: 1px solid #ccc'>
-	</a>
-	<br><br>
+			<p>Você tem certeza que quer remover a Galeria <strong>{{$galeria_diretorio}}</strong> ? </p>
+			<br>
+		
+		{{$galeria_diretorio}}
+			<br><br>
+				@foreach($galerias as $galeria)
+					@if($galeria_diretorio == $galeria->nome_galeria)
+						<img class='img-thumbnail img-fluid' style='display: inline-block; width: 30%' src='/storage/galeria_imagens/{{$galeria_diretorio}}/{{$galeria->nome_imagem}}'>
+					@endif
+				@endforeach
+			<a href='/galeria_imagens/index' class='btn btn-success'>Voltar para o inicio</a>
+				<a href='/galeria_imagens/{{$galeria_diretorio}}/destroyGaleria' class='btn btn-danger'>Deletar</a>
+		
+	</div>
 	
-	<b>Nome da imagem:</b> {{$galerias->nome_imagem}}
-	<br>
-	
-	<b>upload em :</b> {{$galerias->created_at}}
-	<br><br>
-	
-	<a href='/galeria_imagens/index' class='btn btn-success'>Voltar para o inicio</a>
-		<a href='/galeria_imagens/{{$galerias->id}}/destroy' class='btn btn-danger'>Deletar</a>
+	</div>
 </div>
 
 
