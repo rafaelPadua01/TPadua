@@ -4,20 +4,20 @@
 <div class='container'>
 	<div class='row'>
 		<div class='col-xs-12'>
-			<h1>Enviar Newsletter</h1>
-			<hr>
+			
+			
 			
 		</div>
 	</div>
 	<div class='row'>
 		<div class='col-xs-2'>
-			row-2 col-1
+			
 		</div>
 		<div class='col-xs-8'>
-			row-2 col-2
+			
 		</div>
 		<div class='col-xs-2'>
-			row-2 col-2
+			
 		</div>
 	</div>
 	

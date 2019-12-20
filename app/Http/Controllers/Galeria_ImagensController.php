@@ -22,6 +22,7 @@ class Galeria_ImagensController extends Controller
 		$noticias = Noticia::all();
 		$diretorios = Storage::allDirectories('galeria_imagens/');
 		
+		
 		return view('galeria_imagens.index', ['galerias' => $galerias, 'noticias' => $noticias, 'diretorios' => $diretorios]);
 	}
 	public function create($id)
@@ -77,12 +78,7 @@ class Galeria_ImagensController extends Controller
 		
 	}
 	
-	/*public function remove($id)
-	{
-		$galerias = Galeria_Imagens::find($id);
-		
-		return view('galeria_imagens.remove', compact('galerias'));
-	}*/
+	
 	public function show($diretorio)
 	{
 		
@@ -90,6 +86,85 @@ class Galeria_ImagensController extends Controller
 		
 		return view('galeria_imagens.show', compact('galerias', 'diretorio'));
 	}
+	/*Funções de update da galeria*/
+	public function edit($diretorio)
+	{
+		$galerias = Galeria_Imagens::all()->where('nome_galeria', '=', $diretorio);
+		$noticias = Noticia::all();
+		return view('galeria_imagens.edit', compact('galerias', 'diretorio', 'noticias'));
+	}
+	
+	/*Função de Busca */
+	public function search(Request $request)
+	{
+		$input = $request->all();
+		$path = 'galeria_imagens/';
+		$diretorios = dir($path);
+		$search = $path.$request->get('search');
+		$result = Storage::allFiles($search);
+		
+		if($result)
+		{
+			return view('galeria_imagens.search', compact('result', 'search'))->with('success');
+		}
+		else
+		{
+			echo "<script>window.alert('Resultado não encontrado')</script>";
+			return redirect('galeria_imagens/index')
+							->with('failure', 'Nenhum resultado encontrado');
+			
+		}
+		
+		echo "<script>Resultado não encontrado</script>";
+		
+		
+		
+		
+		
+		
+	}
+	/*
+	public function update(Request $request)
+	{
+		$id_user = $request->id_user;
+		$id_noticia = $request->id_noticia;
+		$nome_galeria = $request->nome_galeria;
+		$imagens = array();
+		
+		
+		if($files = $request->file('nome_imagem'))
+		{
+			foreach($files as $file)
+			{
+				if($nome_galeria == '' || $nome_galeria == null)
+				{
+					echo "<script>alert('você deve escolher uma galeria')</script>";
+					return redirect()->back()->with('error', 'Você deve escolher uma galeria');
+				}
+				else
+				{
+					
+					$name = $file->getClientOriginalName();
+					$file->move("storage/galeria_imagens/".$nome_galeria, $name);
+					$images[] = $name;
+					
+					//Insere na tabela
+					DB::table('galeria__imagens')->insert([
+						'nome_galeria' => $request->nome_galeria,
+						'nome_imagem' => $name,
+						'id_noticia' => $id_noticia,
+						'id_user' => $id_user,
+						
+					]);
+					//Dados inseridos
+					echo "<script>window.alert('Upload realizado com sucesso.')</script>";
+					return redirect()->back()->with('success', 'upload realizado com sucesso');
+				}
+			}
+		}
+	}*/
+	
+	/* Funções para remover galerias */
 	public function remove(Request $request, $diretorio)
 	{
 		
@@ -105,13 +180,28 @@ class Galeria_ImagensController extends Controller
 		$diretorio = 'galeria_imagens/';
 		$galeria = Galeria_Imagens::select('*')->delete();
 		
-		foreach($galerias as $galeria)
-		{
+		
 			$remove = Storage::deleteDirectory($diretorio);
+			if(empty($galeria))
+			{
+				echo "merda";
+			}
+			if($remove)
+			{
+				echo "<script>window.alert('Todas as galerias foram removidas')</script>";
+				return redirect()->back()->with('success', 'galerias removidas com sucesso');
+			}
+			else
+			{
+				echo "<script>window.alert('nenhuma galeria encontrada....')</script>";
+				return redirect()->back();
+			}
+		
 			#dd($galeria->nome_galeria);
 			echo "<script>window.alert('Todas as galerias foram removidas')</script>";
 			return redirect()->back()->with('success', 'galerias removidas com sucesso');
-		}
+		
+			
 		
 		
 		//$galeria = Galeria_Imagens::select('*')->where('id', '=', 'id')->delete();
@@ -119,6 +209,7 @@ class Galeria_ImagensController extends Controller
 		
 		//
 	}
+	
 	public function destroyGaleria($galeria_diretorio)
 	{
 		
@@ -139,6 +230,20 @@ class Galeria_ImagensController extends Controller
 			}
 		}
 		
+	}
+	/* Função que remove uma ou varias imagens da galeria */
+	public function removeImagens()
+	{
+		$imagens = $_GET['imagens'];
+		
+		foreach($imagens as $imagem)
+		{
+			$remove = Galeria_Imagens::select('*')->where('id', '=', $imagem)->delete();
+			
+		}
+		
+		
+		return redirect()->back()->with('success', 'imagens removidas...');
 	}
 	/*
 	public function destroy(Request $request, $id)

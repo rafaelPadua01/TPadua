@@ -101,15 +101,18 @@ Route::get('imagem_parceiros/{id}/remove', 'Imagem_ParceirosController@remove');
 Route::get('imagem_parceiros/{id}/destroy', 'Imagem_ParceirosController@destroy');
 
 //Rotas Da Galeria de Imagens
-Route::get('galeria_imagens/index', 'Galeria_ImagensController@index');
-Route::get('galeria_imagens/{id}/create', 'Galeria_ImagensController@create');
-Route::post('galeria_imagens/{id}/upload', 'Galeria_ImagensController@upload');
-#Route::get('galeria_imagens/{id}/remove', 'Galeria_ImagensController@remove');
-#Route::get('galeria_imagens/{id}/destroy', 'Galeria_ImagensController@destroy');
-Route::get('galeria_imagens/{galeria_diretorio}/show', 'Galeria_ImagensController@show');
-Route::get('galeria_imagens/{id}/destroyGaleria', 'Galeria_ImagensController@destroyGaleria');
-Route::get('galeria_imagens/{galeria_diretorio}/remove', 'Galeria_ImagensController@remove');
-Route::get('galeria_imagens/removeAll', 'Galeria_ImagensController@removeAll');
+Route::get('galeria_imagens/index', 'Galeria_ImagensController@index')->middleware('auth');
+Route::get('galeria_imagens/{id}/create', 'Galeria_ImagensController@create')->middleware('auth');
+Route::post('galeria_imagens/{id}/upload', 'Galeria_ImagensController@upload')->middleware('auth');
+Route::get('galeria_imagens/{galeria_diretorio}/show', 'Galeria_ImagensController@show')->middleware('auth');
+Route::get('galeria_imagens/search', 'Galeria_ImagensController@search')->middleware('auth');
+Route::get('galeria_imagens/{diretorio}/edit', 'Galeria_ImagensController@edit');
+Route::put('galeria_imagens/{diretorio}/update', 'Galeria_ImagensController@update');
+Route::get('galeria_imagens/{id}/destroyGaleria', 'Galeria_ImagensController@destroyGaleria')->middleware('auth');
+Route::get('galeria_imagens/{galeria_diretorio}/remove', 'Galeria_ImagensController@remove')->middleware('auth'); // view para remover uma galeria, rota acima.
+Route::get('galeria_imagens/removeAll', 'Galeria_ImagensController@removeAll')->middleware('auth'); //Remove todas as galeria
+Route::get('galeria_imagens/{id}/removeImagens', 'Galeria_ImagensController@removeImagens')->middleware('auth'); //Remove todas as imagens da galeria
+ //
 
 //Rota Comentarios
 Route::get('comentarios', 'ComentariosController@index')->middleware('auth');

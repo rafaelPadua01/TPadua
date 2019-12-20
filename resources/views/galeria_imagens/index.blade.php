@@ -6,6 +6,7 @@
 	<h1 align='center'>Galeria de Imagens</h1>
 	<hr>
 	<div class='btn-group'>
+	
 		<a href='/home' class='btn btn-info'>
 			<i class='glyphicon glyphicon-home'></i>
 					Pagina Inicial
@@ -14,7 +15,25 @@
 			<i class='glyphicon glyphicon-remove-circle'></i>
 				Limpar Galerias
 		</button>
+			<!-- Botão de Busca -->
+		
+	
+		<form action='/galeria_imagens/search' method='get'>
+			<div class='input-group mb-3 col-xs-2'>
+				<input type='text' name='search' id='search' class='typehead form-control' placeholder='buscador...'>
+				<div class='input-group-btn'>
+					<button class='btn btn-default' type='submit'>
+						<i class='glyphicon glyphicon-search'></i>
+					</button>
+				</div>
+			</div>
+		</form>
+		
+		
 	</div>
+	
+	
+	
 		<!-- Janela Modal -->
 		<div class='modal fade' id='exampleModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel'>
 			<div class='modal-dialog' role='document'>
@@ -54,10 +73,16 @@
 						<span class='glyphicon glyphicon-folder-open' style='font-size: 6rem'></span>
 						<p style='font-size: 1rem'>{{$diretorio}}</p>
 						
-						<button type='submit' class='btn btn-danger'>
-							<i class='glyphicon glyphicon-trash'></i>
-								Remover Galeria
-						</button>
+						<div class='btn-group'>
+					<!--	<a href='/{{$diretorio}}/edit' class='btn btn-default'>
+							<i class='glyphicon glyphicon-refresh'></i>
+								editar Galeria
+						</a> -->
+							<button type='submit' class='btn btn-danger'>
+								<i class='glyphicon glyphicon-trash'></i>
+									Remover Galeria
+							</button>
+						</div>
 					</div>
 				</a>
 			</form>

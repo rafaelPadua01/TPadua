@@ -9,7 +9,7 @@
 		<div class='col-xs-12 col-md-12 col-sm-12 col-lg-12'>
 			@if($errors->any())
 				<ul class='alert alert-warnign'>
-					@foreach($erros as $error)
+					@foreach($errors as $error)
 						<li>{{$error}}</li>
 					@endforeach
 				</ul>
