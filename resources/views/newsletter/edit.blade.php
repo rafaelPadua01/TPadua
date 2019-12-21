@@ -53,7 +53,7 @@
 		<div class='form-group'>
 		
 		{!! Form::submit('Atualizar', ['class' => 'btn btn-success']) !!} 
-		<a href='/' class='btn btn-danger'>Voltar</a>
+		<a href='/newsletter' class='btn btn-danger'>Voltar</a>
 		</div>
 	{!! Form::close()!!}
 			</div>

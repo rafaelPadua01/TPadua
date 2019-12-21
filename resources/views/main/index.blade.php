@@ -29,22 +29,22 @@
 		<script async defer crossorigin="anonymous" src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v5.0"></script>
 	</head>
 	
-	<body>
+	<body style="background-image: url('../../img/icon/earth3.jpg')">
 		<div class='container'>
 			<div class='row'>
 				<div class='col-12 navbar nav-bar-expand bg-dark navbar-dark' style='width: 100%'>
 					<!-- Navbar Responsiva, toggle -->
 					
 						<!-- Brand (link para pagina inicial e imagem padrão)  -->
-						<a class="navbar-brand" href='/'><img src='../../img/icon/TPaduaDefault.bmp' class='img-responsive'></a>
+						<a class="navbar-brand" href='/'><img src='../../img/icon/TPaduaDefault.bmp' class='img-responsive' style='width: 90%'></a>
 						
 						<!-- Formulário de Busca por categorias -->
 							<form class='navbar-form navbar-left' action='categorias/search' style='margin-top: 1%'>
 								<div class='input-group'>
 									<input type='text' name='search' class='form-control'
-										placeholder='Categorias ex:(Artigos)'>
-									<div class='input-group-append '>
-										<button class='btn btn-sm btn-secondary' type='submit'>
+										placeholder='Categorias ex:(Artigos)' style='background-color: 	#F5FFFA;'>
+									<div class='input-group-append'>
+										<button class='btn btn-sm btn-info' type='submit'>
 											<i class='fa fa-search'></i>
 										</button>
 									</div>
@@ -92,20 +92,21 @@
 			<!-- Div do Banner -->
 			<div class='row'>
 				<div class='col-12'>
-					<img src='../../img/icon/8.01.png' class='img-fluid' style='width: 100%; max-width: 100%;'>
+					<img src='../../img/icon/8.01.png' class='img-fluid' style='width: 100%; max-width: 100%'>
 					<img src='../../img/icon/84.bmp' class='img-fluid' style='width: 45%; min-width: 110px;
 							margin-top: -6.5%; margin-left: 25%; opacity: 0.8'>
 				</div>
 			</div>
 			<!-- Div de espaçamento -->
 			<div class='row'></div>
-			<br>
+			
 			<!-- div espacamento -->
 			<div class='row'></div>
 			<br>
+			
 			<!-- Div dos Videos informativos -->
 			<div class='row'>
-				<div class='col-3 shadow p-1 mb-3 rounded' style='background-color: #080808' id='overflowA'>
+				<div class='col-3 shadow p-1 mb-3 rounded' style='height: 500px; position: relative; background-color: #080808; opacity: 0.9' id='overflowA'>
 				  <!-- Style com Overflow, adiciona scrollbar na div -->
 				<style>
 					div #overflowA
@@ -115,42 +116,32 @@
 					}
 				</style>
 					<!-- Titulo da área informativo -->
-					<h5 align='center' style='font-size: 0.8rem;color: #fff'>
-						<i class="fas fa-video">
-							<strong style='font-size: 0.8rem; text-decoration: underline; text-align: center'>Informativo</strong>
-						</i>
-							
-						
+					<h5 align='center' style='font-size: 0.8rem; color: #fff; opacity: 1'>
+						<i class="fas fa-video" style='font-size: 0.6rem'></i>
+							<strong style='font-size: 0.6rem; text-align: center'>Informativo</strong>
 					</h5>
-					<br>
-					
-					
-						
+					<hr style='background-color: #fff'>
 					@foreach($videos as $video)
-						<h6 style='font-size: 0.7rem; text-align: center; color: #fff'>
+						<h5 style='font-size: 0.5rem; text-align: center; color: #fff'>
 							{{$video->titulo}}
-						</h6>
-						
-						<div style='min-width: 8rem; margin-left: -1%' class="embed-responsive embed-responsive-16by9">
-							<video style='margin-left: -2%' class='embed-responsive-item' autoplay="none" allowfullscreen controls>
+						</h5>
+					
+						<div style='min-width: 6rem; margin-left: -1%' class="embed-responsive embed-responsive-16by9">
+							<video style='margin-left: -3%' class='embed-responsive-item' autoplay="none" allowfullscreen controls>
 							<source src='/storage/videos/{{$video->nome_arquivo}}'>	
 							
 						</div>
 						<br>
+						<h6 align='center' style='font-size: 0.6rem; color: #fff'><strong>Descrição:</strong></h6>
+						<p align='center' style='font-size: 0.5rem; opacity: 0.8; color: #fff;'>{{$video->descricao}}</p>
+						<hr style='background-color: #fff'>
 					@endforeach
-					
-						
 				
-				
-				<p align='center' style='font-size: 0.7rem; color: #fff'><strong>Descrição:</strong></p>
-				<br>
-				<p style='font-size: 0.5rem; opacity: 0.8; color: #fff;'>{{$video->descricao}}</p>
-				<hr>
 				</div>
 				<br>
 				
 				<!-- Div Das Noticias -->
-				<div class='col-6 shadow p-1 mb-2 rounded' style='border: 1px solid #ddd'>
+				<div class='col-6 shadow p-1 mb-2 rounded' style='background-color: #DCDCDC; opacity: 0.8; border: 1px solid #ddd'>
 				<!-- Loop que percorre tabela de noticias -->
 				  @foreach($noticias as $noticia)
 						<div id="fb-root"></div>
@@ -159,21 +150,20 @@
 						<!-- Verifica se a noticia está em dastaque ou não -->
 					@if($noticia->destaque >= 1)
 						<!-- se estive como destaque, exibe o titulo com a bandeira -->
-						<h5 style='font-size: 1rem; font-family: arial, sans-serif; text-shadow: 1px 1px #ccc; color: #1c1c1c;'>
+						<h4 style='font-family: arial, sans-serif; text-shadow: 1px 1px #ccc; color: #1c1c1c;'>
 								<!--Código da Bandeira de Destaque -->
 									<!-- titulo da noticia -->
-									<p style='text-align: center; font-size: 0.9rem'>
-										<span class='fa fa-bookmark'
-										style='font-size: 0.8rem' alt='Destaque'></span>
+									<p style='text-align: center; font-size: 0.7rem'>
+										<span class='far fa-bookmark'
+										style='font-size: 0.9rem; color: red' alt='Destaque'></span>
 														
-										{{$noticia->titulo}}
+										<strong>{{$noticia->titulo}}</strong>
 									</p>
-							
-						</h5>
+						</h4>
 						<hr>
 					@else
 						<!-- Se não passar na verificação dos destaques exibe apenas o titulo da notícia -->
-						<h4 style='font-size: 0.8rem; font-family: arial, sans-serif; text-shadow: 1px 1px #ccc; color: #1c1c1c; text-align: center;'>
+						<h4 style='font-size: 0.7rem; font-family: arial, sans-serif; text-shadow: 1px 1px #ccc; color: #1c1c1c; text-align: center;'>
 								
 							<p style='text-align: center'>{{$noticia->titulo}}</p>
 						</h4>
@@ -197,17 +187,17 @@
 				</p>
 				@endforeach
 				<!-- Conteudo da noticia -->
-					<?php echo "<div style='font-size: 0.8rem'>".(str_limit($noticia->conteudo, 501, '...'))."</div>" ?>
-				<br>
+					<?php echo "<div style='font-size: 0.6rem'><p>".(str_limit($noticia->conteudo, 501, '...'))."</p></div>" ?>
+				
 				<!-- Link Leia Mais -->
-				<p align='center'>
-					<a href='noticias/{{$noticia->id}}/show' class='btn btn-link'>
-						<span class='fas fa-eye'> </span>
-								leia Mais
+				<p align='center' style='font-size: 0.6rem'>
+					<a href='noticias/{{$noticia->id}}/show' class='btn btn-link' style='font-size: 0.7rem'>
+						<span class='fas fa-eye' style='font-size: 0.8rem'> </span>
+									Leia mais
 					</a>
 				</p>
 				
-					<a href='noticias/{{$noticia->id}}/modal'>
+					<a href='noticias/{{$noticia->id}}/modal' style='font-size: 0.6rem' align='center'>
 							<i class='fas fa-envelope'></i>
 								Compartilhar Por Email 
 					</a>
@@ -217,7 +207,7 @@
 					<div class="fb-share-button" 
 						data-href="http://tpadua.aliastpadua.com.br/noticias/&#123;&#123;$noticia-&gt;id&#125;&#125;/show"
 							data-layout="button_count" data-size="small" data-mobile='true'>
-							<a target="_blank"
+							<a target="_blank" style='font-size: 0.6rem'
 								href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Ftpadua.aliastpadua.com.br%2Fnoticias%2F%257B%257B%24noticia-%3Eid%257D%257D%2Fshow&amp;src=sdkpreparse"
 									class="fb-xfbml-parse-ignore">
 										Compartilhar
@@ -225,7 +215,7 @@
 					</div>
 					
 					<hr>
-					<p style='font-size: 0.8rem' align='center'>
+					<p style='background-color: #ccc; font-size: 0.5rem' align='center'>
 					<b>Fonte:</b> {{$noticia->fonte}}
 					|
 					<b>Data:</b> <?php echo date('d-m-Y', strtotime($noticia->created_at));	?>
@@ -243,7 +233,8 @@
 				
 			
 				<!-- Div da arte e cultura -->
-				<div class='col-3 shadow p-1 mb-3 rounded' style='float: right; background-color: #080808; border: 1px solid #ddd' id='overflowA'>
+				<div class='col-3 shadow p-1 mb-3 rounded' style='float: right; background-color: #080808; 
+						opacity: 0.9; border: 1px solid #ddd; position: relative' id='overflowA'>
 					<style>
 						div #overflowA
 						{
@@ -253,14 +244,15 @@
 					</style>
 			
 			<!-- Titulo, cabeçalho dos eventos -->
-				<h6 style='font-size: 0.8em; color: #fff; text-align:center;'>
+				<h6 style='font-size: 0.6rem; color: #fff; text-align:center;'>
 						<i style='' class='fas fa-calendar-week'>
 							
 						</i>
-								<strong style='text-decoration: underline'> Arte e Cultura</strong>
+								<strong> Arte e Cultura</strong>
 				</h6>
+				<hr style='background-color: #fff'>
 				@foreach($eventos as $evento)
-						<p style='font-size: 0.7rem; text-align: center; color: #fff'><strong>{{$evento->nome_evento}}</strong></p>
+						<p style='font-size: 0.5rem; text-align: center; color: #fff'><strong>{{$evento->nome_evento}}</strong></p>
 						
 						<!-- div que cria as imagens e o efeito de zoom -->
 						<div class='img-zoom'>
@@ -291,7 +283,7 @@
 								@endif
 						@endforeach	
 						</div>
-							<p style='font-size: 0.7rem; background-color: #080808; opacity: 0.5;
+							<p style='font-size: 0.5rem; background-color: #080808; opacity: 0.5;
 									position: relative; color: #fff'>
 									{{$evento->descricao_evento}}
 							</p>
@@ -299,14 +291,16 @@
 							<br>
 							
 									
-							<p  style='display: inline-block; font-size: 0.8rem; color: #fff'><b>Data:</b> <?php echo date('d-m-Y', strtotime($evento->data_evento));?>
-							|
-							<b>Hora:</b> <?php echo date('H:i:s', strtotime($evento->hora_evento));?></p>
-							<br>
+							<p  style='display: inline-block; font-size: 0.5rem; color: #fff'>
+								<b>Data:</b> <?php echo date('d-m-Y', strtotime($evento->data_evento));?>
+								|
+								<b>Hora:</b> <?php echo date('H:i:s', strtotime($evento->hora_evento));?>
+							</p>
+							<hr style='background-color: #fff'>
 									
 					@endforeach
 					
-					<a href='eventos/show' style='font-size: 0.8rem; color: #fff'>
+					<a href='eventos/show' style='font-size: 0.7rem; color: #fff'>
 										<p style='text-align: center'>
 											<span class='fas fa-plus'></span>
 												<strong>Veja Mais</strong>
@@ -316,21 +310,25 @@
 				</div>
 			</div>
 			
-			<!-- Row vazia de espaçamento -->
+			<!-- Row vazia de Newsletter -->
+			
 			<div class='row'>
-				<div class='col-2 shadow p-1 mb-3 rounded' style='margin-top: -120%;  position: absolute; border: 1px solid #ddd; padding: 0%'>
-						<p class='h4' style='font-size: 0.6rem; text-align: center'>
+				<div class='col-3 shadow p-1 mb-3 rounded' style='height: 90px; margin-top: -100%; position: relative; 
+						background-color: #fff; opacity: 0.8; padding: 0%'>
+						<h5  style='font-size: 0.6rem; text-align: center'>
+							<i class='fas fa-envelope-open-text' style='font-size: 0.8rem'></i>
 								<strong>NewsLetter</strong>
-						</p>
+						</h5>
 					<hr>
 					<!-- conteudo da div (newsletter) -->
-					<p style='font-size: 0.6rem; text-align:center; margin-top: 0%'>
-						Assíne a nossa <b style='text-decoration: underline; color: red'>Newsletter</b>
-						e fique por dentro de nossas atualizações.
+					<p style='font-size: 0.4rem; text-align:center;'>
+						<strong>Assíne a nossa <b style='text-decoration: underline; color: red'>Newsletter</b>
+						<br>
+						e fique por dentro de nossas atualizações.</strong>
 						
-					<br>
+					
 				
-						<a style='font-size: 0.6rem; width: 90%; padding: 1%; margin-left: 1.5%' href='newsletter' class='btn btn-sm btn-success'>Assínar</a>
+						<a style='font-size: 0.5rem; width: 90%; padding: 1%; margin-left: 1.5%' href='newsletter' class='btn btn-sm btn-success'>Assínar</a>
 							
 					</p>
 					
@@ -343,9 +341,13 @@
 				<div class='col-2'></div>
 			</div>
 			<div class='row'>
-			<div class='col-2 shadow p-1 mb-3 rounded' style='margin-top: -65%;  position: absolute; border: 1px solid #ddd; padding: 10%'>
+			<div class='col-3 shadow p-1 mb-3 rounded' style='height: 125px; background-color: #fff; margin-top: -70%;
+					position: relative; padding: 10%; opacity: 0.7'>
 					<!-- Titulo da div (Parceiros) -->
-				<h5 style='font-size: 0.7rem; text-align: center'>Parceiros</h5>
+				<h5 style='font-size: 0.6rem; text-align: center'>
+					<i class='fas fa-handshake' style='font-size: 0.8rem'></i>
+						<strong>Parceiros</strong>
+				</h5>
 				<hr>
 				<!-- conteudo da div -->
 				<ul class='list-group' style='list-style-type: none; display: inline-block;'>
@@ -355,8 +357,8 @@
 										<li class='group-item'>
 											<a href='{{$parceiro->url}}'>
 												<img src='storage/{{$imagem_parceiro->nome_imagem}}'
-													style='min-width: 20px; width: 30%; position: relative;
-														 box-shadow: -1px -2px; padding: 1%;' 
+													style='min-width: 8px; width: 12%; position: relative;
+														 box-shadow: -1px -2px; padding: 0%;' 
 															class='rounded-circle img-fluid' alt='{{$parceiro->nome_parceiro}}'>
 											</a>
 										</li>
@@ -367,8 +369,8 @@
 					
 				</ul>
 				<hr>
-				<a style='min-width: 10px; width: 95%; padding: 0%;
-						margin-left: 2%; margin-top: -5%' href='parceiros/create'
+				<a style='min-width: 10px; width: 90%; padding: 0%; font-size: 0.7rem;
+						margin-left: 5%; margin-top: -5.5%; position: relative' href='parceiros/create'
 							class='btn btn-success btn-sm'>Assínar
 							
 					</a>
@@ -398,18 +400,16 @@
 			<div class='row'>
 				<div class='col-2'></div>
 				
-				<div class='col-4'>
+				<div class='col-4' align='center'>
 					<!-- Links de Páginação -->
 					<div class='col-2'></div>
 					<!-- Links de Páginação -->
-					<div class='container' aria-label="page navigation example">
-					<div class='row justify-content-sm-center'>
-					<div class='col-4'>
-						{{$noticias->onEachSide(1)->links()}}
-					</div>
+					
+						<div class='col-6' align='center'>
+							{{$noticias->onEachSide(2,2)->links()}}
+						</div>
 					<div class='col-4'></div>
-					</div>
-					</div>
+					
 				</div>
 				
 			<div class='col-2'></div>

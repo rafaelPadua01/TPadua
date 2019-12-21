@@ -10,8 +10,8 @@ class NewsLetterController extends Controller
 {
 	public function index()
 	{
-		$users_news_letters = NewsLetter::all();
-		return view('newsletter', ['users_news_letters' => $users_news_letters]);
+		$user_news_letters = NewsLetter::orderBy('id', 'desc')->paginate(10);
+		return view('newsletter.index', ['user_news_letters' => $user_news_letters]);
 	}
     public function create()
 	{

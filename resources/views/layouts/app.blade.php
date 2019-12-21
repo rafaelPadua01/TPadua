@@ -29,9 +29,10 @@
             <div class="container-fluid">
             
 			</div>
-			
+			<!-- Navbar -->
 			<a class="navbar-brand" href="/"><img src='../../img/icon/TpaduaDefault.bmp' 
-					alt="@aliastpadua" style=' width: 100%;margin-top: -8%;' class='img-responsive'></a>
+					alt="@aliastpadua" style=' width: 100%;margin-top: -8%;' class='img-responsive'>
+			</a>
 			
             <!--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>

@@ -75,7 +75,7 @@ route::get('imagens/{id}/destroy', 'ImagensController@destroy')->middleware('aut
 
 //Rotas da NewsLetter
 /* Rotas com middlewares só serão acessadas por usuarios autenticados */	
-Route::get('newsletter', 'NewsLetterController@index');
+Route::get('newsletter', 'NewsLetterController@index')->middleware('auth');
 Route::get('newsletter/create', 'NewsLetterController@create');
 Route::post('newsletter/store',  'NewsLetterController@store');
 Route::get('newsletter/{id}/edit',  'NewsLetterController@edit')->middleware('auth');
@@ -175,7 +175,7 @@ Route::get('contacts_news/{id}/destroy', 'Contacts_NewsController@destroy');
 
 
 
-
+Route::get('users', ['uses' => 'usersController@index', 'as' => 'users.index']);
 Route::get('users/{id}/edit', ['uses' => 'UsersController@edit', 'as' => 'users.edit']);
 Route::put('users/{id}/update', ['uses' => 'UsersController@update', 'as' => 'users.update']);
 Route::get('users/all_users', ['uses' => 'UsersController@allUsers', 'as' => 'users.all_users']);

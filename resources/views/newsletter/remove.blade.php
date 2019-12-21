@@ -19,7 +19,7 @@
 			<br>
 		
 		</p>
-		<a href='/home' class='btn btn-success'>Voltar para o inicio</a>
+		<a href='/newsletter' class='btn btn-success'>Voltar para o inicio</a>
 		<button type='submit' class='btn btn-danger btn-sm'>Deletar</a>
 </form>
 </div>

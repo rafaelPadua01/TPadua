@@ -10,6 +10,14 @@ use App\User;
 
 class UsersController extends Controller
 {
+	
+	public function index()
+	{
+		$users = User::all();
+		return view('users.index', compact('users'));
+	}
+	
+	
     public function allUsers()
 	{
 		$users = \DB::select('SELECT * FROM users WHERE id = :id', ['id' => 1]);

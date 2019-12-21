@@ -9,6 +9,13 @@ use App\Http\User;
 class UsersController extends Controller
 {
 	use Notifiable;
+	
+	public function index()
+	{
+		$users = User::all();
+		return view('users.index', compact('users'));
+	}
+	
 	public function allUsers()
 	{
 		$users = \DB::select('Select * from users where 1 = 1');
