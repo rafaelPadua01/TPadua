@@ -29,6 +29,7 @@
 						<th>Nome</th>
 						<th>Comentario</th>
 						<th>Noticia</th>
+						<th>Data/Hora</th>
 						<th>Ações</th>
 										
 					
@@ -50,7 +51,10 @@
 								@endif
 							@endforeach
 						</td>
-							
+						
+						<td>
+							{!! $comentario->created_at!!}
+						</td>
 							
 						
 						

@@ -17,7 +17,7 @@ class ComentariosController extends Controller
 	
 	public function index()
 	{
-		$comentarios = Comentarios::all();
+		$comentarios = Comentarios::orderBy('id', 'desc')->paginate(10);
 		$noticias = Noticia::all();
 		return view('comentarios.index', compact('comentarios', 'noticias'));
 		
@@ -51,6 +51,11 @@ class ComentariosController extends Controller
 		\Notification::send($users, new NoticiaComment($comentario));
 	
 		
+		$user = User::find(Auth::user()->id);
+		foreach($user->notifications as $notification)
+		{
+			echo $notification->type;
+		}
 		
 		 return redirect()->back()->with('success','Comentário Enviado !');
 		

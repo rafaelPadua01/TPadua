@@ -276,12 +276,14 @@
 										<b>Visitante:</b> {{$comentario->nome}}
 									</p>
 										
-									<p align='center' style='font-size: 0.8rem; color: #fff'>
-										<b>Comentário:</b>
-											<br>{{$comentario->comentario}}
+									<p align='center' style='font-size: 0.7rem; color: #fff'>
+										<b>Disse:</b>
+											<br>
+											{{$comentario->comentario}}
+											
 									</p>
 									
-									<p  style='font-size: 0.6rem; color: #fff'>
+									<p align='left' style='font-size: 0.6rem; color: #fff;'>
 									 	
 										<b>Em:</b> <?php echo date('d-m-Y H:m:i', strtotime($comentario->created_at))?>
 									</p>

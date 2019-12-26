@@ -42,7 +42,7 @@ class NoticiasController extends Controller
 		$noticias = Noticia::findOrFail($id);
 		$imagens = Imagens::all();
 		$galeria_imagens = Galeria_Imagens::all();
-		$comentarios = Comentarios::all();
+		$comentarios = Comentarios::orderBy('id', 'desc')->paginate(10);
 		$parceiros = Parceiros::all();
 		$imagem_parceiros = Imagem_Parceiros::all();
 		$videos = Videos::orderby('id', 'desc')->limit(4, 5)->get();

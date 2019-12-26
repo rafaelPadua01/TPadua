@@ -68,7 +68,15 @@ class UsersController extends Controller
 			
 		
 	}
-	
+	public function notificationComment()
+	{
+		$user = User::find(Auth::user()->id);
+		foreach($user->notifications as $notification)
+		{
+			echo $notification->type;
+		}
+		
+	}
 	
 	
 }

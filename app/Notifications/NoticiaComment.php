@@ -22,14 +22,14 @@ class NoticiaComment extends Notification implements ShouldQueue
 	 
 	 
 	 
+	 
     public function __construct(Comentarios $comentario)
     {
         //
 		$this->comentario = $comentario;
 		
 		
-	
-    }
+	}
 
     /**
      * Get the notification's delivery channels.
@@ -51,10 +51,10 @@ class NoticiaComment extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
 			return (new MailMessage)
-					->subject("Novo Comentário")
+					->subject("@Aliatpadua.com.br possui um Novo Comentário")
 					->line("Novo comentário de: {$this->comentario->nome}")
-					->line("Ele disse: {$this->comentario->comentario}")
-                    ->action('Ir para a notícia', url("noticias/{$this->comentario->id_noticia}/show"))
+					->line("Comentário: {$this->comentario->comentario}")
+                    ->action('Ir para a notícia', url("/noticias/{$this->comentario->id_noticia}/show"))
                     ->line('Obrigado !');
 			
                     
@@ -68,8 +68,10 @@ class NoticiaComment extends Notification implements ShouldQueue
      */
     public function toArray($notifiable)
     {
+		/* Notifica usuarios da base de dados que possuem um novo comentario*/
         return [
-            //
+            'invoice_id' => $this->invoice->id,
+			'amount' => $this->invoice->amount,
         ];
     }
 }
