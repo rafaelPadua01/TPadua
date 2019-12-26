@@ -18,7 +18,8 @@ class ComentariosController extends Controller
 	public function index()
 	{
 		$comentarios = Comentarios::all();
-		return view('comentarios.index', compact('comentarios'));
+		$noticias = Noticia::all();
+		return view('comentarios.index', compact('comentarios', 'noticias'));
 		
 	}
 	public function show($id)

@@ -83,6 +83,8 @@
 							</ul>	
 							
 						</div>
+						
+						
 				
 				</div>
 			</div>
@@ -171,15 +173,15 @@
 					@endif
 					
 					<!-- Exibe imagens das noticias -->
-					<p style='font-family: arial; sans-serif; text-align: center; color: #000; font-size: 100%;'>
+					<p style='font-family: arial; sans-serif; text-align: center; color: #000; font-size: 100%'>
 						<!-- loop que percorre a tabela de imagens -->
 					@foreach($imagens as $imagem)
 					<!-- Se a id da nioticia for igual ao da id_noticia da tabela imagens
 						exibe imagem da notiica -->
 					@if($noticia->id == $imagem->id_noticia)
-						<a href="{{$imagem->nome_imagem}}">
-							<img src='{{$imagem->nome_imagem}}' alt='{{$imagem->nome_imagem}}' style='width: 70%'
-									class='img-thumbnail img-responsive'>
+						<a href="{{$imagem->nome_imagem}}" align='center'>
+							<img src='{{$imagem->nome_imagem}}' alt='{{$imagem->nome_imagem}}' style='width: 70%; 
+								margin-left: 15%;' class='img-thumbnail img-fluid'>
 						</a>
 					@endif
 						
@@ -291,7 +293,7 @@
 							<br>
 							
 									
-							<p  style='display: inline-block; font-size: 0.5rem; color: #fff'>
+							<p style='display: inline-block; font-size: 0.5rem; color: #fff'>
 								<b>Data:</b> <?php echo date('d-m-Y', strtotime($evento->data_evento));?>
 								|
 								<b>Hora:</b> <?php echo date('H:i:s', strtotime($evento->hora_evento));?>
@@ -406,7 +408,7 @@
 					<!-- Links de Páginação -->
 					
 						<div class='col-6' align='center'>
-							{{$noticias->onEachSide(2,2)->links()}}
+							{{$noticias->onEachSide(2)->links()}}
 						</div>
 					<div class='col-4'></div>
 					

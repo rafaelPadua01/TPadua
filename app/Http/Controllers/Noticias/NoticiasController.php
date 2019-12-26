@@ -15,11 +15,19 @@ use App\Galeria_Imagens;
 use App\Comentarios;
 use App\Parceiros;
 use App\Imagem_Parceiros;
+use App\Videos;
+use App\Eventos;
+use App\Imagem_Eventos;
 use App\Http\Requests\NoticiaRequest;
 
 class NoticiasController extends Controller
 {
+	private $noticias;
 	
+	public function __construct(Noticia $noticias)
+	{
+		$this->noticias = $noticias;
+	}
 	public function index()
 	{
 		$noticias = Noticia::orderBy('id', 'desc')->paginate(5);
@@ -31,15 +39,18 @@ class NoticiasController extends Controller
 	//link leia mais deve redirecionar para esta action
 	public function show($id)
 	{
-		$noticias = Noticia::find($id);
+		$noticias = Noticia::findOrFail($id);
 		$imagens = Imagens::all();
 		$galeria_imagens = Galeria_Imagens::all();
 		$comentarios = Comentarios::all();
 		$parceiros = Parceiros::all();
 		$imagem_parceiros = Imagem_Parceiros::all();
+		$videos = Videos::orderby('id', 'desc')->limit(4, 5)->get();
+		$eventos = Eventos::orderBy('id', 'desc')->limit(4,5)->get();
+		$imagem_eventos = Imagem_Eventos::all();
 		
-		return view('noticias.show', compact('noticias', 'parceiros', 'imagem_parceiros', 'comentarios'), ['imagens' => $imagens,
-							'galeria_imagens' => $galeria_imagens]);
+		return view('noticias.show', compact('noticias', 'parceiros', 'imagem_parceiros', 'comentarios', 'videos', 'eventos', 'imagem_eventos'),
+					['imagens' => $imagens, 'galeria_imagens' => $galeria_imagens]);
 	}
 	public function create($id)
 	{
