@@ -50,14 +50,7 @@ class ComentariosController extends Controller
 	
 		\Notification::send($users, new NoticiaComment($comentario));
 	
-		
-		$user = User::find(Auth::user()->id);
-		foreach($user->notifications as $notification)
-		{
-			echo $notification->type;
-		}
-		
-		 return redirect()->back()->with('success','Comentário Enviado !');
+		 return redirect()->back()->with('success',"<script>window.alert('Comentário Enviado !')</script>");
 		
 		
 	}

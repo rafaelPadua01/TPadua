@@ -11,7 +11,7 @@ use App\Profile_user;
 use App\NewsLetter;
 use App\Comentarios;
 use App\Contacts_News;
-
+use Illuminate\Notifications\Notifiable;
 
 
 class HomeController extends Controller
@@ -21,6 +21,8 @@ class HomeController extends Controller
      *
      * @return void
      */
+	 use Notifiable;
+	 
     public function __construct()
     {
         $this->middleware('auth');
@@ -43,7 +45,26 @@ class HomeController extends Controller
 		$user_news_letters = \DB::table('news_letters')
 									->orderBy('id', 'desc')
 									->get(); //ordena usuarios de forma decrescente
-		if($comentarios->all() == false)
+			
+		$id = \Auth::user()->id;
+		$user = User::find(\Auth::user()->id);
+		
+		
+		foreach($user->unreadNotifications as $notification)
+		{
+			$data = array('data' => json_decode($notification->markAsRead()));
+			if($notification->read_at)
+		{
+			$user->notifications()->delete();
+		}
+			
+			return view('home', compact('data'));
+			
+		}
+		
+				
+		/* codigo das notificações do toastr, código abandonado*/							
+		/*if($comentarios->all() == false)
 		{
 			toastr()->info('Você não possui comentários ainda');
 			
@@ -53,11 +74,25 @@ class HomeController extends Controller
 			toastr()->success('Você possui Novos Comentários');
 		
 		}
-		
+		*/
 
         return view('home', ['categorias' => $categorias,'noticias' => $noticias, 'imagem_profiles' => $imagem_profiles,
 								'profiles' => $profiles, 'user_news_letters' => $user_news_letters,
 								'comentarios' => $comentarios, 'users' => $users, 'contacts_news' => $contacts_news]);
 								
     }
+	
+	public function notificationUser()
+	{
+		$id = \Auth::user()->id;
+		$user = User::find($id);
+		
+		foreach($user->notifications as $notification)
+		{
+			$data = array('data' => json_decode($notification));
+			dd($data);
+			
+			return view('home', compact(json_decode($notification)));
+		}
+	}
 }

@@ -125,6 +125,9 @@
 			<h5 align='center' style='font-size: 1.2rem'>Seja bem vindo <b> Sr.{{Auth::user()->name}}</b></h5>
 			<hr>
 			
+				
+			
+			
 			<!-- Div central com os menus de acesso Rápido -->
 			<div class='col-12' style='display: inline-block; padding: 0%'>
 	
@@ -132,16 +135,28 @@
 				<a align='center' href='/comentarios' style='font-size: 0.8rem'>
 					<div class='col-4 shadow p-3 mb-5 rounded' style='display: inline-block; padding: 2%'>
 						<h1 style='font-size: 0.7rem'>Novos Comentários</h1>
-						<hr>
-						<i class='fas fa-comment-dots' style='font-size: 2rem; color: #333'></i>
-							<br>
+							<i class='fas fa-comments' style='font-size: 2rem'></i>
+							<hr>
+						@if(empty($data))
+							<p>nenhum comentário</p>
+						@else 
+							@foreach($data as $notification)
+								Novo Comentário
+								<i class='fas fa-exclamation' style='font-size: 1.2rem; color: red'></i>
+								<br>
+							
+							@endforeach
+						@endif
+						
 					
+						
 					</div>
 				</a>
 				<!-- Botão de Noticias recebidas -->
 				<a align='center' href='/contacts_news'  style='font-size: 0.8rem'>
 					<div class='col-4 shadow p-3 mb-5 rounded' style='display: inline-block; padding: 2%'>
 						<h1 style='font-size: 0.7rem'>Notícias Recebidas</h1>
+						
 						<hr>
 						<i class='fas fa-newspaper' style='font-size: 2rem; color: #333'></i>
 						<br>

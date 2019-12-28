@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Categoria;
@@ -16,6 +15,7 @@ use App\NewsLetter;
 use App\Eventos;
 use App\Imagem_Eventos;
 use App\Videos;
+
 
 class MainController extends Controller
 {

@@ -39,7 +39,7 @@ class NoticiaComment extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return [ 'database','mail'];
     }
 
     /**
@@ -54,12 +54,13 @@ class NoticiaComment extends Notification implements ShouldQueue
 					->subject("@Aliatpadua.com.br possui um Novo Comentário")
 					->line("Novo comentário de: {$this->comentario->nome}")
 					->line("Comentário: {$this->comentario->comentario}")
-                    ->action('Ir para a notícia', url("/noticias/{$this->comentario->id_noticia}/show"))
+                    ->action('Ir para a notícia', url("/../noticias/{$this->comentario->id_noticia}/show"))
                     ->line('Obrigado !');
 			
                     
     }
-
+	
+	
     /**
      * Get the array representation of the notification.
      *
@@ -70,8 +71,21 @@ class NoticiaComment extends Notification implements ShouldQueue
     {
 		/* Notifica usuarios da base de dados que possuem um novo comentario*/
         return [
-            'invoice_id' => $this->invoice->id,
-			'amount' => $this->invoice->amount,
+				//
+				'comentario' => $this->comentario,	
+        ];
+    }	
+	
+	/* Metodo de envio de notificações para usuario da base dedados
+	* Apenas usuarios administradores 
+	*/
+	public function toDatabase($notifiable)
+    {
+		/* Notifica usuarios da base de dados que possuem um novo comentario*/
+        return [
+			'comentario' => $this->comentario,
         ];
     }
+	
+	
 }
