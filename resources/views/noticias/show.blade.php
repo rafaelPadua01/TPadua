@@ -266,7 +266,22 @@
 			<div class='col-3'></div>
 			<div class='col-6' style='background-color: #000; opacity: 0.6'>
 				<!-- Cabeçalho dos comentários -->
-				<h4 align='center' style='color: #fff;font-size: 0.9rem'>Comentarios:</h4>
+				<h4 align='center' style='color: #fff;font-size: 0.9rem'>Comentarios:
+					<!-- este código verifica a contagem de comentarios 
+						e retorna o valor para o usuário -->
+				(
+					
+						<?php if(count($comentarios) > 1) ?>
+						<?php
+						{
+						
+							$result = count($comentarios);
+							echo $result;
+						}
+						?>
+				)
+				</h4>
+				
 				<hr style='background-color: #fff'>
 				<!-- Loop que percorre a tabela de comentários -->
 							@foreach($comentarios as $comentario)
@@ -295,7 +310,7 @@
 				<!-- TAB de comentários comuns do sistema -->
 					<a class='nav-item nav-link active' id='nav-comentarios-tab' data-toggle='tab' href='#nav-comentarios'
 						role='tab' aria-controls='nav-comentarios' aria-selected="true"	style='font-size: 0.6rem'>
-												Comentar
+											Comentar
 					</a>
 					<!-- TAB de comentários do facebook -->
 					<a class='nav-item nav-link' id='nav-facebook-tab' data-toggle='tab' href='#nav-facebook' 
@@ -325,7 +340,8 @@
 							{!! Form::open(['url' => "comentarios/{$noticias->id}/store", 'method' => 'post'])!!}
 							
 							<div class='form-group'>
-								<h3 style='font-size: 0.9rem'>Comentar</h3>
+								<br>
+								<h3 align='center' style='font-size: 0.9rem;'>Comentar</h3>
 									<hr style='background-color: #D3D3D3'>
 									{!! Form::label('nome', 'Nome:') !!}
 										@if(Auth::check())

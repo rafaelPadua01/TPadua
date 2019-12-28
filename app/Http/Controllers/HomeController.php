@@ -82,17 +82,5 @@ class HomeController extends Controller
 								
     }
 	
-	public function notificationUser()
-	{
-		$id = \Auth::user()->id;
-		$user = User::find($id);
-		
-		foreach($user->notifications as $notification)
-		{
-			$data = array('data' => json_decode($notification));
-			dd($data);
-			
-			return view('home', compact(json_decode($notification)));
-		}
-	}
+	
 }

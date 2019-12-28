@@ -124,9 +124,7 @@
 		<div class='col-8 shadow p-3 mb-5 rounded' align='center'>
 			<h5 align='center' style='font-size: 1.2rem'>Seja bem vindo <b> Sr.{{Auth::user()->name}}</b></h5>
 			<hr>
-			
-				
-			
+			<br>
 			
 			<!-- Div central com os menus de acesso Rápido -->
 			<div class='col-12' style='display: inline-block; padding: 0%'>
@@ -138,37 +136,48 @@
 							<i class='fas fa-comments' style='font-size: 2rem'></i>
 							<hr>
 						@if(empty($data))
-							<p>nenhum comentário</p>
+							Sem novos comentários
 						@else 
 							@foreach($data as $notification)
 								Novo Comentário
 								<i class='fas fa-exclamation' style='font-size: 1.2rem; color: red'></i>
-								<br>
-							
+								
 							@endforeach
 						@endif
-						
-					
-						
 					</div>
 				</a>
 				<!-- Botão de Noticias recebidas -->
 				<a align='center' href='/contacts_news'  style='font-size: 0.8rem'>
 					<div class='col-4 shadow p-3 mb-5 rounded' style='display: inline-block; padding: 2%'>
 						<h1 style='font-size: 0.7rem'>Notícias Recebidas</h1>
-						
+						<i class='fas fa-newspaper' style='font-size: 2rem;'></i>
 						<hr>
-						<i class='fas fa-newspaper' style='font-size: 2rem; color: #333'></i>
-						<br>
+						@if(empty($contacts_news->id))
+							nenhuma noticia recebida
+						@else
+							Veja as noticias
+						@endif
 						
+						<br>
 					</div>
 				</a>
+				
 				<!-- Botão de novos usuarios da newsletter -->
 				<a href='/newsletter' style='font-size: 0.8rem'>
 					<div class='col-4 shadow p-3 mb-5 rounded' style='display: inline-block'>
 						<h1 style='font-size: 0.7rem'>Usuários da Newsletter</h1>
+						<i class='fas fa-users' style='font-size: 2rem;'></i>
 						<hr>
-						<i class='fas fa-users' style='font-size: 2rem; color:#333'></i>
+							@if(empty($user_news_letters))
+								Usuários da newsletter
+							@else
+								@if($user_news_letters->count() > 1)
+									usuarios da newsletter:
+									(
+										{{$user_news_letters->count()}}
+									)
+								@endif
+							@endif
 						<br>
 					</div>
 				</a>
@@ -177,8 +186,14 @@
 				<a href='/users' style='font-size: 0.8rem'>
 				<div class='col-4 shadow p-3 mb-5 rounded' style='display: inline-block'>
 					<h1 style='font-size: 0.7rem'>Administradores</h1>
+					<i class='fas fa-user-shield' style='font-size: 2rem;'></i>
 					<hr>
-					<i class='fas fa-user-shield' style='font-size: 2rem; color: #333'></i>
+						@if($users->count() > 1)
+							Administradores: 
+							(
+								{{$users->count()}}
+							)						
+						@endif
 					<br>
 				</div>
 				</a>

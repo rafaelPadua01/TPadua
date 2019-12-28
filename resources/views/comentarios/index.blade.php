@@ -21,8 +21,12 @@
 				Voltar para a pagina anterior
 			</a>
 			<table class='table table-striped table-hover table-bordered table-responsive'>
+			<tr>
 				<h3 style='text-align: center; background-color: #010101;
-					color: #fff; margin-bottom: 0%'>Novos Comentários</h3>
+					color: #fff; margin-bottom: 0%'>
+						Novos Comentários
+				</h3>
+			</tr>
 				<tr>
 				<thead>
 					
@@ -53,13 +57,53 @@
 						</td>
 						
 						<td>
-							{!! $comentario->created_at!!}
+							<?php echo date('d/m/Y H:i:s', strtotime($comentario->created_at)); ?>
 						</td>
 							
 						
 						
 						<td>
-							<a class='btn btn-danger' href='/comentarios/{{$comentario->id}}/remove'>Remover</a>
+							<div class='btn-group'>
+							<a class='btn btn-danger' href='/comentarios/{{$comentario->id}}/remove'>
+								<i class='glyphicon glyphicon-trash'></i>
+									Remover
+							</a>
+							<a class='btn btn-info' href='#x' data-toggle='modal' data-target='#modalExample'>
+									<i class='glyphicon glyphicon-eye-open'></i>
+										Visualizar
+							</a>
+							
+							<!-- Janela modal de visualização dos comentarios -->
+							<div class='modal fade' id='modalExample' tabIndex='-1' role='dialog' aria-labelledby='exampleModalLabel'
+								aria-hidden='true'>
+								<div class='modal-dialog' role='document'>
+									<div class='modal-content'>
+										<div class='modal-header'>
+											<h5 class='modal-title' id='exampleModalLabel'>Visualizador de comentários</h5>
+											<button type='button' class='close' data-dismiss='modal' aria-label='x'>
+												<span aria-hidden='true'>&times;</span>
+											</button>
+											
+											<div class='modal-body'>
+												@foreach($comentarios as $c)
+													@if($comentario->id == $c->id)
+														{{$c->comentario}}
+													@endif
+												@endforeach
+											</div>
+											
+											<div class='modal-footer'>
+												<div class='btn-group'>
+													<button type='button' class='btn btn-secondary' data-dismiss='modal'>Fechar</button>
+													<!--<button type='button' class='btn btn-primary'>Salvar</button>-->
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+							</div>
 						</td>
 						
 				
