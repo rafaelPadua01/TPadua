@@ -28,7 +28,7 @@
 				<br>
 				<div class='form-group'>
 					{!! Form::label('assunto', 'Assunto:') !!}
-						{!! Form::text('assunto', 'NewsLetter AliasTPadua.com.br', ['class' => 'form-control-sm', 'style' => 'width: 40%']) !!}
+						{!! Form::text('assunto', 'NewsLetter AliasTPadua.com.br', ['class' => 'form-control', 'style' => 'width: 40%']) !!}
 				</div>
 				<br>
 				<div class='form-group'>
@@ -38,8 +38,8 @@
 					@foreach($users_news_letters as $users_news_letter)
 						@if($users_news_letters)
 							
-							{!! Form::email('email',  $users_news_letter->email_user_newsLetter , ['class' => 'form-control-sm'])!!}
-								
+							{!! Form::email('email[]',  $users_news_letter->email_user_newsLetter , ['class' => 'form-control-sm'])!!}
+								<button type='close' data-dismiss='close'>X</button>
 						@endif	
 					@endforeach
 				 

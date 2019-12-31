@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\NewsLetter;
+use App\Mail\NewsletterMail;
+use App\Jobs\SendNewsLetterJob;
 //use Newsletter;
 
 class NewsLetterController extends Controller
@@ -12,6 +14,10 @@ class NewsLetterController extends Controller
 	{
 		$user_news_letters = NewsLetter::orderBy('id', 'desc')->paginate(10);
 		return view('newsletter.index', ['user_news_letters' => $user_news_letters]);
+	}
+	public function signature()
+	{
+		return view('signatureForm');
 	}
     public function create()
 	{
@@ -106,40 +112,45 @@ class NewsLetterController extends Controller
 	public function sendmail(Request $request)
 	{
 		$users = NewsLetter::all();
-		$assunto = $_POST['assunto'];
-		$conteudo = $_POST['conteudo'];
+		$emails['email'] = $request->email;
 		
 		
+		$sendTodispatch = dispatch(new \App\Jobs\SendNewsLetterJob($emails));
+		
+		if($sendTodispatch == false)
+		{
+			echo "não enviado...";
+		}
+		else
+		{
+			#SendNewsLetterJob::dispatch($emails);
+			echo "<script>window.alert('newsletter enviada com sucesso...')</script>";
 			
-			$mail = \Mail::send('newsletter.mail', ['users' => $users, 'assunto' => $assunto, 'conteudo' => $conteudo], 
+		}
+		
+		return redirect()->back()->with('success', 'newsletter enviada com sucesso');
+		#return "<script>window.alert('email enviado ...')</script>";
+		
+		#dispatch(new \App\Jobs\SendNewsLetterJob($users->email_user_newsLetter));
+		
+		/* Variavel que faz o envio dos emails 
+		$mail = \Mail::send('newsletter.mail', ['users' => $users, 'assunto' => $assunto, 'conteudo' => $conteudo], 
 						function($message) use ($users, $assunto){
-				
-				$message->subject($assunto);
-				$message->from('tpadua7@gmail.com', 'NewsLetter');
-				//$message->attach(storage_path('/../public/img/icon/thumbnailTpadua.jpg'));
-				/*
-				foreach($users as $user)
-				{
-					for($i=0; $i < count($users); $i++)
-					{
-						$message->to($user->email_user_newsLetter);
-						$i = $user->id + $i;
-						$i++;
-						return redirect()->back()->with('sucess')"<script>alert('Newsletter Enviada ...')</script>";
-					}
-				}
-				*/
 				
 				foreach($users as $user)
 				{
 					if($user->email_user_newsLetter == true && $user->id == true)
 					{
-						$message->to($user->email_user_newsLetter);
+						dispatch(new \App\Jobs\SendNewsLetterJob($user->email_user_newsLetter));
+						
+						
 						
 					}
 				}
 				
+				
 			});
+		
 			
 		if($mail)
 		{
@@ -154,7 +165,7 @@ class NewsLetterController extends Controller
 					->with('failure', 'Não foi possivel enviar newsletter verifique os emails cadastrados');
 		}
 		
-						
+		*/				
 						
 	}
 			

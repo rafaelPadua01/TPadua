@@ -23,7 +23,11 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" 
 		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 	
-	
+		<script>
+			$(function () {
+			$('[data-toggle="tooltip"]').tooltip()
+			});
+		</script>
 
 <body>
 <nav>
@@ -51,34 +55,39 @@
 			 
 		<!-- Botões de seleção de área -->
 		
-		<a href='categorias' class='btn btn-default btn-sm'>
+		<a href='categorias' class='btn btn-default btn-sm' data-toggle="tooltip" data-placement="top"
+			title="Lista de categorias e cadastro de noticias">
 			<i class="fas fa-clipboard-list"></i>
 				Categorias
 		</a>
 		
 	<hr style='background-color: #fff'>
 	
-	<a href='noticias' class='btn btn-default btn-sm'>
+	<a href='noticias' class='btn btn-default btn-sm' data-toggle="tooltip" data-placement='top'
+			title='Lista de noticias cadastradas'>
 		<i class="far fa-newspaper"></i>
 			Noticias
 	</a>
 	
 	<hr style='background-color: #fff'>
 	
-	<a href='imagens' class='btn btn-default btn-sm'>
+	<a href='imagens' class='btn btn-default btn-sm' data-toggle='tooltip' data-placement='top'
+		title='Imagens principais das noticias'>
 		<i class="fas fa-camera-retro"> </i>
 		Imagens
 	</a>
 	
 	<hr style='background-color: #fff'>
-	<a href='galeria_imagens/index' class='btn btn-default btn-sm'>
+	<a href='galeria_imagens/index' class='btn btn-default btn-sm' data-toggle='tooltip' data-placement='top'
+			title='Galeria de imagens das notícias'>
 			<i class='fas fa-images'></i>
 			Galeria
 	</a>
 	
 	<hr style='background-color: #fff'>
 	<!-- Botão deacesso aos Videos -->
-	<a href='videos' class='btn btn-default btn-sm'>
+	<a href='videos' class='btn btn-default btn-sm' data-toggle='tooltip' data-placement='top'
+			title='Videos do menu informartivo'>
 		<i class='fas fa-video'></i>
 			Videos
 	</a>
@@ -91,20 +100,23 @@
 	<hr style='background-color: #fff'>
 	-->
 	<!-- Botão dos parceiros -->
-	<a href='parceiros' class='btn btn-default btn-sm'>
+	<a href='parceiros' class='btn btn-default btn-sm' data-toggle='tooltip' data-placement='top'
+		title='Lista de parceiros'>
 		<i class='fas fa-wine-bottle'></i>
 			Parceiros
 	</a>
 	<!-- Botão para criação de Novos eventos, atualização e etc -->
 	<hr style='background-color: #fff'>
-	<a href='eventos' class='btn btn-default btn-sm'>
+	<a href='eventos' class='btn btn-default btn-sm' data-toggle='tooltip' data-placement='top'
+		title='Lista de Eventos cadastrados'>
 		<i class='fas fa-calendar-check'></i>
 		Eventos 
 		
 	</a>
 	<!-- Botão de acesso ao formulário de configurações -->
 	<hr style='background-color: #fff'>
-	<a href='/users/{{Auth::user()->id}}/edit' class='btn btn-default btn-sm'>
+	<a href='/users/{{Auth::user()->id}}/edit' class='btn btn-default btn-sm' data-toggle='tooltip' data-placement='top'
+			title='Configurações de usuário'>
 				<i class='fas fa-user-cog'></i>
 				Configurações
 		
@@ -112,7 +124,8 @@
 	<br>
 	<!-- Botão de cadastro de novo administrador -->
 	<hr style='background-color: #fff'>
-	<a href='register' class='btn btn-default btn-sm'>
+	<a href='register' class='btn btn-default btn-sm' data-toggle='tooltip' data-placement='top'
+		title='Cadastro de novos Administradores'>
 				<i class='fas fa-user-cog'></i>
 				Cadastrar Novo Administrador
 		
@@ -211,7 +224,7 @@
 		</style>
 	<div class='col-2 shadow p-3 mb-5 rounded' style='background-color: #080808; 
 				color: #fff;' id='menu2'>
-			<h4 align='center'>
+			<h4 align='center' style='font-size: 0.9rem'>
 				<i class='fas fa-bars'></i>
 						Menu 2
 			</h4>
@@ -221,7 +234,8 @@
 			<!-- Botões Enviar Newsletter, notificações e outros -->
 				<!-- Botão de Envio de Notificações -->
 			
-				<button  class='btn btn-sm btn-info' id='btn_push'>
+				<button  class='btn  btn-info btn-sm' id='btn_push' data-toggle='tooltip' data-placement='top'
+					title='Enviar notificações de novas notícias.'>
 					<i class='fas fa-bell'></i> 
 						Notificações de Notícias
 				</button>
@@ -256,7 +270,8 @@
 				<hr style='background-color: #fff'>
 				
 				<!-- Botão de disparo NewsLetter -->
-				<a href='newsletter/create' class='btn btn-sm btn-info'>
+				<a href='newsletter/create' class='btn btn-sm btn-info' data-toggle='tooltip' data-placement='top'
+					title='Abre a lista de usuarios cadastrados e dispara a newsletter'>
 					<i class='fas fa-rss-square'></i>	Enviar NewsLetter
 				</a>
 				<hr style='background-color: #fff'>	

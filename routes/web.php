@@ -16,6 +16,7 @@
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/signature', 'NewsLetterController@signature');
 
 // Rota Main 
 Route::get('/', 'MainController@index')->name('main');
@@ -83,6 +84,7 @@ Route::put('newsletter/{id}/update', 'NewsLetterController@update')->middleware(
 Route::get('newsletter/{id}/remove',  'NewsLetterController@remove')->middleware('auth');
 Route::get('newsletter/{id}/destroy',  'NewsLetterController@destroy')->middleware('auth');
 Route::post('newsletter/sendmail', 'NewsLetterController@sendmail')->middleware('auth');
+
 
 //Rotas Dos Parceiros
 Route::get('parceiros', 'ParceirosController@index');

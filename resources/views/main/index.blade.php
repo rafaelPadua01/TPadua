@@ -330,7 +330,7 @@
 						
 					
 				
-						<a style='font-size: 0.5rem; width: 90%; padding: 1%; margin-left: 1.5%' href='newsletter' class='btn btn-sm btn-success'>Assínar</a>
+						<a style='font-size: 0.5rem; width: 90%; padding: 1%; margin-left: 1.5%' href='/signature' class='btn btn-sm btn-success'>Assínar</a>
 							
 					</p>
 					

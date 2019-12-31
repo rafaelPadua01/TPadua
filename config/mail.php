@@ -55,6 +55,16 @@ return [
     |
     */
 
+	/* configuração de email global
+	* possibilita melhorias na velocidade de envio
+	* email que será usado sempre que uma classe fizer envio de email
+	* e não houver um email setado
+	*/
+	
+	'from' => ['addres' => 'rafael.f.p.faria@hotmail.com', 'name' => 'AliasTPadua'], #alterar essa linha para o email padrão da aplicação
+	'reply_to' => ['addres' => 'rafael.f.p.faria@hotmail.com', 'name' => 'AliasTPadua'],#linha que recebera emails de resposta
+	
+	/* from padrão laravel *\
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
         'name' => env('MAIL_FROM_NAME', 'Example'),

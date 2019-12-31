@@ -9,7 +9,7 @@
 				<main>
 					<p style='text-align: center'>
 							Temos novas <b>notícias</b> que podem te interessar, gostariamos de convida-lo a nos fazer uma visita.
-							{!! str_limit($conteudo, 501, '...') !!}
+							
 							<br>
 							<a class='btn btn-primary' href='http://tpadua.aliastpadua.com.br' style='text-align: center'>
 											<span class='glyphicon glyphicon-home'></span> >>Ir para o @AliasTPadua<< 
