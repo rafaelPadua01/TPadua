@@ -8,12 +8,14 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Http\Request;
 use App\Newsletter;
+use App\Imagens;
+use App\Noticia;
 
 
 class NewsletterMail extends Mailable
 {
     use Queueable, SerializesModels;
-	protected $emails;
+	public $emails;
     /**
      * cria uma variavel publica 
 	 * que recebe os valores vindos do formulário
@@ -41,8 +43,15 @@ class NewsletterMail extends Mailable
 	 #classe de envio de email
     public function build()
     {
+		$imagens = Imagens::all();
+		$noticias = Noticia::orderBy('id', 'desc')->limit(4,5)->get();
+		$n_users = Newsletter::all();
 		
-		return $this->markdown('newsletter.mail')->from('rafael.f.p.faria@hotmail.com');
+		return $this->markdown('newsletter.mail', compact('imagens', 'noticias', 'n_users'))
+				->from('rafael.f.p.faria@hotmail.com')
+				->subject('Newsletter AliasTPadua');
+				
+				
 		
 	}
 }

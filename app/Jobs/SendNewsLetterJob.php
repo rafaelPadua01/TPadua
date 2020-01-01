@@ -9,6 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use App\Mail\NewsletterMail;
 use App\NewsLetter;
+use App\Imagens;
 use Mail;
 
 
@@ -16,7 +17,7 @@ class SendNewsLetterJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-	protected $emails;
+	public $emails;
     /**
      * Create a new job instance.
      *
@@ -41,6 +42,7 @@ class SendNewsLetterJob implements ShouldQueue
     public function handle()
     {
 		$email = new NewsletterMail($this->emails);
+		
 		foreach($this->emails as $e)
 		{
 			for($i=0; $i <= count($e); $i++)

@@ -57,7 +57,7 @@ class ImagensController extends Controller
 				
 			
 			//faz o upload
-			$upload = $request->nome_imagem->move('storage/imagem_noticias', $nameFile);  // teste hospedagem 
+			$upload = $request->nome_imagem->move('storage/imagem_noticias/', $nameFile);  // teste hospedagem 
 			
 			Imagens::create([
 				'nome_imagem' => $upload,
