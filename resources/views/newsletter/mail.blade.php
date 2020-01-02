@@ -39,6 +39,7 @@
 							<div class=''>
 								<p>Acompanhe nossas novas notícias e fique atualizado com as melhores informações de Brasília e região.</p>
 									
+										
 								<h3>Novas Noticias:</h3> 
 									
 								@foreach($noticias as $n)

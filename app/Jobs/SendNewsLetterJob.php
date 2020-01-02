@@ -45,7 +45,7 @@ class SendNewsLetterJob implements ShouldQueue
 		
 		foreach($this->emails as $e)
 		{
-			for($i=0; $i <= count($e); $i++)
+			for($i = 0; $i <= count($e); $i++)
 			{
 				
 				if($i > 0)

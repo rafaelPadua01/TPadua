@@ -30,24 +30,24 @@
 					{!! Form::label('assunto', 'Assunto:') !!}
 						{!! Form::text('assunto', 'NewsLetter AliasTPadua.com.br', ['class' => 'form-control', 'style' => 'width: 40%']) !!}
 				</div>
-				<br>
+				
 				<div class='form-group'>
 					
 				 {!! Form::label('email', 'Emails:') !!}
 				 <br>
 					@foreach($users_news_letters as $users_news_letter)
 						@if($users_news_letters)
+								<input type='text' name='email[]' id='email' value='{{$users_news_letter->email_user_newsLetter }} '>
+						
 							
-							{!! Form::email('email[]',  $users_news_letter->email_user_newsLetter , ['class' => 'form-control-sm'])!!}
-								<button type='close' data-dismiss='close'>X</button>
 						@endif	
 					@endforeach
 				 
 				</div>
 				
 				<div class='form-group'>
-				{!! Form::label('conteudo', 'Conteudo:')!!}
-				<br><br>
+				{!! Form::label('conteudo', 'Conteudo:') !!}
+				<br>
 					<textarea id='conteudo' name='conteudo' class='form-control-sm col-xs-4 col-sm-4 col-md-4 col-lg-4'>
 						
 					</textarea>
@@ -56,11 +56,19 @@
                 </script>
 				</div>
 				
-				<div class='btn-group'>
-				<a href='/home' class='btn btn-danger'>Voltar a página inicial</a>
-				{!! Form::submit('Enviar', ['class' => 'btn btn-success']) !!}
+				<div class='btn-group' align='center'>
+				<a href='/home' class='btn btn-danger'>
+					<i class=''></i>
+						Voltar a página inicial
+				</a>
+				<button type='submit' class='btn btn-success'>
+					<i class='glyphicon glyphicon-send'></i>
+						Enviar
+				</button>
+				<br><br>
 				
 				</div>
+				
 			{!! Form::close() !!}
 			
 		</div>
@@ -69,8 +77,8 @@
 		</div>
 	</div>
 	
-	</div>
 </div>
+
 
 
 @endsection
