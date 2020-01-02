@@ -52,8 +52,8 @@ class SendNewsLetterJob implements ShouldQueue
 				{
 					Mail::to($e)->send($email);
 					$i++;
+					
 				}
-				
 				
 			}
 		}

@@ -51,9 +51,9 @@ class NewsletterMail extends Mailable
 		$n_users = Newsletter::all();
 		#$pathFile = public_path('app/public/imagem_noticias/');
 		
+		
 		return $this->markdown('newsletter.mail', compact('imagens', 'noticias', 'n_users'))
-				->from('rafael.f.p.faria@hotmail.com')
-				->attach(storage_path('app/public/imagem_noticias/noticia.050839202001015e0c2957d271e.jpeg'))
+				->from('tpadua7@gmail.com','NewsLetter')
 				->subject('Newsletter AliasTPadua');
 				
 				

@@ -33,15 +33,14 @@
 				<div class='col-xs-2 col-md-2 col-sm-2 col-lg-2'></div>
 				<div class='col-xs-6 col-md-6 col-sm-2 col-lg-6' style='background-color: #fff'>
 					<h1 style='text-align: center'><a href='tpadua.aliastpadua.com.br'>Newsletter AliasTPadua</a></h1>
-					<hr>
+					
 					<!-- Menu drop down -->
 						<div class=''>
 							<div class=''>
-								<p>Acompanhe nossas novas notícias e fique atualizado com as melhores informações de Brasília e região.</p>
-									
+								<p style='text-align: center'>Acompanhe nossas novas notícias e fique atualizado com as melhores informações de Brasília e região.</p>
 										
-								<h3>Novas Noticias:</h3> 
-									
+								<h2 style='text-align: center'>Novas Noticias:</h2> 
+								
 								@foreach($noticias as $n)
 									<label><strong>Titulo:</strong></label>
 										{{$n->titulo}}
@@ -61,13 +60,14 @@
 						</div>
 						<br>
 				</div>
+				<hr>
 				
 				<div class='col-xs-2 col-md-2 col-sm-2col-lg-2' style='text-align:center;'>
 					<h4>Equipe AliasTPadua:</h4>
 					
-						<a href='http://localhost:8000/'>Página Inicial</a>
+						<a href='http://tpadua.aliastpadua.com.br'>Página Inicial</a>
 						|
-						<a href='http://localhost:8000/contacts'>Fale com a gente</a>
+						<a href='http://tpadua.aliastpadua.com.br/contacts'>Fale com a gente</a>
 						|
 						<a href='#'>Facebook</a>
 						|

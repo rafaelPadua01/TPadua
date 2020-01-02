@@ -133,8 +133,7 @@
 						exibe imagem da notiica -->
 					@if($noticias->id == $imagem->id_noticia)
 						<a href="/{{$imagem->nome_imagem}}" align='center'>
-							<img src='/{{$imagem->nome_imagem}}' alt='{{$imagem->nome_imagem}}' style='width: 70%; 
-								margin-left: 15%;' class='img-thumbnail img-fluid'>
+							<img src='/{{$imagem->nome_imagem}}' alt='{{$imagem->nome_imagem}}' style='width: 70%;' class='img-thumbnail img-fluid'>
 						</a>
 					@endif
 						

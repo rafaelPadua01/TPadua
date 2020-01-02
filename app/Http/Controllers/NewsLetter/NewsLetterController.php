@@ -119,53 +119,18 @@ class NewsLetterController extends Controller
 		
 		if($sendTodispatch == false)
 		{
-			echo "não enviado...";
+			echo "<script>window.alert('NewsLetter não enviada...')</script>";
+			return redirect()->back()->with('failure', 'erro no envio dos e-mails, contate o suporte técnico...');
 		}
 		else
 		{
 			#SendNewsLetterJob::dispatch($emails);
 			echo "<script>window.alert('newsletter enviada com sucesso...')</script>";
-			
+			return redirect()->back()->with('success', 'newsletter enviada com sucesso');
 		}
 		
 		return redirect()->back()->with('success', 'newsletter enviada com sucesso');
-		#return "<script>window.alert('email enviado ...')</script>";
-		
-		#dispatch(new \App\Jobs\SendNewsLetterJob($users->email_user_newsLetter));
-		
-		/* Variavel que faz o envio dos emails 
-		$mail = \Mail::send('newsletter.mail', ['users' => $users, 'assunto' => $assunto, 'conteudo' => $conteudo], 
-						function($message) use ($users, $assunto){
-				
-				foreach($users as $user)
-				{
-					if($user->email_user_newsLetter == true && $user->id == true)
-					{
-						dispatch(new \App\Jobs\SendNewsLetterJob($user->email_user_newsLetter));
 						
-						
-						
-					}
-				}
-				
-				
-			});
-		
-			
-		if($mail)
-		{
-				return redirect()
-					->back()
-						->with('success', 'Email Enviado com sucesso');
-		}
-		else
-		{
-			return redirect()
-				->back()
-					->with('failure', 'Não foi possivel enviar newsletter verifique os emails cadastrados');
-		}
-		
-		*/				
 						
 	}
 			

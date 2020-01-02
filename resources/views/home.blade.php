@@ -181,10 +181,10 @@
 						<h1 style='font-size: 0.7rem'>Usuários da Newsletter</h1>
 						<i class='fas fa-users' style='font-size: 2rem;'></i>
 						<hr>
-							@if(empty($user_news_letters))
+							@if(empty($user_news_letters) || $user_news_letters->count() == 0)
 								Usuários da newsletter
 							@else
-								@if($user_news_letters->count() > 1)
+								@if($user_news_letters->count() > 0)
 									usuarios da newsletter:
 									(
 										{{$user_news_letters->count()}}
