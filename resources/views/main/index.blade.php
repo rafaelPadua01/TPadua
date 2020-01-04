@@ -414,8 +414,8 @@
 					<div class='col-2'></div>
 					<!-- Links de Páginação -->
 					
-						<div class='col-6' align='center'>
-							<p align='center'>{{$noticias->onEachSide(1,4)->links()}}</p>
+						<div class='col-2' align='center'>
+							{{$noticias->onEachSide(1,4)->links()}}</p>
 						</div>
 					<div class='col-4'></div>
 					
