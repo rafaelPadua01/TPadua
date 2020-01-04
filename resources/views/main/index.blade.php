@@ -93,10 +93,17 @@
 			<br>
 			<!-- Div do Banner -->
 			<div class='row'>
-				<div class='col-12'>
-					<img src='../../img/icon/8.01.png' class='img-fluid' style='width: 100%; max-width: 100%'>
-					<img src='../../img/icon/84.bmp' class='img-fluid' style='width: 45%; min-width: 110px;
-							margin-top: -6.5%; margin-left: 25%; opacity: 0.8'>
+				<div class='col-12 shadow p-1 mb-3 rounded' style="">
+				
+					<img src='../../img/icon/Banner/background.png' class='img-fluid' style='width: 100%; max-width: 100%;'>
+					<a href='/'>
+						<img src='../../img/icon/Banner/textoPrincipal.png' class='img-fluid' style='width: 70%; min-width: 110px;
+							margin-top: -13%; margin-left: 15%; opacity: 0.8'>
+					</a>
+					<a href='#' alt='tpadua7@gmail.com'>
+							<img src='../../img/icon/Banner/textoEmail.png' class='img-fluid' style='width: 70%; min-width: 110px;
+							margin-top: -18%; margin-left: 30%; opacity: 0.8'> 
+					</a>
 				</div>
 			</div>
 			<!-- Div de espaçamento -->
@@ -408,7 +415,7 @@
 					<!-- Links de Páginação -->
 					
 						<div class='col-6' align='center'>
-							{{$noticias->onEachSide(2)->links()}}
+							<p align='center'>{{$noticias->onEachSide(1,4)->links()}}</p>
 						</div>
 					<div class='col-4'></div>
 					
@@ -436,15 +443,30 @@
 										style='min-width: 65px; width: 80%'
 											alt='aliastpadua.com.br' class='img-fluid img-responsive'>
 							</a>
+							
+							
 					</div>
 					<!-- coluna vazia para criar o espaçamento entre os icones
 							default e os de midias sociais -->
-					<div class='col-6' >
+					<div class='col-2' >
+							
+					</div>
+					<div class='col-4' >
+							<p align='center' style='color: #D3D3D3; font-size: 0.5rem'>
+								<strong>Equipe AliasTPadua:</strong>
+								<br>
+									<a href='#' style='color: #fff'>Desenvolvido por <strong>Rafael Ferreira Pádua</strong></a>
+									<br>
+									Todos os direitos Reservados
+							</p>
+							
+							
 							
 					</div>
 					<div class='col-4' align='right' style='padding-right: 5%'>
 						
-							<a href='https://www.facebook.com/profile.php?id=100003206947030'><img src='../../img/icon/social_medias/facebook.png'
+							<a href='https://www.facebook.com/profile.php?id=100003206947030'>
+								<img src='../../img/icon/social_medias/facebook.png'
 										alt='facebook' class='img-fluid' style='min-width: 22px;
 												width: 10%'>
 							</a>
