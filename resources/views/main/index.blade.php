@@ -107,11 +107,31 @@
 				</div>
 			</div>
 			<!-- Div de espaçamento -->
-			<div class='row'></div>
+			<div class='row'>
+				<div class='col-12'>
+				
+				<p align='center' style='color: #fff; font-size: 0.9rem'>
+					Brasília, Distrito Federal, <?php  setlocale(LC_TIME, 'pt-br'); echo strftime('%A, %e de %B de %G,');?>
+					<!-- Função que retorna a hora atual -->
+					<!-- Vinda do browser do usuario, 
+							pois o servidor local possui 
+							a diferença de 3 horas em 
+							seu fuso horário -->
+							
+					<script type='text/javascript'>
+						localtime = new Date()	;
+						document.write(localtime.getHours() + ':' + localtime.getMinutes() + ':' + localtime.getSeconds());
+					</script>
+				<!--	<?php setlocale(LC_TIME, 'pt-br'); echo strftime('Horário de Brasília: %T') ?> -->
+					
+				</p>
+				
+				</div>
+			</div>
 			
 			<!-- div espacamento -->
 			<div class='row'></div>
-			<br>
+			
 			
 			<!-- Div dos Videos informativos -->
 			<div class='row'>
