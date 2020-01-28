@@ -46,10 +46,25 @@
 			<br>
 			<!-- Div do Banner -->
 			<div class='row'>
-				<div class='col-12'>
-					<img src='../../img/icon/8.01.png' class='img-fluid' style='width: 100%; max-width: 100%'>
-					<img src='../../img/icon/84.bmp' class='img-fluid' style='width: 45%; min-width: 110px;
-							margin-top: -6.5%; margin-left: 25%; opacity: 0.8'>
+				<div class='col-12 shadow p-1 mb-3 rounded' 
+					style="background-image: url('../../img/icon/Banner/backgroundR.png'); height: 146px;">
+					<br>
+					<!-- Carrega imagem TPadua 
+					<a href='/'>
+						<img src='../../img/icon/Banner/TPadua.png' class='img-fluid'
+								 style='width: 10%; max-width: 100px; height: 115px; max-height: 200px; margin-top: 0%;
+							 margin-left: 0%; position:relative;  padding: -2%'>
+					</a>
+					-->
+					<!-- Carrega imagem do texto AlistPadua -->
+					<a href='/'>
+						<img src='../../img/icon/Banner/textoPrincipal.png' class='img-fluid' style='width: 70%; min-width: 210px;
+							max-height: 150px; margin-top: -0.5%; margin-left: 13%; opacity: 0.8; position:relative'>
+					</a>
+					<a href='#' alt='tpadua7@gmail.com'>
+							<img src='../../img/icon/Banner/textoEmail.png' class='img-fluid'
+							 style='width: 70%; min-width: 110px; margin-top: -15%; margin-left: 30%; opacity: 0.8'> 
+					</a>
 				</div>
 			</div>
 			<!-- Div de espaçamento -->
@@ -141,8 +156,49 @@
 				</p>
 					@endforeach
 				<!-- Conteudo da noticia -->
-					<?php echo "<div style='font-size: 0.6rem'><p>".($noticias->conteudo)."</p></div>" ?>
+				@if(!empty($galeria_imagens))
+				<?php echo "<div style='font-size: 0.6rem'><p>".($noticias->conteudo)."</p></div>" ?>
+				<hr>
+				<!-- Galeria de Imagens,dentro de um carrosel -->
+				<p align='center' style='font-size: 0.8rem'><strong>Galeria de Imagens:</strong></p>
+
+				<div class='col-12'>
+				<div id='carouselExampleControls' class='carousel slide' data-ride="carousel">
 				
+					<div class='carousel-inner'>
+					<div class='carousel-item active'>
+											
+					</div>
+					@foreach($galeria_imagens as $g_img)
+							@if($g_img->id_noticia == $noticias->id)
+						<div class='carousel-item' align='center'>
+							<a href='/storage/galeria_imagens/{{$g_img->nome_galeria}}/{{$g_img->nome_imagem}}'>
+								<img src="/storage/galeria_imagens/{{$g_img->nome_galeria}}/{{$g_img->nome_imagem}}"
+									 alt='carouselImg' class='d-block w-100 img-fluid img-thumbnail' style="max-height:250px">
+							</a>
+						
+						</div>
+						@endif
+						@endforeach
+					</div>
+						
+					
+					<a class='carousel-control-prev' href='#carouselExampleControls' role='button' data-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class='sr-only'>Previous</span>
+					</a>
+					<a  class="carousel-control-next" href="#carouselExampleControls" role='button' data-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+				</div>
+				</div>
+				
+				@endif
+				
+
+				<hr>
+				<!--Botões de compartilhamento -->
 					<a href='noticias/{{$noticias->id}}/modal' style='font-size: 0.6rem' align='center'>
 							<i class='fas fa-envelope'></i>
 								Compartilhar Por Email 
@@ -263,9 +319,9 @@
 	<div class='container'>
 		<div class='row'>
 			<div class='col-3'></div>
-			<div class='col-6' style='background-color: #000; opacity: 0.6'>
+			<div class='col-6' style='background-color: #000;'>
 				<!-- Cabeçalho dos comentários -->
-				<h4 align='center' style='color: #fff;font-size: 0.9rem'>Comentarios:
+				<h4 align='center' style='color: #fff;font-size: 0.9rem'>Comentários:
 					<!-- este código verifica a contagem de comentarios 
 						e retorna o valor para o usuário -->
 				(
@@ -281,30 +337,124 @@
 				)
 				</h4>
 				
-				<hr style='background-color: #fff'>
-				<!-- Loop que percorre a tabela de comentários -->
-							@foreach($comentarios as $comentario)
-								@if($comentario->id_noticia == $noticias->id)
-									
-									<p style='font-size: 0.6rem; color: #fff'>
-										<b>Visitante:</b> {{$comentario->nome}}
-									</p>
-										
-									<p align='center' style='font-size: 0.7rem; color: #fff'>
-										<b>Disse:</b>
-											<br>
-											{{$comentario->comentario}}
-											
-									</p>
-									
-									<p align='left' style='font-size: 0.6rem; color: #fff;'>
-									 	
-										<b>Em:</b> <?php echo date('d-m-Y H:m:i', strtotime($comentario->created_at))?>
-									</p>
-									<hr style='background-color: #D3D3D3'>
-								@endif
-							@endforeach
 				
+				<!-- Loop que percorre a tabela de comentários -->
+				
+						<ul style='list-style: none; background-color: #fff'>
+						@foreach($comentarios as $comentario)
+						@if($comentario->id_noticia == $noticias->id)
+							<li>
+							<p style='font-size: 0.8rem; color: #000;padding: 0%'>
+										<b> {{$comentario->nome}}:</b>
+											{{$comentario->comentario}}
+							</p>
+										
+									
+									<p align='right' style='font-size: 0.6rem; color: #000;'>
+									 	
+										<b>Em:</b><?php echo date('d-m-Y H:i:s', strtotime($comentario->created_at));?>
+									</p>
+					
+									<!--Janela do formulário de resposta -->
+									<button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#exampleModal">
+										<b style='font-size: 0.6rem'>responder</b>
+									</button>
+
+									<a href="/denunciaComentario/{{$comentario->id}}/create" class='btn btn-link btn-sm'>
+										<b style='font-size: 0.6rem'>denunciar</b>
+									</a>
+									<hr style='background-color: #000'>
+
+						<!-- Modal Resposta Comentários-->
+						<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">Envie sua Resposta</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											
+											<form action="/respostas/store" method="POST">
+											@csrf		
+												<div class='form-group'>
+													<label>Nome:</label>
+													@if(Auth::user())
+													<input type="text" class='form-control' name="nome_resp" id="nome_resp"
+														 placeholder="{{Auth::user()->name}}" >
+													@else
+													<input type="text" class='form-control' name="nome_resp" id="nome_resp" placeholder="Seu Nome...">
+													@endif
+														
+												</div>
+												<div class='form-group'>
+													<label>Resposta:</label>
+														<br>
+														<textarea class='form-control' name="resposta" id="resposta" cols="30" rows="10" placeholder="Sua resposta..."></textarea>
+												</div>
+
+												<div class='form-group'>
+													<input type="hidden" name='id_comentario' id="id_comentario" value="{{$comentario->id}}">
+													<input type="hidden" name='id_noticia' id="id_noticia" value="{{$noticias->id}}">
+												
+												</div>
+												<button type="submit" class="btn btn-primary" >
+													<span class="fas fa-save"></span>
+														Salvar Resposta
+												</button>
+												</form>
+										</div>
+										<div class="modal-footer">
+											<div class='btn-group'>
+												<button type="button" class="btn btn-secondary" data-dismiss="modal">	
+													<span class='fas fa-remove'></span>
+														Fechar
+												</button>
+												
+											</div>
+										</div>
+										
+										</div>
+									</div>
+								</div>
+				
+
+
+						
+									<ul style="list-style:none">
+										@foreach($respostas as $r)
+											@if($r->id_noticia == $noticias->id && $r->id_comentario == $comentario->id)
+										<li>
+											
+											<p>
+												<b style='font-size: 0.8rem; color: #000; padding:0%'>{{$r->nome_resp}}:</b>
+												{{$r->resposta}}
+											</p>
+											<p align='right' style='font-size: 0.6rem; color:#000; '>
+												<b>Em:</b> <?php echo date('d-m-Y H:i:s', strtotime($r->created_at)); ?>
+											</p>
+											<!--Janela do formulário de resposta -->
+									<button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#exampleModal">
+										<b style='font-size: 0.6rem'>responder</b>
+									</button>
+											<hr style='background-color: #000'>
+										</li>
+											@endif
+										@endforeach
+									</ul>
+						@endif
+					@endforeach
+									<hr>
+						
+
+										
+									
+							</li>
+							
+						</ul>
+
 				<div class='nav nav-tabs' id='nav-tab' role='tablist'>
 				<!-- TAB de comentários comuns do sistema -->
 					<a class='nav-item nav-link active' id='nav-comentarios-tab' data-toggle='tab' href='#nav-comentarios'

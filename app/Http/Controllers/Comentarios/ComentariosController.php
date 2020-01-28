@@ -38,19 +38,17 @@ class ComentariosController extends Controller
 	*/
 	public function store(Request $request, $id)
 	{
-		$id_noticia = Noticia::find($id);
-		$users = user::all();
+		$id_noticia = Noticia::findOrFail($id);
+		$users = User::all();
 		$comentarios = Comentarios::all();
 		$input = $request->all();
-		
-		
-		
+	
 		//Cria uma variavel Author que recebe o autor da notícia
-		$comentario = Comentarios::create($input);;
-	
+		$comentario = Comentarios::create($input);
+		
 		\Notification::send($users, new NoticiaComment($comentario));
-	
-		 return redirect()->back()->with('success',"<script>window.alert('Comentário Enviado !')</script>");
+		
+		 return redirect()->back()->with('success',"Comentário Enviado !");
 		
 		
 	}

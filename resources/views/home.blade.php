@@ -201,7 +201,7 @@
 					<h1 style='font-size: 0.7rem'>Administradores</h1>
 					<i class='fas fa-user-shield' style='font-size: 2rem;'></i>
 					<hr>
-						@if($users->count() > 1)
+						@if($users->count() >= 0)
 							Administradores: 
 							(
 								{{$users->count()}}
@@ -276,8 +276,12 @@
 				</a>
 				<hr style='background-color: #fff'>	
 				
-				
-			
+				<a href="/denunciaComentario" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement='top' 
+					title="Exibe os Comentários denunciados">
+					<i class='fas fa-exclamation-circle' ></i>
+							Comentários denunciados	
+				</a>
+					
 			</div>
 		</div>
 	</div>

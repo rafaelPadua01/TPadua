@@ -93,16 +93,24 @@
 			<br>
 			<!-- Div do Banner -->
 			<div class='row'>
-				<div class='col-12 shadow p-1 mb-3 rounded' style="">
-				
-					<img src='../../img/icon/Banner/background.png' class='img-fluid' style='width: 100%; max-width: 100%;'>
+				<div class='col-12 shadow p-1 mb-3 rounded' 
+					style="background-image: url('../../img/icon/Banner/backgroundR.png'); height: 146px;">
+					<br>
+					<!-- Carrega imagem TPadua 
 					<a href='/'>
-						<img src='../../img/icon/Banner/textoPrincipal.png' class='img-fluid' style='width: 70%; min-width: 110px;
-							margin-top: -13%; margin-left: 15%; opacity: 0.8'>
+						<img src='../../img/icon/Banner/TPadua.png' class='img-fluid'
+								 style='width: 10%; max-width: 100px; height: 115px; max-height: 200px; margin-top: 0%;
+							 margin-left: 0%; position:relative;  padding: -2%'>
+					</a>
+					-->
+					<!-- Carrega imagem do texto AlistPadua -->
+					<a href='/'>
+						<img src='../../img/icon/Banner/textoPrincipal.png' class='img-fluid' style='width: 70%; min-width: 210px;
+							max-height: 150px; margin-top: -0.5%; margin-left: 13%; opacity: 0.8; position:relative'>
 					</a>
 					<a href='#' alt='tpadua7@gmail.com'>
-							<img src='../../img/icon/Banner/textoEmail.png' class='img-fluid' style='width: 70%; min-width: 110px;
-							margin-top: -18%; margin-left: 30%; opacity: 0.8'> 
+							<img src='../../img/icon/Banner/textoEmail.png' class='img-fluid'
+							 style='width: 70%; min-width: 110px; margin-top: -15%; margin-left: 30%; opacity: 0.8'> 
 					</a>
 				</div>
 			</div>
@@ -219,30 +227,43 @@
 					<?php echo "<div style='font-size: 0.6rem'><p>".(str_limit($noticia->conteudo, 501, '...'))."</p></div>" ?>
 				
 				<!-- Link Leia Mais -->
+				
 				<p align='center' style='font-size: 0.6rem'>
 					<a href='noticias/{{$noticia->id}}/show' class='btn btn-link' style='font-size: 0.7rem'>
-						<span class='fas fa-eye' style='font-size: 0.8rem'> </span>
+						<span class='fas fa-eye' style='font-size: 0.8rem'></span>
 									Leia mais
 					</a>
 				</p>
-				
-					<a href='noticias/{{$noticia->id}}/modal' style='font-size: 0.6rem' align='center'>
+				<!-- Botões de compartilhamento -->
+				<div class="btn-group" style="display: inline:block;">
+					<!-- Compartilhar por email -->
+					<a href='noticias/{{$noticia->id}}/modal' style='font-size: 0.8rem' align='center'>
 							<i class='fas fa-envelope'></i>
-								Compartilhar Por Email 
+								 Email 
 					</a>
 				
 					|
-					<!-- Botão de compartilhamento do facebook -->
+					<!-- Botão de compartilhamento do facebooxk -->
 					<div class="fb-share-button" 
 						data-href="http://tpadua.aliastpadua.com.br/noticias/&#123;&#123;$noticia-&gt;id&#125;&#125;/show"
-							data-layout="button_count" data-size="small" data-mobile='true'>
-							<a target="_blank" style='font-size: 0.6rem'
+							data-layout="box_count" data-size="small" data-mobile='true' style=' width: 1	%'>
+							<a target="_blank" 
 								href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Ftpadua.aliastpadua.com.br%2Fnoticias%2F%257B%257B%24noticia-%3Eid%257D%257D%2Fshow&amp;src=sdkpreparse"
 									class="fb-xfbml-parse-ignore">
 										Compartilhar
 							</a>
 					</div>
+					|
+					<!-- Compartilhar pelo whatsapp -->
 					
+					<a  href="https://api.whatsapp.com/send?text=Obrigado por compartilhar e nos ajudar 
+						a divulgar nossas notícias :http://tpadua.aliastpadua.com.br/noticias/{{$noticia->id}}/show">
+							
+						<img src="../../img/icon/social_medias/whatsComp.png" alt="whatsapp"> 
+							
+					</a>
+					</div>
+
 					<hr>
 					<p style='background-color: #ccc; font-size: 0.5rem' align='center'>
 					<b>Fonte:</b> {{$noticia->fonte}}

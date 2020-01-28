@@ -13,6 +13,7 @@ use App\Noticia;
 use App\Imagens;
 use App\Galeria_Imagens;
 use App\Comentarios;
+use App\RespostaComentario;
 use App\Parceiros;
 use App\Imagem_Parceiros;
 use App\Videos;
@@ -43,14 +44,16 @@ class NoticiasController extends Controller
 		$imagens = Imagens::all();
 		$galeria_imagens = Galeria_Imagens::all();
 		$comentarios = Comentarios::orderBy('id', 'desc')->paginate(10);
+		$respostas = RespostaComentario::orderBy('id', 'asc')->get();
 		$parceiros = Parceiros::all();
 		$imagem_parceiros = Imagem_Parceiros::all();
 		$videos = Videos::orderby('id', 'desc')->limit(4, 5)->get();
 		$eventos = Eventos::orderBy('id', 'desc')->limit(4,5)->get();
 		$imagem_eventos = Imagem_Eventos::all();
 		
-		return view('noticias.show', compact('noticias', 'parceiros', 'imagem_parceiros', 'comentarios', 'videos', 'eventos', 'imagem_eventos'),
-					['imagens' => $imagens, 'galeria_imagens' => $galeria_imagens]);
+		return view('noticias.show', compact('noticias', 'parceiros', 'imagem_parceiros', 'comentarios',
+			'videos', 'eventos', 'imagem_eventos'), ['imagens' => $imagens, 
+					'galeria_imagens' => $galeria_imagens, 'respostas' => $respostas]);
 	}
 	public function create($id)
 	{

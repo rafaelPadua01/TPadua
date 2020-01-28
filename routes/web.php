@@ -123,6 +123,17 @@ Route::post('comentarios/{id}/store', 'ComentariosController@store');
 Route::get('comentarios/{id}/remove', 'ComentariosController@remove')->middleware('auth');
 Route::get('comentarios/{id}/destroy', 'ComentariosController@destroy')->middleware('auth');
 
+//Rota de Respostas dos comentários
+Route::get('respostas', 'RespostaComentarioController@index');
+Route::post('respostas/store', 'RespostaComentarioController@store');
+Route::get('respostas/{id}/remove', 'RespostaComentarioController@remove');
+Route::get('respostas/{id}/destroy', 'RespostaComentarioController@destroy');
+
+Route::get('denunciaComentario', 'DenunciaComentarioController@index');
+Route::get('denunciaComentario/{id}/create','DenunciaComentarioController@create');
+Route::post('denunciaComentario/{id}/store', 'DenunciaComentarioController@store');
+
+
 //Rotas do Eventos
 Route::get('eventos', 'EventosController@index')->middleware('auth');
 Route::get('eventos/{id}/create', 'EventosController@create')->middleware('auth');
