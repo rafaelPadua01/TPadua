@@ -56,9 +56,17 @@ class ComentariosController extends Controller
 	{
 	
 	}
-	public function update()
+	public function update(Request $request, $id)
 	{
-	
+		$comentarios = Comentarios::findOrFail($id);
+		$data = $request->all();
+
+		$update = $comentarios->update($data);
+
+		if($update)
+		{
+			return redirect()->back()->with('atualizado com sucesso');
+		}
 	}
 	
 	public function remove($id)

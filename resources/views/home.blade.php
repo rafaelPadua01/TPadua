@@ -281,7 +281,7 @@
 					<i class='fas fa-exclamation-circle' ></i>
 							Comentários denunciados	
 				</a>
-					
+				<hr style='background-color: #fff'>		
 			</div>
 		</div>
 	</div>

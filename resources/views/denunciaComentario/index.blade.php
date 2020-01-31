@@ -38,17 +38,18 @@
                         <td>{{$d->denuncia}}</td>
                         <td>
                             <div class="btn-group">
-                                <a class="btn btn-sm btn-info" href="#">
+                                <a class="btn btn-sm btn-info" href="/denunciaComentario/{{$d->id}}/show">
                                  <span class="glyphicon gliphycon-eye-open"></span> 
                                     pré-visualizar
                                 </a>
-
-                                <a class="btn btn-sm btn-primary" href="#">
+                                
+                            
+                                <a class="btn btn-sm btn-primary" href="/denunciaComentario/{{$d->id}}/edit">
                                  <span class="glyphicon gliphycon-pencil"></span> 
                                     Editar
                                 </a>
 
-                                <a class="btn btn-sm btn-danger" href="#">
+                                <a class="btn btn-sm btn-danger" href="/denunciaComentario/{{$d->id}}/remove">
                                  <span class="glyphicon glyphicon-trash"></span> 
                                     Remover
                                 </a>

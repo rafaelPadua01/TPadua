@@ -122,6 +122,7 @@ Route::get('comentarios/create', 'ComentariosController@create');
 Route::post('comentarios/{id}/store', 'ComentariosController@store');
 Route::get('comentarios/{id}/remove', 'ComentariosController@remove')->middleware('auth');
 Route::get('comentarios/{id}/destroy', 'ComentariosController@destroy')->middleware('auth');
+Route::put('comentarios/{id}/update', 'ComentariosController@update')->middleware('auth');
 
 //Rota de Respostas dos comentários
 Route::get('respostas', 'RespostaComentarioController@index');
@@ -129,9 +130,15 @@ Route::post('respostas/store', 'RespostaComentarioController@store');
 Route::get('respostas/{id}/remove', 'RespostaComentarioController@remove');
 Route::get('respostas/{id}/destroy', 'RespostaComentarioController@destroy');
 
-Route::get('denunciaComentario', 'DenunciaComentarioController@index');
+Route::get('denunciaComentario', 'DenunciaComentarioController@index')->middleware('auth');
 Route::get('denunciaComentario/{id}/create','DenunciaComentarioController@create');
 Route::post('denunciaComentario/{id}/store', 'DenunciaComentarioController@store');
+Route::get('denunciaComentario/{id}/edit', 'DenunciaComentarioController@edit')->middleware('auth');
+Route::put('denunciaComentario/{id}/update', 'DenunciaComentarioController@update')->middleware('auth');
+Route::get('denunciaComentario/{id}/show', 'DenunciaComentarioController@show')->middleware('auth');
+Route::get('denunciaComentario/{id}/destroyDenunciaComentario', 'DenunciaComentarioController@destroyDenunciaComentario')->middleware('auth');
+Route::get('denunciaComentario/{id}/remove', 'DenunciaComentarioController@remove')->middleware('auth');
+Route::get('denunciaComentario/{id}/destroy', 'DenunciaComentarioController@destroy')->middleware('auth');
 
 
 //Rotas do Eventos
