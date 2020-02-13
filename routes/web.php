@@ -166,6 +166,12 @@ Route::post('videos/{id}/upload', 'VideosController@upload')->middleware('auth')
 Route::get('videos/{id}/remove', 'VideosController@remove')->middleware('auth');
 Route::get('videos/{id}/destroy', 'VideosController@destroy')->middleware('auth');
 
+//Rotas de Videos das Noticias
+Route::get('video_noticia', 'VideoNoticiasController@index')->middleware('auth');
+Route::post('video_noticia/{id}/upload', 'VideoNoticiasController@store')->middleware('auth');
+
+
+
 //Rota Sobre Tarcísio Padua
 Route::get('sobre', 'SobreController@index');
 

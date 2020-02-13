@@ -38,6 +38,53 @@
 						<!-- Brand (link para pagina inicial e imagem padrão)  -->
 						<a class="navbar-brand" href='/'><img src='../../img/icon/TPaduaDefault.bmp' class='img-responsive' style='width: 90%'></a>
 						
+						<!-- Formulário de Busca por categorias -->
+							<form class='navbar-form navbar-left' action='categorias/search' style='margin-top: 1%'>
+								<div class='input-group'>
+									<input type='text' name='search' class='form-control'
+										placeholder='Categorias ex:(Artigos)' style='background-color: 	#F5FFFA;'>
+									<div class='input-group-append'>
+										<button class='btn btn-sm btn-info' type='submit'>
+											<i class='fa fa-search'></i>
+										</button>
+									</div>
+								</div>
+							</form>
+						
+						
+						<!-- toggle e collapse button -->
+						<button class='navbar-toggler' type='button' data-toggle="collapse" data-target="#collapsibleNavbar">
+							<span class='navbar-toggler-icon'></span>
+						</button>
+						
+
+						
+						<!-- Links da Barra de Navegação -->
+						<div class='collapse navbar-collapse' id='collapsibleNavBar'>
+							<ul class='navbar-nav'>
+								<li class='dropdown nav-item'>
+									<a class='dropdown-toggle nav-link' data-toggle='dropdown' href='#'>
+										Categorias<span class='carret'></span>
+									</a>
+									
+									<!-- Item do dropdow de categorias -->
+									<ul class='dropdown-menu'>
+										@foreach($categorias as $categoria)
+											<li>
+												<a href="categorias/{{$categoria->id}}/show">
+													{{$categoria->nome_categoria}}
+												</a>
+											</li>
+										@endforeach
+									</ul>
+								</li>
+								<li class='nav-item'><a href='sobre' class='nav-link'>Sobre o Tarcisio Pádua</a></li>
+								<li class='nav-item'><a href='contacts' class='nav-link'>Fale com a gente</a></li>
+							</ul>	
+							
+						</div>
+						
+						
 				
 				</div>
 			</div>
@@ -68,11 +115,31 @@
 				</div>
 			</div>
 			<!-- Div de espaçamento -->
-			<div class='row'></div>
+			<div class='row'>
+				<div class='col-12'>
+				
+				<p align='center' style='color: #fff; font-size: 0.9rem'>
+					Brasília, Distrito Federal, <?php  setlocale(LC_TIME, 'pt-br'); echo strftime('%A, %e de %B de %G,');?>
+					<!-- Função que retorna a hora atual -->
+					<!-- Vinda do browser do usuario, 
+							pois o servidor local possui 
+							a diferença de 3 horas em 
+							seu fuso horário -->
+							
+					<script type='text/javascript'>
+						localtime = new Date()	;
+						document.write(localtime.getHours() + ':' + localtime.getMinutes() + ':' + localtime.getSeconds());
+					</script>
+				<!--	<?php setlocale(LC_TIME, 'pt-br'); echo strftime('Horário de Brasília: %T') ?> -->
+					
+				</p>
+				
+				</div>
+			</div>
 			
 			<!-- div espacamento -->
 			<div class='row'></div>
-			<br>
+			
 			
 			<!-- Div dos Videos informativos -->
 			<div class='row'>
@@ -113,12 +180,12 @@
 				<!-- Div Das Noticias -->
 				<div class='col-6 shadow p-1 mb-2 rounded' style='background-color: #DCDCDC; opacity: 0.8; border: 1px solid #ddd'>
 				<!-- Loop que percorre tabela de noticias -->
-				 
+				  @foreach($noticias as $noticia)
 						<div id="fb-root"></div>
 						
 						<!-- Titulo da notícia -->
 						<!-- Verifica se a noticia está em dastaque ou não -->
-					@if($noticias->destaque >= 1)
+					@if($noticia->destaque >= 1)
 						<!-- se estive como destaque, exibe o titulo com a bandeira -->
 						<h4 style='font-family: arial, sans-serif; text-shadow: 1px 1px #ccc; color: #1c1c1c;'>
 								<!--Código da Bandeira de Destaque -->
@@ -127,7 +194,7 @@
 										<span class='far fa-bookmark'
 										style='font-size: 0.9rem; color: red' alt='Destaque'></span>
 														
-										<strong>{{$noticias->titulo}}</strong>
+										<strong>{{$noticia->titulo}}</strong>
 									</p>
 						</h4>
 						<hr>
@@ -135,7 +202,7 @@
 						<!-- Se não passar na verificação dos destaques exibe apenas o titulo da notícia -->
 						<h4 style='font-size: 0.7rem; font-family: arial, sans-serif; text-shadow: 1px 1px #ccc; color: #1c1c1c; text-align: center;'>
 								
-							<p style='text-align: center'>{{$noticias->titulo}}</p>
+							<p style='text-align: center'>{{$noticia->titulo}}</p>
 						</h4>
 						<hr>
 					@endif
@@ -146,111 +213,73 @@
 					@foreach($imagens as $imagem)
 					<!-- Se a id da nioticia for igual ao da id_noticia da tabela imagens
 						exibe imagem da notiica -->
-					@if($noticias->id == $imagem->id_noticia)
-						<a href="/{{$imagem->nome_imagem}}" align='center'>
-							<img src='/{{$imagem->nome_imagem}}' alt='{{$imagem->nome_imagem}}' style='width: 70%;' class='img-thumbnail img-fluid'>
+					@if($noticia->id == $imagem->id_noticia)
+						<a href="{{$imagem->nome_imagem}}" align='center'>
+							<img src='{{$imagem->nome_imagem}}' alt='{{$imagem->nome_imagem}}' style='width: 70%; 
+								margin-left: 15%;' class='img-thumbnail img-fluid'>
 						</a>
 					@endif
 						
 							
 				</p>
-					@endforeach
+				@endforeach
 				<!-- Conteudo da noticia -->
-				@if(!empty($galeria_imagens))
-				<?php echo "<div style='font-size: 0.6rem'><p>".($noticias->conteudo)."</p></div>" ?>
-				<hr>
-				<!-- Galeria de Imagens,dentro de um carrosel -->
-				<p align='center' style='font-size: 0.8rem'><strong>Galeria de Imagens:</strong></p>
-
-				<div class='col-12'>
-				<div id='carouselExampleControls' class='carousel slide' data-ride="carousel">
+					<?php echo "<div style='font-size: 0.6rem'><p>".(str_limit($noticia->conteudo, 501, '...'))."</p></div>" ?>
 				
-					<div class='carousel-inner'>
-					<div class='carousel-item active'>
-											
-					</div>
-					@foreach($galeria_imagens as $g_img)
-							@if($g_img->id_noticia == $noticias->id)
-						<div class='carousel-item' align='center'>
-							<a href='/storage/galeria_imagens/{{$g_img->nome_galeria}}/{{$g_img->nome_imagem}}'>
-								<img src="/storage/galeria_imagens/{{$g_img->nome_galeria}}/{{$g_img->nome_imagem}}"
-									 alt='carouselImg' class='d-block w-100 img-fluid img-thumbnail' style="max-height:250px">
-							</a>
-						
-						</div>
-						@endif
-						@endforeach
-					</div>
-						
-					
-					<a class='carousel-control-prev' href='#carouselExampleControls' role='button' data-slide="prev">
-						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-						<span class='sr-only'>Previous</span>
-					</a>
-					<a  class="carousel-control-next" href="#carouselExampleControls" role='button' data-slide="next">
-						<span class="carousel-control-next-icon" aria-hidden="true"></span>
-						<span class="sr-only">Next</span>
-					</a>
-				</div>
-				</div>
+				<!-- Link Leia Mais -->
 				
-				@endif
-				
-
-				<hr>
-				<div class="btn-group">
-					<!--Botões de compartilhamento -->
-					<a href='noticias/{{$noticias->id}}/modal' align='center' data-toggle="tooltip"
-						data-placement="top" title="Clique para compartilhar esta notícia por e-mail">
-							<i class='fas fa-envelope' style="font-size: 0.6rem"></i>
-							<br>
-								<p style="font-size: 0.5rem">Compartilhar Por Email </p>
+				<p align='center' style='font-size: 0.6rem'>
+					<a href='noticias/{{$noticia->id}}/show' class='btn btn-link' style='font-size: 0.7rem'>
+						<span class='fas fa-eye' style='font-size: 0.8rem'></span>
+									Leia mais
 					</a>
-					<strong style="color: red">|</strong>
-					
-					<!-- Botão de compartilhamento do facebook -->
+				</p>
+				<!-- Botões de compartilhamento -->
+				<div class="btn-group" style="display: inline:block;">
+					<!-- Compartilhar por email -->
+					<a href='noticias/{{$noticia->id}}/modal' style='font-size: 0.8rem' align='center'>
+							<i class='fas fa-envelope'></i>
+								 Email 
+					</a>
+				
+					|
+					<!-- Botão de compartilhamento do facebooxk -->
 					<div class="fb-share-button" 
 						data-href="http://tpadua.aliastpadua.com.br/noticias/&#123;&#123;$noticia-&gt;id&#125;&#125;/show"
-							data-layout="box_count" data-size="small" data-mobile='true' style='font-size: 0.6rem'>
-							<a target="_blank" style='font-size: 0.2rem'
+							data-layout="box_count" data-size="small" data-mobile='true' style=' width: 1	%'>
+							<a target="_blank" 
 								href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Ftpadua.aliastpadua.com.br%2Fnoticias%2F%257B%257B%24noticia-%3Eid%257D%257D%2Fshow&amp;src=sdkpreparse"
-									class="fb-xfbml-parse-ignore" data-toggle='tooltip' data-placement="top"
-										 title="Clique para compartilhar em seu Perfil do Facebook">
-											Compartilhar
+									class="fb-xfbml-parse-ignore">
+										Compartilhar
 							</a>
 					</div>
-					<strong style="color: blue">|</strong>
+					|
 					<!-- Compartilhar pelo whatsapp -->
 					
 					<a  href="https://api.whatsapp.com/send?text=Obrigado por compartilhar e nos ajudar 
-						a divulgar nossas notícias: http://tpadua.aliastpadua.com.br/noticias/{{$noticias->id}}/show"
-							data-toggle='tooltip' data-placement="top" title="Clique para compartilhar com contatos do what'sApp">
+						a divulgar nossas notícias :http://tpadua.aliastpadua.com.br/noticias/{{$noticia->id}}/show">
 							
 						<img src="../../img/icon/social_medias/whatsComp.png" alt="whatsapp"> 
 							
 					</a>
-					<strong style="color: green">|</strong>
+					</div>
 
-				</div>
-				
-					
 					<hr>
 					<p style='background-color: #ccc; font-size: 0.5rem' align='center'>
-					<b>Fonte:</b> {{$noticias->fonte}}
+					<b>Fonte:</b> {{$noticia->fonte}}
 					|
-					<b>Data:</b> <?php echo date('d-m-Y', strtotime($noticias->created_at));	?>
+					<b>Data:</b> <?php echo date('d-m-Y', strtotime($noticia->created_at));	?>
 					|
-					<b>Hora:</b> <?php echo date('H:i:s', strtotime($noticias->created_at));	?>
+					<b>Hora:</b> <?php echo date('H:i:s', strtotime($noticia->created_at));	?>
 					<br>
-					<b>Atualizado:</b> <?php echo date('d-m-Y', strtotime($noticias->updated_at));	?>
+					<b>Atualizado:</b> <?php echo date('d-m-Y', strtotime($noticia->updated_at));	?>
 					|
-					<b>Hora:</b><?php echo date('H:i:s', strtotime($noticias->created_at));	?>
+					<b>Hora:</b><?php echo date('H:i:s', strtotime($noticia->created_at));	?>
 					</p>
 					<hr>
-			
+				@endforeach
 					
 				</div>
-
 				
 			
 				<!-- Div da arte e cultura -->
@@ -295,8 +324,7 @@
 											
 										}
 									</style>
-									
-									<a href="/{{$imagem_evento->nome_imagem}}"> 
+									<a href="{{$imagem_evento->nome_imagem}}"> 
 										<img src='/{{$imagem_evento->nome_imagem}}'
 											alt='{{$imagem_evento->nome_imagem}}' style='margin-left: 10%; width: 80%'
 												class='img-thumbnail img-fluid'>
@@ -331,230 +359,6 @@
 				
 				</div>
 			</div>
-			<br>
-			<!-- Divs dos comentários -->
-			<nav>
-	<div class='container'>
-		<div class='row'>
-			<div class='col-3'></div>
-			<div class='col-6' style='background-color: #000;'>
-				<!-- Cabeçalho dos comentários -->
-				<h4 align='center' style='color: #fff;font-size: 0.9rem; padding: 0%;'>Comentários:
-					<!-- este código verifica a contagem de comentarios 
-						e retorna o valor para o usuário -->
-				(
-					
-						<?php if(count($comentarios) > 1) ?>
-						<?php
-						{
-						
-							$result = count($comentarios);
-							echo $result;
-						}
-						?>
-				)
-				</h4>
-				
-				
-				<!-- Loop que percorre a tabela de comentários -->
-				
-						<ul style='list-style: none; background-color: #fff'>
-						@foreach($comentarios as $comentario)
-						@if($comentario->id_noticia == $noticias->id)
-							<li>
-							<p style='font-size: 0.6rem; color: #000;padding: 0%'>
-										<b> {{$comentario->nome}}:</b>
-							</p>
-							<p align='center' style="font-size: 0.8rem">{{$comentario->comentario}}</p>
-							
-										
-									
-									<p align='right' style='font-size: 0.5rem; color: #000;'>
-									 	
-										<b>Em:</b><?php echo date('d-m-Y H:i:s', strtotime($comentario->created_at));?>
-									</p>
-					
-									<!--Janela do formulário de resposta -->
-									<button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#exampleModal">
-										<b style='font-size: 0.6rem'>responder</b>
-									</button>
-
-									<a href="/denunciaComentario/{{$comentario->id}}/create" class='btn btn-link btn-sm'>
-										<b style='font-size: 0.6rem'>denunciar</b>
-									</a>
-									<hr style='background-color: #000'>
-
-						<!-- Modal Resposta Comentários-->
-						<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-									<div class="modal-dialog" role="document">
-										<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" id="exampleModalLabel">Envie sua Resposta</h5>
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-										<div class="modal-body">
-											
-											<form action="/respostas/store" method="POST">
-											@csrf		
-												<div class='form-group'>
-													<label>Nome:</label>
-													@if(Auth::user())
-													<input type="text" class='form-control' name="nome_resp" id="nome_resp"
-														 placeholder="{{Auth::user()->name}}" >
-													@else
-													<input type="text" class='form-control' name="nome_resp" id="nome_resp" placeholder="Seu Nome...">
-													@endif
-														
-												</div>
-												<div class='form-group'>
-													<label>Resposta:</label>
-														<br>
-														<textarea class='form-control' name="resposta" id="resposta" cols="30" rows="10" placeholder="Sua resposta..."></textarea>
-												</div>
-
-												<div class='form-group'>
-													<input type="hidden" name='id_comentario' id="id_comentario" value="{{$comentario->id}}">
-													<input type="hidden" name='id_noticia' id="id_noticia" value="{{$noticias->id}}">
-												
-												</div>
-												<button type="submit" class="btn btn-primary" >
-													<span class="fas fa-save"></span>
-														Salvar Resposta
-												</button>
-												</form>
-										</div>
-										<div class="modal-footer">
-											<div class='btn-group'>
-												<button type="button" class="btn btn-secondary" data-dismiss="modal">	
-													<span class='fas fa-remove'></span>
-														Fechar
-												</button>
-												
-											</div>
-										</div>
-										
-										</div>
-									</div>
-								</div>
-				
-
-
-						
-									<ul style="list-style:none; padding-left: 6%;">
-										@foreach($respostas as $r)
-											@if($r->id_noticia == $noticias->id && $r->id_comentario == $comentario->id)
-										<li style="background-color: #ccc">
-											
-											<p>
-												<b style='font-size: 0.6rem; color: #000; padding:0%'>{{$r->nome_resp}}:</b>
-											</p>
-
-											<p align='center' style='font-size: 0.8rem'>
-												{{$r->resposta}}
-											<p>	
-											
-											<p align='right' style='font-size: 0.5rem; color:#000; '>
-												<b>Em:</b> <?php echo date('d-m-Y H:i:s', strtotime($r->created_at)); ?>
-											</p>
-											<!--Janela do formulário de resposta -->
-									<button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#exampleModal">
-										<b style='font-size: 0.5rem'>responder</b>
-									</button>
-											<hr style='background-color: #000'>
-										</li>
-											@endif
-										@endforeach
-									</ul>
-						@endif
-					@endforeach
-									<hr>
-						
-
-										
-									
-							</li>
-							
-						</ul>
-
-				<div class='nav nav-tabs' id='nav-tab' role='tablist'>
-				<!-- TAB de comentários comuns do sistema -->
-					<a class='nav-item nav-link active' id='nav-comentarios-tab' data-toggle='tab' href='#nav-comentarios'
-						role='tab' aria-controls='nav-comentarios' aria-selected="true"	style='font-size: 0.6rem'>
-											Comentar
-					</a>
-					<!-- TAB de comentários do facebook -->
-					<a class='nav-item nav-link' id='nav-facebook-tab' data-toggle='tab' href='#nav-facebook' 
-						role='tab' aria-controls='nav-facebook' aria-selected='false' style='font-size: 0.6rem'>
-												Facebook
-					</a>
-				</div>
-			</div>
-			<!-- Div Vázia para criar espaçamento -->
-			<div class='col-3'></div>
-		</div>
-	</div>
-	
-</nav>
-<!-- Área de exibição dos comentários -->
-<div class='container'>
-	<div class='row'>
-	<!-- Div de espaçamento -->
-		<div class='col-3'></div>
-			<!--  Área de exibição dos comentários comuns -->
-			<div class='col-6 tab-content' id='nav-tabContent' align="center">
-				<div class='tab-pane fade show active' id='nav-comentarios' 
-					role='tabpanel' aria-labelledby='nav-comentarios-tab' style='display: inline-block; color: #D3D3D3'>
-							
-							
-							
-							{!! Form::open(['url' => "comentarios/{$noticias->id}/store", 'method' => 'post'])!!}
-							
-							<div class='form-group'>
-								<br>
-								<h3 align='center' style='font-size: 0.9rem;'>Comentar</h3>
-									<hr style='background-color: #D3D3D3'>
-									{!! Form::label('nome', 'Nome:') !!}
-										@if(Auth::check())
-											<!-- Verifica se o usuario está logado -->
-											{!! Form::text('nome', Auth::user()->name, ['class' => 'form-control']) !!}
-										
-										@else
-											{!! Form::text('nome', null, ['class' => 'form-control-sm'])!!}
-										@endif
-										
-							</div>
-							<div class='form-group'>
-							{!! Form::label('comentario', 'Comentario:') !!}
-							<br>
-							{!! Form::textarea('comentario', null, ['class' => 'form-control'])!!}
-							</div>
-							
-							<div class='form-group'>
-							{!! Form::hidden('id_noticia', $noticias->id)!!}
-							{!! Form::submit('Comentar', ['class' => 'btn btn-sm btn-primary'])!!}
-							</div>
-						{!! Form::close()!!}
-							
-				</div>
-				<!-- área de exibição dos comentários do facebook -->
-				<div class='tab-pane fade' id='nav-facebook' id='nav-facebook'
-						role='tabpanel' aria-labelledby='nav-facebook-tab'>
-							<div id="fb-root"></div>
-								<script async defer crossorigin="anonymous" 
-									src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v5.0">
-								</script>
-							<div class="fb-comments" 
-								data-href="http://tpadua.aliastpadua.com.br/noticias/&#123;&#123;$noticia-&gt;id&#125;&#125;/show" 
-									data-width="500" data-numposts="5" data-mobile='true'>
-							</div>
-				</div>
-			</div>
-			</div>
-		</div>
-
-			
 			
 			<!-- Row vazia de Newsletter -->
 			
@@ -574,15 +378,11 @@
 						
 					
 				
-						<a style='font-size: 0.5rem; width: 90%; padding: 1%; margin-left: 1.5%' href='newsletter' class='btn btn-sm btn-success'>Assínar</a>
+						<a style='font-size: 0.5rem; width: 90%; padding: 1%; margin-left: 1.5%' href='/signature' class='btn btn-sm btn-success'>Assínar</a>
 							
 					</p>
 					
-				</div>
 			</div>
-			<br><br>
-			<div class='row'>
-				<div class='col-3'></div>
 			</div>
 			
 			<!-- Div Vazia para espaçamento-->
@@ -591,7 +391,7 @@
 				<div class='col-2'></div>
 			</div>
 			<div class='row'>
-			<div class='col-3 shadow p-1 mb-3 rounded' style='height: 125px; background-color: #fff; margin-top: 6%;
+			<div class='col-3 shadow p-1 mb-3 rounded' style='height: 125px; background-color: #fff; margin-top: -70%;
 					position: relative; padding: 10%; opacity: 0.7'>
 					<!-- Titulo da div (Parceiros) -->
 				<h5 style='font-size: 0.6rem; text-align: center'>
@@ -606,7 +406,7 @@
 									@if($parceiro->id == $imagem_parceiro->id_parceiro)
 										<li class='group-item'>
 											<a href='{{$parceiro->url}}'>
-												<img src='/storage/{{$imagem_parceiro->nome_imagem}}'
+												<img src='storage/{{$imagem_parceiro->nome_imagem}}'
 													style='min-width: 8px; width: 12%; position: relative;
 														 box-shadow: -1px -2px; padding: 0%;' 
 															class='rounded-circle img-fluid' alt='{{$parceiro->nome_parceiro}}'>
@@ -627,7 +427,6 @@
 				</div>
 			</div>
 			<br>
-			
 			
 				<!-- Script adsense google -->
 			
@@ -656,6 +455,9 @@
 					<div class='col-2'></div>
 					<!-- Links de Páginação -->
 					
+						<div class='col-2' align='center'>
+							{{$noticias->onEachSide(1,4)->links()}}</p>
+						</div>
 					<div class='col-4'></div>
 					
 				</div>
@@ -682,15 +484,30 @@
 										style='min-width: 65px; width: 80%'
 											alt='aliastpadua.com.br' class='img-fluid img-responsive'>
 							</a>
+							
+							
 					</div>
 					<!-- coluna vazia para criar o espaçamento entre os icones
 							default e os de midias sociais -->
-					<div class='col-6' >
+					<div class='col-2' >
+							
+					</div>
+					<div class='col-4' >
+							<p align='center' style='color: #D3D3D3; font-size: 0.5rem'>
+								<strong>Equipe AliasTPadua:</strong>
+								<br>
+									<a href='#' style='color: #fff'>Desenvolvido por <strong>Rafael Ferreira Pádua</strong></a>
+									<br>
+									Todos os direitos Reservados
+							</p>
+							
+							
 							
 					</div>
 					<div class='col-4' align='right' style='padding-right: 5%'>
 						
-							<a href='https://www.facebook.com/profile.php?id=100003206947030'><img src='../../img/icon/social_medias/facebook.png'
+							<a href='https://www.facebook.com/profile.php?id=100003206947030'>
+								<img src='../../img/icon/social_medias/facebook.png'
 										alt='facebook' class='img-fluid' style='min-width: 22px;
 												width: 10%'>
 							</a>
