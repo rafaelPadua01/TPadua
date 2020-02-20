@@ -15,6 +15,7 @@ use App\NewsLetter;
 use App\Eventos;
 use App\Imagem_Eventos;
 use App\Videos;
+use App\Video_Noticia;
 
 
 class MainController extends Controller
@@ -29,8 +30,10 @@ class MainController extends Controller
 		$coberturas = Noticia::where('id_categoria', '=', 8)->orderby('id', 'desc')->limit(1)->get();
 		$arteCultura = Eventos::orderby('id', 'desc')->limit(1)->get();
 		$eventos_c = Noticia::where('id_categoria', '=', 3)->orderby('id', 'desc')->limit(2)->get();
+		$destaque = Noticia::where('destaque', '=', true)->orderby('id', 'desc')->limit(2)->get();
 		$sobradinho = Noticia::where('id_categoria', '=', 7)->orderby('id', 'desc')->limit(2)->get();
 		$planaltina = Noticia::where('id_categoria', '=', 5)->orderby('id', 'desc')->limit(2)->get();
+		$videos_n = Video_Noticia::orderby('id', 'desc')->limit(4)->get();
 		$parceiros = Parceiros::all();
 		$imagens = Imagens::orderby('id', 'desc')->limit(5)->get();
 		$videos = DB::table('videos')->orderby('id', 'desc')->limit(4, 5)->get();
@@ -39,7 +42,7 @@ class MainController extends Controller
 		$imagem_parceiros = Imagem_Parceiros::all();
 		$user_news_letters = \DB::table('news_letters')->orderBy('id', 'desc')->get(); //ordena usuarios de forma decrescente
 		
-//$paginates = DB::table('noticias')->simplePaginate(4);
+
 		
 		return view('main.index', ['categorias' => $categorias, 'noticias' => $noticias,
 					'imagens' => $imagens, 'videos' => $videos, 'parceiros' => $parceiros,
@@ -48,7 +51,8 @@ class MainController extends Controller
 								'imagem_eventos' => $imagem_eventos, 'artigos' => $artigos,
 								 'poesias' => $poesias, 'coberturas' => $coberturas, 
 								 'informativos' => $informativos, 'arteCultura' => $arteCultura,
-								'eventos_c' => $eventos_c], compact('sobradinho', 'planaltina'));
+								'eventos_c' => $eventos_c], compact('sobradinho', 'planaltina', 'videos_n',
+								'destaque'));
 	}
 	
 	

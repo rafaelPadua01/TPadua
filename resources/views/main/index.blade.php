@@ -5,6 +5,9 @@
 	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AliásTPadua.com.br - O informativo do Distrito Federal e região</title>
 
+			<!-- Scripts jquery UI para criar o popUp Newsletter -->
+			<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+ 			 <link rel="stylesheet" href="/resources/demos/style.css">
     																
 		<!-- Códigos Bootstrap 4 -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
@@ -20,12 +23,21 @@
 			integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" 
 		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+		<!-- Scripts Jquery UI para criar o popUp newsletter -->	
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		
 	
 		<!-- script facebook,Novo botão compartilhar
 				Agora com contador de compartilhamentos 
 		-->
 		<div id="fb-root"></div>
 		<script async defer crossorigin="anonymous" src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v5.0"></script>
+
+		<!-- Script do PopUpNewsletter aqui -->
+		<script type="text/javascript" src="../../js/popupNewsletter.js"></script>
+
 </head>    
 <body style="background-image: url('../../img/icon/earth3.jpg')">
     <div class="container">
@@ -131,9 +143,10 @@
 								e cria uma key(chave), se ela for 0 este item estará com item ativo
 								e será o primeiro da lista a ser exibido, dessa forma o carousel 
 								saberá que essa é a primeira imagem e logo em seguida carrega as proximas imagens -->
+							
 							@foreach($imagens as $key => $n_img)
-									@foreach($noticias as $n)
-										@if($n_img->id_noticia == $n->id)
+							
+										
 
 										<div class="carousel-item {{$key === 0 ? 'active' : ''}}" style="width: 100%; height: 220px; max-height:50%">
 											<a href="/{{$n_img->nome_imagem}}">
@@ -142,16 +155,25 @@
 											<br>
 											<div class="col-8 carousel-caption d-none d-md-block" style=" background-color: #000;
 													 color: #fff; opacity: 0.7">
+													 @foreach($noticias as $n)
+													@if($n->id == $n_img->id_noticia)
 												<h6 style="font-size: 0.6rem">
 													{{$n->titulo}}
 												</h6>
 												
-												<a href="noticias/{{$n->id}}/show" style="font-size: 0.7rem; color: #fff">leia mais</a>
+												@endif
+												@endforeach
+												<a href="noticias/{{$n_img->id_noticia}}/show" style="font-size: 0.7rem; color: #fff">
+													<span class="fas fa-eye"></span> 
+													leia mais
+												</a>
 												
 											</div>	
 										</div>
-										@endif
-									@endforeach
+									
+										
+									
+									
 								@endforeach
 								
 							<a href="#noticiasCarousel" class="carousel-control-prev" data-slide="prev">
@@ -197,16 +219,27 @@
        		 </div>
     	</div>
 	
-	
+	<br>
 
-	<!-- Div De Espaço Para Anúncios -->
+	<!-- Div De Espaço Para Videos e Anuncios-->
 	<div class="container">
 		<div class="row justify-content-between">
-			<div class="col-6 shadow p-1 mb-2 rounded" style='background-color: #DCDCDC; opacity: 0.8; border: 1px solid #ddd;' >
-				<p style='font-size: 0.7rem'><strong>Videos Aqui...</strong></p>
-				<hr>
-
-				<small style="font-size: 0.5rem" >Aqui serão exibidos os videos relacionandos as notícias </small>
+		 
+			<div class="col-7 shadow p-1 mb-2 rounded" style='background-color: #DCDCDC; opacity: 0.8; border: 1px solid #ddd;' >
+				<p style='font-size: 0.7rem' align='center'><strong>Videos</strong></p>
+				
+					@foreach($videos_n as $v_n)	
+						<div class="col-5" style="border: 1px solid #000; display: inline-block; padding: 0%">
+							<p style="font-size: 0.7rem" align="center"><strong>{{$v_n->titulo}}</strong></p>
+							<div class="embed-responsive embed-responsive-16by9">
+								<video controls class="embed-responsive-item">
+									<source src="storage/videos_noticias/{{$v_n->nome_arquivo}}" >
+								</video>
+							</div>
+							<small style="font-size: 0.6rem" >{{$v_n->descricao}} </small>
+						</div>
+					@endforeach
+				
 			</div>
 			
 			
@@ -242,7 +275,10 @@
 							<p style="font-size: 0.6rem"><strong>{{$i->titulo}}</strong></p>
 								
 							<div class="embed-responsive embed-responsive-4by3">
-								<iframe class="embed-responsive-item" src="/storage/videos/{{$i->nome_arquivo}}" alt="{{$i->nome_arquivo}}" allowfullscreen></iframe>
+								<video class="embed-responsive-item" controls>
+									<source src="/storage/videos/{{$i->nome_arquivo}}"
+									 alt="{{$i->nome_arquivo}}" allowfullscreen>
+								</video>
 							</div>
 							
 						<p style="font-size: 0.6rem">{{$i->descricao}}</p>
@@ -273,27 +309,7 @@
 					
 				</div>
 				
-				<div class="col-3" style="border: 1px solid #000">
-						<p style="font-size: 0.6rem"><strong>Poesias</strong></p> 
-						<hr>
-						<!-- Loop que percorre as noticias com a categoria poesia -->
-						@foreach($poesias as $p)
-						<!-- Titulo da poesia -->
-							<p style="font-size: 0.6rem" ><strong>{{$p->titulo}}</strong></p>
-
-							<!-- Conteudo da noticia -->
-							<?php echo "<div style='font-size: 0.6rem'><p>".(str_limit($p->conteudo, 101, '...'))."</p></div>" ?>
-
-							<!-- Link Leia Mais -->
-				
-						<p align='center' style='font-size: 0.6rem'>
-							<a href='noticias/{{$p->id}}/show' class='btn btn-link' style='font-size: 0.6rem'>
-								<span class='fas fa-eye' style='font-size: 0.5rem'></span>
-								Leia mais
-							</a>
-						</p>
-						@endforeach
-				</div>
+			
 			<!-- Arte e cultura -->
 				<div class="col-3" style="border: 1px solid #000">
 					<p style="font-size: 0.6rem"><strong>Arte e Cultura</strong></p>
@@ -333,6 +349,23 @@
 								</p>
 						@endforeach
 				</div>
+				<!-- cria a div de noticias de Destaque -->
+				<div class="col-3" style="border: 1px solid #000">
+					<p style="font-size: 0.6rem"><strong>Destaque</strong></p>
+					<hr>
+					@foreach($destaque as $d)
+						@foreach($categorias as $c)
+							@if($d->id_categoria == $c->id && $d->destaque == true)
+								<a href="/noticias/{{$d->id}}/show">
+									<p style="font-size:0.6rem">{{$d->titulo}}</p>
+								</a>
+
+								<small style="font-size: 0.5rem">{!!str_limit($d->conteudo, 100)!!}</small>
+							@endif
+						@endforeach
+					@endforeach
+				</div>
+
 				<!-- cria a div de noticias de Sobradinho -->
 				<div class="col-3" style="border: 1px solid #000">
 					<p style="font-size: 0.6rem"><strong>Sobradinho</strong></p>
@@ -365,6 +398,27 @@
 						@endforeach
 					@endforeach
 
+				</div>
+				<div class="col-3" style="border: 1px solid #000">
+						<p style="font-size: 0.6rem"><strong>Poesias</strong></p> 
+						<hr>
+						<!-- Loop que percorre as noticias com a categoria poesia -->
+						@foreach($poesias as $p)
+						<!-- Titulo da poesia -->
+							<p style="font-size: 0.6rem" ><strong>{{$p->titulo}}</strong></p>
+
+							<!-- Conteudo da noticia -->
+							<?php echo "<div style='font-size: 0.6rem'><p>".(str_limit($p->conteudo, 101, '...'))."</p></div>" ?>
+
+							<!-- Link Leia Mais -->
+				
+						<p align='center' style='font-size: 0.6rem'>
+							<a href='noticias/{{$p->id}}/show' class='btn btn-link' style='font-size: 0.6rem'>
+								<span class='fas fa-eye' style='font-size: 0.5rem'></span>
+								Leia mais
+							</a>
+						</p>
+						@endforeach
 				</div>
 			<!--
 				<div class="col-3" style="border: 1px solid #000">
@@ -411,9 +465,6 @@
 									<small style="font-size: 0.5rem"><strong>{{$n->created_at}}</strong></small>
 										</p>
 									
-									
-									
-									
 								</li>
 						
 						@endforeach
@@ -423,11 +474,37 @@
 			</div>
 			
         </div>
+	</div>
+</div>
+<br>
+	<!-- Div PopUp Newsletter -->
+<div id="newsletterPopUp"  title="aliástpádua diz:">
+	
+	<div class='col-12'>
+
+	<img src="/../../img/icon/thumbTpadua.jpg" class="img-fluid img-thumbail" alt="aliastpadua" style="width: 40%">
+		<p style='font-size: 0.9rem'>Gostaria de assinar a nossa <strong>Newsletter<strong> ?</p>
+		<small style="font-size: 0.8rem">Clique em Assínar e preencha os campos necessários e fique por dentro de tudo que acontece no AliasTPadua.com.br</small>
+		<hr> 
+		<div class="btn-group">
+			<a href="/signature" alt="assinar" class="btn btn-secondary" style="color: #fff">Assinar</a>
+		</div>
+		<hr>
+	</div>
+	<script>
+		$(function(){
+ 		  $("#newsletterPopUp").dialog({
+			position: {my: "right", at: "right", of: window},
+			show: {effect: 'slide', duration: 3500},
+			hide: {effect: 'explode', duration: 1000},
+			}).css({
+					position: 'sticky'});
+		});
+		</script>
+	</div>
+	
 		
-    	</div>
-    </div>
-		
-	<br>
+
       <!-- div Footer (rodape) -->
 
 	<div class='container-footer' style='background-color: #080808'>
@@ -446,9 +523,10 @@
 			<div class='col-2' >
 							
 			</div>
+
 			<div class='col-4' >
 			 	<p align='center' style='color: #D3D3D3; font-size: 0.5rem'>
-					<strong>Equipe AliasTPadua:</strong>
+					<strong>Equipe aliastpadua:</strong>
 					<br>
 					<a href='#' style='color: #fff'>Desenvolvido por <strong>Rafael Ferreira Pádua</strong></a>
 					<br>
@@ -465,27 +543,17 @@
 						alt='facebook' class='img-fluid' style='min-width: 22px;
 								width: 10%'>
 				</a>
-				|
+				
 				<a href=''><img src='../../img/icon/social_medias/Instagram.png'
 					alt='instagram'  class='img-fluid' style='min-width: 22px; width: 10%'>
 				</a>
 				|
-				<a id='wpp' href='/' data-toggle="tooltip" data-placement="top" title="(61) 8481-5924">
+				<a id='wpp' href='https://api.whatsapp.com/send?l=pt_BR&phone=556198481-5924' data-toggle="tooltip" data-placement="top" title="what'sapp">
 					<img src='../../img/icon/social_medias/whats.png' alt='Whatsapp' 
 						class='img-fluid' style='min-width: 22px; width: 10%'>
-					<p id='wppNumber' class='hidden'>(61) 8481-5924</p>
+					
 				</a>
-							
-				<style>
-					a #wppNumber{
-						display: none;
-					}
-					a:hover #wppNumber{
-						font-size: 0.8rem;
-						display: inline-block;
-						color: #fff;
-					}
-				</style>
+			
 						
 			</div>
 		</div>

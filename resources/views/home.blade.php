@@ -83,13 +83,19 @@
 			<i class='fas fa-images'></i>
 			Galeria
 	</a>
-	
+	<hr style='background-color: #fff'>
+	<!-- Botão deacesso aos Videos -->
+	<a href='video_noticia/show' class='btn btn-default btn-sm' data-toggle='tooltip' data-placement='top'
+			title='Videos Das notícias'>
+		<i class='fas fa-video'></i>
+			Galeria de Noticias
+	</a>
 	<hr style='background-color: #fff'>
 	<!-- Botão deacesso aos Videos -->
 	<a href='videos' class='btn btn-default btn-sm' data-toggle='tooltip' data-placement='top'
 			title='Videos do menu informartivo'>
 		<i class='fas fa-video'></i>
-			Videos
+			Galeria de Informativos
 	</a>
 	<hr style='background-color: #fff'>
 	<!--

@@ -97,6 +97,12 @@ class VideoNoticiasController extends Controller
         
 
     }
+    public function show()
+    {
+        $noticias = Noticia::all();
+        $video_noticias = Video_noticia::all();
+        return view('video_noticias.show', compact('video_noticias', 'noticias'));
+    }
     public function edit()
     {
 
@@ -105,13 +111,27 @@ class VideoNoticiasController extends Controller
     {
 
     }
-    public function delete()
+    public function remove($id)
     {
-
+        $video_noticias = Video_noticia::findOrFail($id);
+        $noticias = Noticia::findOrFail($video_noticias->id_noticia);
+        return view('video_noticias.remove', compact('video_noticias', 'noticias'));
     }
 
-    public function destroy()
+    public function destroy($id)
     {
         
+        $video_noticias = Video_noticia::findOrFail($id);
+        
+        if($video_noticias)
+        {
+            $video_noticias->where('id', '=', $id)->delete();
+            return redirect()->back()->with('success', 'arquivo removido com sucesso');
+        }
+        else{
+            echo "<script>window.alert('Não foi possível remover este arquivo, contate o suporte técnico...')</script>";
+            return redirect()->back()->with('error', 'Falha ao remover arquivo, entre em contato com supote técnico...');
+        }
+
     }
 }

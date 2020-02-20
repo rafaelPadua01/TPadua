@@ -14,7 +14,7 @@
 <div class="container">
 	<h1>Cadastro de notícias</h1>
 	<!--Inicia o form  -->
-		{!! Form::open(['url' => "noticias/$categoria->id/store", 'method' => 'post']) !!}
+		{!! Form::open(['url' => "noticias/store", 'method' => 'post']) !!}
 		<!-- Div 'Destaque' da notícia -->
 		<div class='form-group'>
 			{!! Form::label('destaque', 'Destaque:') !!}
@@ -38,9 +38,15 @@
 		<div class="form-group">
 		
 			{!! Form::label('categoria', 'Categoria da noticia:') !!}
-				{!! Form::hidden('id_categoria', $categoria->id, ['class' => 'form-control']) !!}
-					{!! Form::hidden('id_user', Auth::user()->id) !!}
-					{!!Form::text('nome_categoria', $categoria->nome_categoria, ['class' => 'form-control']) !!}
+				
+					<select class="form-control" id="id_categoria" name="id_categoria">
+					<option>Escolha a categoria...</option>
+						@foreach($categorias as $c)
+							<option value="{{$c->id}}">{{$c->nome_categoria}}</option>
+						@endforeach
+					</select>
+				
+				
 			
 		</div>
 		
@@ -66,9 +72,8 @@
 		
 		<div class="form-group">
 			
-			{!!Form::hidden('id_categoria', $categoria->id, ['class' => 'form-control']) !!}
-				
 				<a href='/categorias' class='btn btn-danger'>Voltar</a>
+				<input type="hidden" name="id_user" id="id_user" value="{{Auth::user()->id}}">
 			{!! Form::submit('Cadastrar Noticia', ['class' => 'btn btn-success'])!!}
 			
 		</div>

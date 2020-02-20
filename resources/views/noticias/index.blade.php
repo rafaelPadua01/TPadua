@@ -10,25 +10,31 @@
 			<i class='glyphicon glyphicon-home'></i>
 				Página Inicial
 		</a>
+		<!-- Cadastro de Noticia -->
+		<a href="/noticias/create" class="btn btn-primary">Nova Notícia</a>
+		<!-- Formulario com input de busca (search) -->
+		<form class='navbar-form navbar-left' action='noticias/search'>
+				
+				<div class='input-group'>
+				
+					<input type='text' name='search' id='search' class='typeahead form-control' 
+							placeholder='Buscar por noticias(ex: Titulo)'>
+							
+					<div class='input-group-btn'>
+						
+
+						<button class='btn btn-default' type='submit'>
+						<i class='glyphicon glyphicon-search'></i>
+						</button>
+					</div>
+				</div>
+				
+			</form>
 		
 	</div>
 	<br>
 	
-		<!-- Formulario com input de busca (search) -->
-				<form class='navbar-form navbar-left' action='noticias/search'>
-				
-					<div class='input-group'>
-						<input type='text' name='search' id='search' class='typeahead form-control' 
-								placeholder='Buscar por noticias(ex: Titulo)'>
-								
-						<div class='input-group-btn'>
-							<button class='btn btn-default' type='submit'>
-							<i class='glyphicon glyphicon-search'></i>
-							</button>
-						</div>
-					</div>
-					
-				</form>
+		
 	
 	
 	<table class='table table-striped table-bordered table-hover table-responsive'>

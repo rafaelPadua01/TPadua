@@ -91,6 +91,7 @@
 							<strong style='font-size: 0.6rem; text-align: center'>Informativo</strong>
 					</h5>
 					<hr style='background-color: #fff'>
+					<!--
 					@foreach($videos as $video)
 						<h5 style='font-size: 0.5rem; text-align: center; color: #fff'>
 							{{$video->titulo}}
@@ -105,9 +106,10 @@
 						<h6 align='center' style='font-size: 0.6rem; color: #fff'><strong>Descrição:</strong></h6>
 						<p align='center' style='font-size: 0.5rem; opacity: 0.8; color: #fff;'>{{$video->descricao}}</p>
 						<hr style='background-color: #fff'>
-					@endforeach
+					@endforeach -->
 				
 				</div>
+				
 				<br>
 				
 				<!-- Div Das Noticias -->
@@ -158,6 +160,24 @@
 				<!-- Conteudo da noticia -->
 				@if(!empty($galeria_imagens))
 				<?php echo "<div style='font-size: 0.6rem'><p>".($noticias->conteudo)."</p></div>" ?>
+				<!-- Div dos videos das notícias 
+					Se a notícia possuir um video
+					ele será carrregado aqui
+					senão o sistema mantm o funcionamento -->
+					@foreach($video_n as $v_n)
+						@if($v_n->id_noticia == $noticias->id)
+						<div class="col-12 shadow p-1 mb-2 rounded" style="background-color: #ccc; color: #000" align='center'>
+							<p style='font-size: 0.8rem'><strong>{{$v_n->titulo}}</strong></p>
+							<div class="embed-responsive embed-responsive-16by9">
+								<iframe class="embed-responsive-item" src="/storage/videos_noticias/{{$v_n->nome_arquivo}}" alt="{{$v_n->nome_arquivo}}"></iframe>
+								
+							</div>
+							<p style="font-size: 0.7rem">{{$v_n->descricao}}</p>
+						</div>
+						
+						@endif
+					@endforeach
+					
 				<hr>
 				<!-- Galeria de Imagens,dentro de um carrosel -->
 				<p align='center' style='font-size: 0.8rem'><strong>Galeria de Imagens:</strong></p>

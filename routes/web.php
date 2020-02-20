@@ -16,6 +16,7 @@
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+//Rota para o formulário de assinatura da newsletter 
 Route::get('/signature', 'NewsLetterController@signature');
 
 // Rota Main 
@@ -39,8 +40,9 @@ Route::get('categorias/{id}/destroy','CategoriasController@destroy')->middleware
 /* Rotas com middlewares só serão acessadas por usuarios autenticados */
 Route::get('noticias', 'NoticiasController@index')->middleware('auth');
 Route::get('noticias/{id}/show', 'NoticiasController@show');
-Route::get('noticias/{id}/create', 'NoticiasController@create')->middleware('auth');
-Route::post('noticias/{id}/store',  'NoticiasController@store')->middleware('auth');
+Route::get('noticias/create', 'NoticiasController@create')->middleware('auth');
+#Route::get('noticias/{id}/create', 'NoticiasController@create')->middleware('auth');
+Route::post('noticias/store',  'NoticiasController@store')->middleware('auth');
 Route::get('noticias/search', 'NoticiasController@search')->middleware('auth');
 Route::get('noticias/autocomplete', 'NoticiasController@autocomplete')->name('autocomplete')->middleware('auth');
 Route::get('noticias/{id}/edit','NoticiasController@edit')->middleware('auth');
@@ -57,6 +59,15 @@ Route::post('imagens/{id}/upload',  'ImagensController@upload')->middleware('aut
 Route::post('imagens/{id}/store',  'ImagensController@store')->middleware('auth');
 Route::get('imagens/{id}/remove', 'ImagensController@remove')->middleware('auth');
 route::get('imagens/{id}/destroy', 'ImagensController@destroy')->middleware('auth');
+
+//Rotas dos vídeos das notícias
+//Rotas de Videos das Noticias
+Route::get('video_noticia', 'VideoNoticiasController@index')->middleware('auth');
+Route::post('video_noticia/{id}/upload', 'VideoNoticiasController@store')->middleware('auth');
+Route::get('video_noticia/show', 'VideoNoticiasController@show')->middleware('auth');
+Route::get('video_noticia/{id}/remove', 'VideoNoticiasController@remove')->middleware('auth');
+Route::get('video_noticia/{id}/destroy', 'VideoNoticiasController@destroy')->middleware('auth');
+
 
 //Rotas do Profile_users
 #Route::get('profile/{id}', 'Profile_UsersController@index');
@@ -77,8 +88,8 @@ route::get('imagens/{id}/destroy', 'ImagensController@destroy')->middleware('aut
 //Rotas da NewsLetter
 /* Rotas com middlewares só serão acessadas por usuarios autenticados */	
 Route::get('newsletter', 'NewsLetterController@index')->middleware('auth');
-Route::get('newsletter/create', 'NewsLetterController@create');
-Route::post('newsletter/store',  'NewsLetterController@store');
+Route::get('newsletter/create', 'NewsLetterController@create')->middleware('auth');
+Route::post('newsletter/store',  'NewsLetterController@store')->middleware('auth');
 Route::get('newsletter/{id}/edit',  'NewsLetterController@edit')->middleware('auth');
 Route::put('newsletter/{id}/update', 'NewsLetterController@update')->middleware('auth');
 Route::get('newsletter/{id}/remove',  'NewsLetterController@remove')->middleware('auth');
@@ -166,9 +177,6 @@ Route::post('videos/{id}/upload', 'VideosController@upload')->middleware('auth')
 Route::get('videos/{id}/remove', 'VideosController@remove')->middleware('auth');
 Route::get('videos/{id}/destroy', 'VideosController@destroy')->middleware('auth');
 
-//Rotas de Videos das Noticias
-Route::get('video_noticia', 'VideoNoticiasController@index')->middleware('auth');
-Route::post('video_noticia/{id}/upload', 'VideoNoticiasController@store')->middleware('auth');
 
 
 

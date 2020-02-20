@@ -19,6 +19,7 @@ use App\Imagem_Parceiros;
 use App\Videos;
 use App\Eventos;
 use App\Imagem_Eventos;
+use App\Video_Noticia;
 use App\Http\Requests\NoticiaRequest;
 
 class NoticiasController extends Controller
@@ -50,25 +51,43 @@ class NoticiasController extends Controller
 		$videos = Videos::orderby('id', 'desc')->limit(4, 5)->get();
 		$eventos = Eventos::orderBy('id', 'desc')->limit(4,5)->get();
 		$imagem_eventos = Imagem_Eventos::all();
+		$video_n = Video_Noticia::all();
+		
 		
 		return view('noticias.show', compact('noticias', 'parceiros', 'imagem_parceiros', 'comentarios',
-			'videos', 'eventos', 'imagem_eventos'), ['imagens' => $imagens, 
+			'videos', 'eventos', 'imagem_eventos', 'video_n'), ['imagens' => $imagens, 
 					'galeria_imagens' => $galeria_imagens, 'respostas' => $respostas]);
 	}
-	public function create($id)
+	public function create()
 	{
-		$categoria = Categoria::findOrFail($id);
+		
 		
 		$categorias = Categoria::all();
-		return view('noticias.create', compact('categoria', 'categorias'));
+		return view('noticias.create', compact( 'categorias'));
 	}
 	public function store(NoticiaRequest $request)
 	{
+		$data = $request->all();
+		$categoria = Categoria::findOrfail($request->id_categoria);
+
+		if(!empty($data) || $data != null)
+		{
+			$noticia = Noticia::create($data);
+			
+		}
+		else{
+			
+			return redirect()->back()->with('error', 'Não foi possível cadastrar uma nova noticia, contate o suporte técnico');
+		}
+		return redirect()->back()->with('success', 'Nova Noticia Cadastrada com sucesso...');
+
 		
+		/*
 		$input = $request->all();
 		Noticia::create($input);
 		
 		return redirect('home');
+		*/
 	}
 	public function search(Request $request)
 	{

@@ -27,7 +27,8 @@ class NoticiaRequest extends FormRequest
             //
 			'titulo' => 'required|min: 4',
 			'conteudo' => 'required',
-			'fonte' => 'required',
+            'fonte' => 'required',
+            
         ];
     }
 }
