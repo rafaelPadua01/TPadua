@@ -104,30 +104,30 @@
      <!-- Cria a div do Banner -->
     <div class="container">
         <div class="row">
-            <div class="col-12 shadow p-1 mb-3 rounded" style="background-image: url('../../img/icon/Banner/backgroundR.png'); height: 125px;">
+            <div class="col-12 shadow p-1 mb-3 rounded" style="background-image: url('../../img/icon/Banner/backgroundR.png'); width: 100%; height: 120px;">
                 <!-- Carrega imagem do texto AlistPadua -->
 					<a href='/'>
-						<img src='../../img/icon/Banner/textoPrincipal.png' class='img-fluid' style='width: 70%; min-width: 210px;
-							max-height: 150px; margin-top: -0.3%; margin-left: 13%; opacity: 0.8; position:static'>
+						<img src='../../img/icon/Banner/textoPrincipal.png' class='img-fluid' style='width: 75%; height: 100%; margin-top: 0.5%; 
+							margin-left: 15%; opacity: 0.8; position:static'>
 					</a>
 					<a href='#' alt='tpadua7@gmail.com'>
 							<img src='../../img/icon/Banner/textoEmail.png' class='img-fluid'
-							 style='width: 70%; min-width: 110px; margin-top: -12%; margin-left: 30%; opacity: 0.8'> 
+							 style='width: 60%; margin-top: -12.5%; margin-left: 30%; opacity: 0.8'> 
 					</a>
             </div>
         </div>
 
     <!-- Div Das Noticias -->
         <div class="container">
-            <div class="row justify-content-between">
-                <div class="col-6 shadow p-1 mb-2 rounded" style='background-color: #DCDCDC; opacity: 0.8; border: 1px solid #ddd;
-					max-height: 100%; max-width: 100%; width: 100%'>
+			<div class="row justify-content-between">
+				<div class="col-6 shadow p-1 mb-2 rounded" style='width: 100%; height: 100%; padding: 0%; margin: 0%;
+							background-color: #DCDCDC; opacity: 0.8'>
                 <!-- Cabeçalho da Div -->
                     <div class="col-8">
-                       <p style="font-size: 0.7rem"><strong>Noticias</strong></p> 
+                       <p style="font-size: 0.5rem"><strong>Noticias</strong></p> 
                     </div>
                     <hr>
-                    <div class="col-12" style="max-height: 70%; height: 70%">
+                    <div class="col-12" style="width: 100%; height: 70%">
                         <div id="noticiasCarousel" class="carousel slide" data-ride="carousel">
 							<ul class="carousel-indicators">
 								<li data-target="#noticiasCarousel" data-slide-to="0" class="active"></li>
@@ -148,12 +148,13 @@
 							
 										
 
-										<div class="carousel-item {{$key === 0 ? 'active' : ''}}" style="width: 100%; height: 220px; max-height:50%">
-											<a href="/{{$n_img->nome_imagem}}">
-											<img src="/{{$n_img->nome_imagem}}" align="center" class="img-fluid img-thumbnail" alt="Carousel Noticias">
+										<div class="carousel-item {{$key === 0 ? 'active' : ''}}" style="width: 100%; height: 100%; padding: 0%; margin: 0%">
+											<a href="noticias/{{$n_img->id_noticia}}/show">
+											<img src="/{{$n_img->nome_imagem}}" class="img-fluid img-thumbnail"
+												 alt="Carousel Noticias" style="width: 60%; margin-left: 4%">
 											</a>
 											<br>
-											<div class="col-8 carousel-caption d-none d-md-block" style=" background-color: #000;
+											<div class="col-8 carousel-caption d-none d-md-block" style="width: 100%;background-color: #000;
 													 color: #fff; opacity: 0.7">
 													 @foreach($noticias as $n)
 													@if($n->id == $n_img->id_noticia)
@@ -189,24 +190,22 @@
                 </div>
 			</div>
                 <!-- Div do Calendário de data e hora -->
-                <div class="col-3 shadow p-1 mb-2 rounded" style='background-color: #DCDCDC; opacity: 0.8; border: 1px solid #ddd; float: right;
-					height: 100%; max-height: 200px'>
+				<div class="col-3 shadow p-1 mb-2 rounded" style='width: 25%; height: 20%; padding: 0%; margin: 0%; 
+							background-color: #DCDCDC; opacity: 0.8; float: right;'>
                     <div class="col-2">
-                       <p style="font-size: 0.7rem"><strong>Relógio</strong></p> 
+                       <p style="font-size: 0.5rem"><strong>Relógio</strong></p> 
                        
                     </div>
                     <hr>
                     <div class="col-12">
 					
-                   
-               
-                    <p style='font-size: 0.7rem; color: #080808' align="center">
+                    <p style='font-size: 0.6rem; color: #080808' align="center">
 					<!-- Função que retorna a hora atual -->
 					<!-- Vinda do browser do usuario, 
 							pois o servidor local possui 
 							a diferença de 3 horas em 
 							seu fuso horário -->
-						<?php  setlocale(LC_TIME, 'pt-br'); echo "<small>".strftime("%A, %e de %B de %G")."</small>";?>
+						<?php setlocale(LC_TIME, 'pt-br'); echo "<small>".strftime("%A, %e de %B de %G")."</small>";?>
 						<br>
 						<script type='text/javascript'>
 							localtime = new Date()	;
@@ -224,85 +223,153 @@
 	<!-- Div De Espaço Para Videos e Anuncios-->
 	<div class="container">
 		<div class="row justify-content-between">
-		 
-			<div class="col-7 shadow p-1 mb-2 rounded" style='background-color: #DCDCDC; opacity: 0.8; border: 1px solid #ddd;' >
-				<p style='font-size: 0.7rem' align='center'><strong>Videos</strong></p>
-				
+			 <div class="col-6 shadow p-1 mb-2 rounded" style='width: 100%; height: 100%; padding: 4%; margin-left: -2%; 
+			 	background-color: #DCDCDC; opacity: 0.8; float: right' >
+				<p style='font-size: 0.5rem' align='center'><strong>Videos</strong></p>
+				<hr>
 					@foreach($videos_n as $v_n)	
-						<div class="col-5" style="border: 1px solid #000; display: inline-block; padding: 0%">
-							<p style="font-size: 0.7rem" align="center"><strong>{{$v_n->titulo}}</strong></p>
-							<div class="embed-responsive embed-responsive-16by9">
-								<video controls class="embed-responsive-item">
-									<source src="storage/videos_noticias/{{$v_n->nome_arquivo}}" >
+						<div class="col-5" style="width: 100%; display: inline-block; padding: 2%; margin-left: 4%">
+							<p style="font-size: 0.5rem" align="center"><strong>{{$v_n->titulo}}</strong></p>
+							<div class="embed-responsive embed-responsive-1by1">
+								<video controls class="embed-responsive-item" src="storage/videos_noticias/{{$v_n->nome_arquivo}}" 
+									alt="{{$v_n->nome_arquivo}}">
+									
 								</video>
 							</div>
-							<small style="font-size: 0.6rem" >{{$v_n->descricao}} </small>
+							<small style="font-size: 0.5rem" >{{$v_n->descricao}} </small>
 						</div>
 					@endforeach
 				
 			</div>
 			
 			
-			<div class="col-2 shadow p-1 mb-2 rounded" style='background-color: #DCDCDC; opacity: 0.8; border: 1px solid #ddd; float: right
-					max-height: 100px'>
-					<p style="font-size: 0.7rem" align="center"><strong>Anuncie Aqui</strong></p>
+			<div class="col-3 shadow p-1 mb-2 rounded" style='width: 100%; height: 50%; background-color: #DCDCDC; 
+				opacity: 0.8;  float: right'>
+					<p style="font-size: 0.5rem"><strong>Anuncie Aqui</strong></p>
 					<hr>
 				
 				<div>
-					<p style="font-size: 0.7rem">Anuncie aqui<p>
+					<p style="font-size: 0.5rem">Anuncie aqui<p>
 					
-					<p style="font-size: 0.7rem">Entre em contato...</p>
-					<a href="#">Link de contato</a>
+					<p style="font-size: 0.5rem">Entre em contato...</p>
+					<a href="#" style="font-size: 0.8rem" >Link de contato</a>
 				</div>
 			</div>
 		</div>
 	</div>
 	<br>
-	
+	<!-- Div Ultimas Notícias -->
+	<div class="container">
+		<div class="row justify-content-between">
+		<!-- Div de Espaçamento -->	
+		<div class="col-3"></div>
+		<div class="col-3 shadow p-1 mb-2 rounded"  style='width: 100%; height: 75%; background-color: #DCDCDC; opacity: 0.8;
+					 float: right; padding: 1%; margin-top: -20%;'>
+					 
+				<!-- Cabeçalho da div -->
+				<div class="col-12" style="padding: 0%; margin: 0%">
+					<p style="font-size: 0.5rem"><strong>Ultimas Notícias</strong></p>
+				</div>
+				<hr>
+				<!-- Corpo da Div -->
+				<div class="col-12">
+					<ul style="list-style: none; padding: 0%">
+						@foreach($noticias as $n)
+
+								<li style="padding: 0%">
+									
+										<p style="font-size: 0.5rem">
+										<a href="/noticias/{{$n->id}}/show"><strong>{{$n->titulo}}</strong></a>
+										</p>	
+										<p><small style="font-size: 0.5rem">{!! str_limit($n->conteudo, 100)!!}</small></p>
+											
+										<p><small style="font-size: 0.5rem"><strong>{{$n->created_at}}</strong></small></p>
+									
+									
+								</li>
+						
+						@endforeach
+					</ul>
+					<hr>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- Div de Outras Matérias -->
     <hr style="background-color: #D3D3D3">
 	<br>
-    <div class="container">
-        <div class="row justify-content-between">
-            <div class="col-8 shadow p-1 mb-2 rounded" style='background-color: #DCDCDC; opacity: 0.8; border: 1px solid #ddd;'>
-               <p style="font-size: 0.8rem"><strong>Outras Matérias</strong></p>
+
+    <div class="container-fluid d-flex flex-row mb-3">
+        <div class="row justify-content-between d-flex">
+            <div class="col-12" style='width: 100%; height: 100%; background-color: #DCDCDC; opacity: 0.8; 
+				padding: 0%; margin-left: 2%; '>
+               <p style="font-size: 0.6rem"><strong>Outras Matérias</strong></p>
 				<hr>
-				<div class="row justify-content-between" style="padding: 5%">
-				<div class="col-3" style="border: 1px solid #000">
-						<p style="font-size: 0.6rem"><strong>informativo</strong></p>
+				<div class="row d-flex justify-content-between" style="padding: 0%; margin: 0%">
+				<div class="col-4 border border-light" style="width: 100%; height: 100%; padding 0%; margin: 0%">
+						<p style="font-size: 0.6rem">
+							
+								<strong>informativo</strong>
+							
+						</p>
 						<hr>
 						@foreach($informativos as $i)
-							<p style="font-size: 0.6rem"><strong>{{$i->titulo}}</strong></p>
+							<p style="font-size: 0.6rem;" class='text-justify-center' align='center'>
+								<strong>{{$i->titulo}}</strong>
+							</p>
 								
-							<div class="embed-responsive embed-responsive-4by3">
-								<video class="embed-responsive-item" controls>
-									<source src="/storage/videos/{{$i->nome_arquivo}}"
-									 alt="{{$i->nome_arquivo}}" allowfullscreen>
+							<div class="embed-responsive embed-responsive-1by1" align='center'>
+								<video class="embed-responsive-item" src="/storage/videos/{{$i->nome_arquivo}}" 
+								 controls style="width: 100%; height: 90%; margin: 0%">
+									
 								</video>
 							</div>
 							
-						<p style="font-size: 0.6rem">{{$i->descricao}}</p>
+						<p style="font-size: 0.6rem; margin-top: 0%" class='text-justify-center' align='center'>{{$i->descricao}}</p>
+						<!-- Link leia mais -->
+						
+						<a href='videos/{{$i->id}}/show' class='btn btn-link' style='font-size: 0.5rem; margin-top: 0%'>
+							<p style='font-size: 0.5rem'>
+								<span class='fas fa-eye' style='font-size: 0.5rem'></span>
+									Veja mais
+								</p>
+							</a>
+						
 						@endforeach
+						<hr>
 				</div>
 				<!-- Div que exibe o ultimo artigo publicado -->
-				<div class="col-3" style="border: 1px solid #000">
-					<p style="font-size: 0.6rem"><strong>Artigos</strong></p>
+				<div class="col-4  border border-light" style="width: 100%; height: 100%; padding 0%; margin: 0%">
+					<p style="font-size: 0.6rem">
+						<strong>Artigos</strong>
+					</p>
 					<hr>
 						@foreach($artigos as $a)
 							<p style="font-size: 0.6rem"><strong>{{$a->titulo}}</strong></p>
 							
 
 							<!-- Conteudo da noticia -->
-							<?php echo "<div style='font-size: 0.6rem'><p>".(str_limit($a->conteudo, 101, '...'))."</p></div>" ?>
+							<?php echo "<div style='font-size: 0.6rem'><p>".(str_limit($a->conteudo, 300, '...'))."</p></div>" ?>
 
 							<!-- Link Leia Mais -->
 				
-						<p align='center' style='font-size: 0.6rem'>
-							<a href='noticias/{{$a->id}}/show' class='btn btn-link' style='font-size: 0.6rem'>
-								<span class='fas fa-eye' style='font-size: 0.5 rem'></span>
-								Leia mais
+						<div class="btn-group">
+							<p style='font-size: 0.5rem'>
+							<a href='noticias/{{$a->id}}/show' class='btn btn-link' style='font-size: 0.5rem'>
+								<span class='fas fa-eye' style='font-size: 0.5rem'></span>
+									Leia mais
 							</a>
+							|
+							
+							<a href='categorias/{{$a->id_categoria}}/show' class='btn btn-link' style='font-size: 0.5rem'>
+								<span class='fas fa-plus' style='font-size: 0.5rem'></span>
+									Veja Mais
+							</a>
+							
 						</p>
+						</div>
+						<hr>
+							
 						@endforeach
 						
 
@@ -311,95 +378,119 @@
 				
 			
 			<!-- Arte e cultura -->
-				<div class="col-3" style="border: 1px solid #000">
+				<div class="col-4 border border-light" style="width: 100%; height: 100%; padding 0%; margin: 0%">
 					<p style="font-size: 0.6rem"><strong>Arte e Cultura</strong></p>
 					<hr> 
 					@foreach($arteCultura as $ac)
-						<p style="font-size: 0.6rem"><strong>{{$ac->nome_evento}}</strong></p>
+						<p style="font-size: 0.5rem; padding: 0%" class="text-justify"><strong>{!!$ac->nome_evento!!}</strong></p>
 						@foreach($imagem_eventos as $img_e)
 							@if($img_e->id_evento == $ac->id)
-							<p align="center">
+							<p>
 								<a href='{{$img_e->nome_imagem}}'>
-									<img src="/{{$img_e->nome_imagem}}" alt="{{$img_e->nome_imagem}}" 
-										class="img-thumbnail img-fluid"  style='width: 60%'>
+									<img src="{{$img_e->nome_imagem}}" alt="{{$img_e->nome_imagem}}" 
+										class="img-fluid img-thumbnail"  style='width: 100%; margin-left: 4%'>
+								</a>
+							</p>
+							<p style="font-size: 0.5rem">
+								<a href="/eventos/show">
+									<span class="fas fa-eye"></span>
+										Leia Mais...
 								</a>
 							</p>
 							@endif
 						@endforeach
-						<p style="font-size: 0.6rem">{{$ac->descricao_evento}}</p>
+						<p style="font-size: 0.5rem">{{$ac->descricao_evento}}</p>
 					@endforeach
+					<hr>
 				</div>
-
-				<div class="col-3" style="border: 1px solid #000;">
+				<!-- Div Cobertura -->
+				<div class="col-4 border border-light" style="width: 100%; height: 100%; padding 0%; margin: 0%">
 						<p style="font-size: 0.6rem"><strong>Cobertura</strong></p> 
 						<hr>
 						@foreach($coberturas as $c)
 							<p style="font-size: 0.6rem"><strong>{{$c->titulo}}</strong></p>
 
 								<!-- Conteudo da noticia -->
-								<small style="font-size: 0.5rem">{!! str_limit($c->conteudo, 100) !!}</small>
+								<p><small style="font-size: 0.6rem">{!! str_limit($c->conteudo, 300) !!}</small></p>
 
 								<!-- Link Leia Mais -->
 
-								<p style='font-size: 0.6rem; text-align: center'>
-									<a href='noticias/{{$c->id}}/show' class='btn btn-link' style='font-size: 0.6rem'>
+								<p style='font-size: 0.4rem'>
+									<a href='noticias/{{$c->id}}/show' class='btn btn-link' style='font-size: 0.5rem'>
 										<span class='fas fa-eye' style='font-size: 0.5rem'></span>
-										Leia mais
+											Leia mais
 									</a>
+									|
+									<a href='categorias/{{$c->id_categoria}}/show' class='btn btn-link' style='font-size: 0.5rem'>
+								<span class='fas fa-plus' style='font-size: 0.5rem'></span>
+									Veja Mais
+							</a>
 								</p>
 						@endforeach
+						<hr>
 				</div>
 				<!-- cria a div de noticias de Destaque -->
-				<div class="col-3" style="border: 1px solid #000">
+				<div class="col-4 border border-light" style="width: 100%; height: 100%; padding 0%; margin: 0%">
 					<p style="font-size: 0.6rem"><strong>Destaque</strong></p>
 					<hr>
 					@foreach($destaque as $d)
 						@foreach($categorias as $c)
 							@if($d->id_categoria == $c->id && $d->destaque == true)
+							<p style="font-size:0.6rem">
 								<a href="/noticias/{{$d->id}}/show">
-									<p style="font-size:0.6rem">{{$d->titulo}}</p>
+									{{$d->titulo}}
 								</a>
-
-								<small style="font-size: 0.5rem">{!!str_limit($d->conteudo, 100)!!}</small>
+							</p>
+								<small style="font-size: 0.5rem">{!!str_limit($d->conteudo, 300)!!}</small>
 							@endif
 						@endforeach
+						
 					@endforeach
+					<hr>
 				</div>
 
 				<!-- cria a div de noticias de Sobradinho -->
-				<div class="col-3" style="border: 1px solid #000">
+				<div class="col-4  border border-light" style="width: 100%; height: 100%; padding 0%; margin: 0%">
 					<p style="font-size: 0.6rem"><strong>Sobradinho</strong></p>
 					<hr>
 					@foreach($sobradinho as $s)
 						@foreach($categorias as $c)
 							@if($s->id_categoria == $c->id && $c->nome_categoria == 'Sobradinho')
+								
+							<p style="font-size:0.6rem">
 								<a href="/noticias/{{$s->id}}/show">
-									<p style="font-size:0.6rem">{{$s->titulo}}</p>
+									{!! $s->titulo !!}
 								</a>
+							</p>
 
-								<small style="font-size: 0.5rem">{!!str_limit($s->conteudo, 100)!!}</small>
+								<p><small style="font-size: 0.5rem">{!!str_limit($s->conteudo, 300)!!}</small></p>
 							@endif
 						@endforeach
 					@endforeach
+					<hr>
 				</div>
 				<!-- Cria a div de notícias de planaltina -->
-				<div class="col-3" style="border: 1px solid #000">
+				<div class="col-4 border border-light" style="width: 100%; height: 100%; padding 0%; margin: 0%">
 					<p style="font-size: 0.6rem"><strong>Planaltina</strong></p>
 					<hr>
 					@foreach($planaltina as $p)
 						@foreach($categorias as $c)
 							@if($p->id_categoria == $c->id && $c->nome_categoria == "Planaltina")
+							<p style="font-size: 0.5rem">
 								<a href="/noticias/{{$p->id}}/show">
-									<p style="font-size: 0.6rem">{{$p->titulo}}</p>
+									{{$p->titulo}}
 								</a>
-								<small style="font-size: 0.5rem">{!! str_limit($p->conteudo) !!}</small>
+							</p>
+							<p><small style="font-size: 0.6rem">{!! str_limit($p->conteudo, 300) !!}</small></p>
 								
 							@endif
 						@endforeach
 					@endforeach
 
 				</div>
-				<div class="col-3" style="border: 1px solid #000">
+
+				<!-- Divdas Poesias -->
+				<div class="col-4  border border-light" style="width: 100%;height: 100%;paading: 0%; margin: 0%">
 						<p style="font-size: 0.6rem"><strong>Poesias</strong></p> 
 						<hr>
 						<!-- Loop que percorre as noticias com a categoria poesia -->
@@ -408,14 +499,19 @@
 							<p style="font-size: 0.6rem" ><strong>{{$p->titulo}}</strong></p>
 
 							<!-- Conteudo da noticia -->
-							<?php echo "<div style='font-size: 0.6rem'><p>".(str_limit($p->conteudo, 101, '...'))."</p></div>" ?>
+							<?php echo "<div style='font-size: 0.6rem'><p>".(str_limit($p->conteudo, 300, '...'))."</p></div>" ?>
 
 							<!-- Link Leia Mais -->
 				
-						<p align='center' style='font-size: 0.6rem'>
-							<a href='noticias/{{$p->id}}/show' class='btn btn-link' style='font-size: 0.6rem'>
+						<p style='font-size: 0.4rem'>
+							<a href='noticias/{{$p->id}}/show' class='btn btn-link' style='font-size: 0.5rem'>
 								<span class='fas fa-eye' style='font-size: 0.5rem'></span>
 								Leia mais
+							</a>
+							|
+							<a href='categorias/{{$p->id_categoria}}/show' class='btn btn-link' style='font-size: 0.5rem'>
+								<span class='fas fa-plus' style='font-size: 0.5rem'></span>
+									Veja Mais
 							</a>
 						</p>
 						@endforeach
@@ -443,48 +539,20 @@
 
 				</div>
 			</div>
-			<!-- Div Das Ultimas Notícias -->
-			<div class="col-3 shadow p-1 mb-2 rounded"  style='background-color: #DCDCDC; opacity: 0.8; border: 1px solid #ddd; float: right'>
-				<!-- Cabeçalho da div -->
-				<div class="col-12" style="">
-					<p style="font-size: 0.7rem"><strong>Ultimas Notícias</strong></p>
-				</div>
-				<hr>
-				<!-- Corpo da Div -->
-				<div class="col-12">
-					<ul style="list-style: none; padding: 0%">
-						@foreach($noticias as $n)
-
-								<li style="padding: 0%">
-									
-										<p style="font-size: 0.6rem">
-										<a href="/noticias/{{$n->id}}/show"><strong>{{$n->titulo}}</strong></a>
-											<br>
-											<small style="font-size: 0.5rem">{!! str_limit($n->conteudo, 100)!!}</small>
-											<br>
-									<small style="font-size: 0.5rem"><strong>{{$n->created_at}}</strong></small>
-										</p>
-									
-								</li>
-						
-						@endforeach
-					</ul>
-					<hr>
-				</div>
-			</div>
-			
-        </div>
+		</div>
 	</div>
-</div>
+</div>	
 <br>
 	<!-- Div PopUp Newsletter -->
 <div id="newsletterPopUp"  title="aliástpádua diz:">
 	
-	<div class='col-12'>
-
-	<img src="/../../img/icon/thumbTpadua.jpg" class="img-fluid img-thumbail" alt="aliastpadua" style="width: 40%">
-		<p style='font-size: 0.9rem'>Gostaria de assinar a nossa <strong>Newsletter<strong> ?</p>
-		<small style="font-size: 0.8rem">Clique em Assínar e preencha os campos necessários e fique por dentro de tudo que acontece no AliasTPadua.com.br</small>
+	<div class='col-12' style='padding: 0%; margin: 0%'>
+		<p style='font-size: 0.9rem'>Assíne a <strong>Newsletter<strong></p>
+		<small style="font-size: 0.8rem"> preencha os campos necessários e fique por dentro de tudo que acontece no aliastpadua.com.br</small>
+		<p>
+			<!--<img src="/../../img/icon/thumbTpadua.jpg" class="img-fluid img-thumbnail" 
+					alt="aliastpadua" style="width: 30%; padding: 0%; margin-left: 35%"> -->
+		</p>
 		<hr> 
 		<div class="btn-group">
 			<a href="/signature" alt="assinar" class="btn btn-secondary" style="color: #fff">Assinar</a>

@@ -1,54 +1,44 @@
 @extends('layouts.app')
 
 @section('content')
-<nav class='container'>
-	<h1>{!! $categorias->nome_categoria!!}</h1>
-	<hr>
-	
-	
-		@foreach($noticias as $noticia)
-			@if($noticia->id_categoria == $categorias->id)
-				<!-- cria as divs para as nóticias relacionadas a categoria -->
-				<div class='container' style='border: 1px solid #808080; height: 25%; width: 60%; background-color: #fff;
-							box-shadow: -2px 1px #9c9c9c; border-radius: 1%'>
-							<!-- Titulo da noticia -->
-					<div class='container-header'>
-						<h4 style='font-family: arial; sans-serif; font-size: 200%; 
-						text-align: center; margin-top: 1%;padding: 3%; 
-							text-shadow: 1px 1px #ccc; color: #1c1c1c; text-decoration: underline'>
-							{{$noticia->titulo}}
-						</h4>
-					</div>
-					
-					<div class='container-body' style='background-color: #fff;'>
-						<p style='font-family: arial; sans-serif; text-align: center; color: #000; font-size: 100%;'>
-							@foreach($imagens as $imagem)
-								@if($imagem->id_noticia == $noticia->id) 
-								<img src='/{{$imagem->nome_imagem}}' alt='{{$imagem->nome_imagem}}' 
-									style='width: 30%'>
-								@endif
-							@endforeach
-							
-							<br>
-							
-							{!! $noticia->conteudo !!}
-						</p>
-					</div>
+<body style="background-image: url('../../img/icon/earth3.jpg')">
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="width: 100%; height: 100%; text-align: center;
+			 border: 1px solid #000; background-color: #D3D3D3; opacity: 0.8;padding: 0%; margin: 0%" align='center'>
+			 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="width: 100% ;height: 100%; background-color: #fff;
+			 	padding:0%; margin:0%"> 
+			<h3>{{$categorias->nome_categoria}}</h3>
+			<hr>
+			@foreach($noticias as $n)
+				@if($n->id_categoria == $categorias->id)
+					<p align='center'><strong>{{$n->titulo}}</strong></p>
+					<p>{!! str_limit($n->conteudo, 500) !!}</p>
+					@foreach($imagens as $img)
+						@if($img->id_noticia == $n->id)
+							<img source="/{{$img->nome_arquivo}}" alt="{{$img->nome_arquivo}}" 
+									class="img-fluid img-thumbnail">{{$img->nome_arquivo}}
+						@endif
+					@endforeach
+					<a href="/noticias/{{$n->id}}/show">
+						<span class="glyphicon glyphicon-plus"></span>
+						Veja Mais
+					</a>
+					<p>Data / Hora: {{$n->created_at}}</p>
+
 					
 					<hr>
-					
-					<div class='container-footer' style='font-size: 100%; text-align: center'>
-						<b>Autor:</b> <a href='#'>{{$noticia->fonte}}</a>
-						| 
-						<b>Data:</b> {{$noticia->created_at}}	
-						|
-						<b>Atualizado em:</b> {{$noticia->updated_at}}
-					</div>
-				</div>
-				<br><br>
-			@endif
-		@endforeach
-</nav>
+				@endif
+			@endforeach
 
+			{{$noticias->onEachSide(5)->links()}}
+		</div>
+			
+		</div>
+		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
+	</div>
+</div>
+</body>
 
 @endsection

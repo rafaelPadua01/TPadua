@@ -170,10 +170,11 @@ Route::post('imagem_eventos/{id_evento}/upload', 'Imagem_EventosController@uploa
 Route::get('imagem_eventos/{id_evento}/remove', 'Imagem_EventosController@remove')->middleware('auth');
 Route::get('imagem_eventos/{id_evento}/destroy', 'Imagem_EventosController@destroy')->middleware('auth');
 
-//Rotas De Videos que não tem noticia ou materia -->
+//Rotas De Videos que não tem noticia ou materia (informativos)-->
 Route::get('videos', 'VideosController@index')->middleware('auth');
 Route::get('videos/{id}/create', 'VideosController@create')->middleware('auth');
 Route::post('videos/{id}/upload', 'VideosController@upload')->middleware('auth');
+Route::get('videos/{id}/show', 'VideosController@show');
 Route::get('videos/{id}/remove', 'VideosController@remove')->middleware('auth');
 Route::get('videos/{id}/destroy', 'VideosController@destroy')->middleware('auth');
 

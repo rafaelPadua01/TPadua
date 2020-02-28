@@ -31,14 +31,15 @@ class EventosController extends Controller
 	}
 	public function show()
 	{
-		$eventos = \DB::table('eventos')->orderBy('id', 'desc')->get();
+		
+		$eventos = Eventos::orderBy('id', 'desc')->get();
 		$imagem_eventos = Imagem_Eventos::all();
 		return view('eventos.show', compact('imagem_eventos', 'eventos'));
 		
 	}
 	public function display($id)
 	{
-		$eventos = Eventos::find($id);
+		$eventos = Eventos::findOrFail($id);
 		$imagem_eventos = Imagem_Eventos::all();
 		
 		return view('eventos.display', compact('eventos', 'imagem_eventos'));

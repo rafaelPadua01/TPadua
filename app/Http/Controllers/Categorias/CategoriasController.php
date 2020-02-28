@@ -11,6 +11,7 @@ use App\Categoria;
 use App\Noticia;
 use App\Imagens;
 use App\User;
+use App\Videos;
 
 class CategoriasController extends Controller
 {
@@ -44,13 +45,15 @@ class CategoriasController extends Controller
 	}
 	public function show($id)
 	{
-		$categorias = Categoria::find($id);
-		$noticias = Noticia::all();
+		$categorias = Categoria::findOrFail($id);
+		$noticias = Noticia::orderBy('id', 'desc')->paginate(5);
 		$imagens = Imagens::all();
+		#$paginates = Noticia::where('id_categoria', '=', $id)->paginate(5);
+
 		
-		$paginates = DB::table('categorias')->simplePaginate(1);
-		
-		return view('categorias.show', compact('categorias'), ['noticias' => $noticias, 'imagens' => $imagens] );
+		return view('categorias.show', compact('categorias', 'imagens'), ['noticias' => $noticias] );
+	
+	
 	}
 
 	public function edit($id)

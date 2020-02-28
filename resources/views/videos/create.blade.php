@@ -1,6 +1,6 @@
-@extends('layouts.app');
+@extends('layouts.app')
 
-@section('content');
+@section('content')
 <div class='container'>
 	<h1>Formulário de Upload de Videos</h1>
 	<hr>
@@ -31,4 +31,4 @@
 </div>
 
 
-@endsection;
+@endsection

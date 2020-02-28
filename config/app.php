@@ -162,7 +162,9 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-		Collective\Html\HtmlServiceProvider::class, /*Colletive Pacote form html -->
+        Collective\Html\HtmlServiceProvider::class, /*Colletive Pacote form html */
+        Lakshmaji\Thumbnail\ThumbnailServiceProvider::class, /* Lakshmaji/Thumbnail, é um gerador de thumbnails para os videos
+        
 
         /*
          * Package Service Providers...
@@ -228,8 +230,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 		'Form' => Collective\Html\FormFacade::class,
-		'Html' => Collctive\Html\HtmlFacade::class,
-
+        'Html' => Collctive\Html\HtmlFacade::class,
+        'Thumbnail' => Lakshmaji\Thumbnail\Facade\Thumbnail::class,
     ],
 
 ];

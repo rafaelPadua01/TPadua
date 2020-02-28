@@ -25,9 +25,9 @@ class MainController extends Controller
 		$categorias = Categoria::all();
 		$noticias = Noticia::orderBy('id', 'desc')->limit(5)->get();
 		$informativos = Videos::orderby('id', 'desc')->limit(1)->get();
-		$artigos = Noticia::where('id_categoria', '=', 1)->orderby('id', 'desc')->limit(1)->get();
-		$poesias = Noticia::where('id_categoria', '=', 9)->orderby('id', 'desc')->limit(1)->get();
-		$coberturas = Noticia::where('id_categoria', '=', 8)->orderby('id', 'desc')->limit(1)->get();
+		$artigos = Noticia::where('id_categoria', '=', 1)->orderby('id', 'desc')->limit(2)->get();
+		$poesias = Noticia::where('id_categoria', '=', 9)->orderby('id', 'desc')->limit(2)->get();
+		$coberturas = Noticia::where('id_categoria', '=', 8)->orderby('id', 'desc')->limit(2)->get();
 		$arteCultura = Eventos::orderby('id', 'desc')->limit(1)->get();
 		$eventos_c = Noticia::where('id_categoria', '=', 3)->orderby('id', 'desc')->limit(2)->get();
 		$destaque = Noticia::where('destaque', '=', true)->orderby('id', 'desc')->limit(2)->get();
