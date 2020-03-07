@@ -28,7 +28,7 @@ class MainController extends Controller
 		$artigos = Noticia::where('id_categoria', '=', 1)->orderby('id', 'desc')->limit(2)->get();
 		$poesias = Noticia::where('id_categoria', '=', 9)->orderby('id', 'desc')->limit(2)->get();
 		$coberturas = Noticia::where('id_categoria', '=', 8)->orderby('id', 'desc')->limit(2)->get();
-		$arteCultura = Eventos::orderby('id', 'desc')->limit(1)->get();
+		$arteCultura = Eventos::orderby('id', 'desc')->limit(2)->get();
 		$eventos_c = Noticia::where('id_categoria', '=', 3)->orderby('id', 'desc')->limit(2)->get();
 		$destaque = Noticia::where('destaque', '=', true)->orderby('id', 'desc')->limit(2)->get();
 		$sobradinho = Noticia::where('id_categoria', '=', 7)->orderby('id', 'desc')->limit(2)->get();

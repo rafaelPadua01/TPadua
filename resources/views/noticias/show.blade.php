@@ -5,7 +5,9 @@
 		 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>@liásTPadua.com.br - O informativo do Distrito Federal e região</title>
 		
-																		
+		<!-- Scripts jquery UI para criar o popUp Newsletter -->
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+ 		<link rel="stylesheet" href="/resources/demos/style.css">											
 																		
 		<!-- Códigos Bootstrap 4 -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
@@ -22,6 +24,10 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" 
 		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 	
+		<!-- Scripts Jquery UI para criar o popUp newsletter -->	
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 		<!-- script facebook,Novo botão compartilhar
 				Agora com contador de compartilhamentos 
 		-->
@@ -76,8 +82,8 @@
 			
 			<!-- Div dos Videos informativos -->
 			<div class='row'>
-				<div class='col-3 shadow p-1 mb-3 rounded' style='height: 500px; position: relative; background-color: #080808; opacity: 0.9' id='overflowA'>
-				  <!-- Style com Overflow, adiciona scrollbar na div -->
+				<div class='col-3 shadow p-1 mb-3 rounded' id='overflowA'>
+				  <!-- Style com Overflow, adiciona scrollbar na div 
 				<style>
 					div #overflowA
 					{
@@ -85,7 +91,7 @@
 						overflow: auto;
 					}
 				</style>
-					<!-- Titulo da área informativo -->
+					<!-- Titulo da área informativo 
 					<h5 align='center' style='font-size: 0.8rem; color: #fff; opacity: 1'>
 						<i class="fas fa-video" style='font-size: 0.6rem'></i>
 							<strong style='font-size: 0.6rem; text-align: center'>Informativo</strong>
@@ -149,9 +155,11 @@
 					<!-- Se a id da nioticia for igual ao da id_noticia da tabela imagens
 						exibe imagem da notiica -->
 					@if($noticias->id == $imagem->id_noticia)
-						<a href="/{{$imagem->nome_imagem}}" align='center'>
-							<img src='/{{$imagem->nome_imagem}}' alt='{{$imagem->nome_imagem}}' style='width: 70%;' class='img-thumbnail img-fluid'>
-						</a>
+						<p align='center'>
+							<a href="/{{$imagem->nome_imagem}}">
+								<img src='/{{$imagem->nome_imagem}}' alt='{{$imagem->nome_imagem}}' style='width: 70%;' class='img-thumbnail img-fluid'>
+							</a>
+						</p>
 					@endif
 						
 							
@@ -187,11 +195,11 @@
 				
 					<div class='carousel-inner'>
 					<div class='carousel-item active'>
-											
+						<p align='center'>Carregando...</p>					
 					</div>
-					@foreach($galeria_imagens as $g_img)
+					@foreach($galeria_imagens as $key => $g_img)
 							@if($g_img->id_noticia == $noticias->id)
-						<div class='carousel-item' align='center'>
+						<div class="carousel-item {{$key === 0 ? 'active' : ''}}" align='center'>
 							<a href='/storage/galeria_imagens/{{$g_img->nome_galeria}}/{{$g_img->nome_imagem}}'>
 								<img src="/storage/galeria_imagens/{{$g_img->nome_galeria}}/{{$g_img->nome_imagem}}"
 									 alt='carouselImg' class='d-block w-100 img-fluid img-thumbnail' style="max-height:250px">
@@ -200,7 +208,7 @@
 						</div>
 						@endif
 						@endforeach
-					</div>
+				</div>
 						
 					
 					<a class='carousel-control-prev' href='#carouselExampleControls' role='button' data-slide="prev">
@@ -274,8 +282,7 @@
 				
 			
 				<!-- Div da arte e cultura -->
-				<div class='col-3 shadow p-1 mb-3 rounded' style='float: right; background-color: #080808; 
-						opacity: 0.9; border: 1px solid #ddd; position: relative' id='overflowA'>
+				<div class='col-3 shadow p-1 mb-3 rounded' style='f' id='overflowA'>
 					<style>
 						div #overflowA
 						{
@@ -284,7 +291,7 @@
 						}
 					</style>
 			
-			<!-- Titulo, cabeçalho dos eventos -->
+			<!-- Titulo, cabeçalho dos eventos 
 				<h6 style='font-size: 0.6rem; color: #fff; text-align:center;'>
 						<i style='' class='fas fa-calendar-week'>
 							
@@ -295,11 +302,11 @@
 				@foreach($eventos as $evento)
 						<p style='font-size: 0.5rem; text-align: center; color: #fff'><strong>{{$evento->nome_evento}}</strong></p>
 						
-						<!-- div que cria as imagens e o efeito de zoom -->
+						<!-- div que cria as imagens e o efeito de zoom 
 						<div class='img-zoom'>
 					@foreach($imagem_eventos as $imagem_evento)
 								@if($imagem_evento->id_evento == $evento->id )
-									<!-- Animação de Zoom nas imagens dos eventos-->
+									<!-- Animação de Zoom nas imagens dos eventos
 									<style>
 										.img-zoom img
 										{
@@ -349,12 +356,12 @@
 										</p>
 									</a>	
 				
-				</div>
+				</div>-->
 			</div>
-			<br>
+			<br> 
 			<!-- Divs dos comentários -->
-			<nav>
-	<div class='container'>
+			
+	<div class='container-fluid'>
 		<div class='row'>
 			<div class='col-3'></div>
 			<div class='col-6' style='background-color: #000;'>
@@ -516,7 +523,7 @@
 		</div>
 	</div>
 	
-</nav>
+
 <!-- Área de exibição dos comentários -->
 <div class='container'>
 	<div class='row'>
@@ -573,33 +580,38 @@
 			</div>
 			</div>
 		</div>
+	</div>
 
 			
 			
 			<!-- Row vazia de Newsletter -->
-			
-			<div class='row'>
-				<div class='col-3 shadow p-1 mb-3 rounded' style='height: 90px; margin-top: -100%; position: relative; 
-						background-color: #fff; opacity: 0.8; padding: 0%'>
-						<h5  style='font-size: 0.6rem; text-align: center'>
-							<i class='fas fa-envelope-open-text' style='font-size: 0.8rem'></i>
-								<strong>NewsLetter</strong>
-						</h5>
-					<hr>
-					<!-- conteudo da div (newsletter) -->
-					<p style='font-size: 0.4rem; text-align:center;'>
-						<strong>Assíne a nossa <b style='text-decoration: underline; color: red'>Newsletter</b>
-						<br>
-						e fique por dentro de nossas atualizações.</strong>
-						
-					
-				
-						<a style='font-size: 0.5rem; width: 90%; padding: 1%; margin-left: 1.5%' href='newsletter' class='btn btn-sm btn-success'>Assínar</a>
-							
-					</p>
-					
-				</div>
-			</div>
+	<!-- Div PopUp Newsletter -->
+<div id="newsletterPopUp"  title="aliástpádua diz:">
+	
+	<div class='col-12' style='padding: 0%; margin: 0%'>
+		<p style='font-size: 0.9rem'>Assíne a <strong>Newsletter<strong></p>
+		<small style="font-size: 0.8rem"> preencha os campos necessários e fique por dentro de tudo que acontece no aliastpadua.com.br</small>
+		<p>
+			<!--<img src="/../../img/icon/thumbTpadua.jpg" class="img-fluid img-thumbnail" 
+					alt="aliastpadua" style="width: 30%; padding: 0%; margin-left: 35%"> -->
+		</p>
+		<hr> 
+		<div class="btn-group">
+			<a href="/signature" alt="assinar" class="btn btn-secondary" style="color: #fff">Assinar</a>
+		</div>
+		<hr>
+	</div>
+	<script>
+		$(function(){
+ 		  $("#newsletterPopUp").dialog({
+			position: {my: "right", at: "right", of: window},
+			show: {effect: 'slide', duration: 3500},
+			hide: {effect: 'explode', duration: 1000},
+			}).css({
+					position: 'sticky'});
+		});
+		</script>
+	</div>
 			<br><br>
 			<div class='row'>
 				<div class='col-3'></div>
@@ -610,16 +622,16 @@
 			<div class='row'>
 				<div class='col-2'></div>
 			</div>
-			<div class='row'>
+			<!--<div class='row'>
 			<div class='col-3 shadow p-1 mb-3 rounded' style='height: 125px; background-color: #fff; margin-top: 6%;
 					position: relative; padding: 10%; opacity: 0.7'>
-					<!-- Titulo da div (Parceiros) -->
+					<!-- Titulo da div (Parceiros) 
 				<h5 style='font-size: 0.6rem; text-align: center'>
 					<i class='fas fa-handshake' style='font-size: 0.8rem'></i>
 						<strong>Parceiros</strong>
 				</h5>
 				<hr>
-				<!-- conteudo da div -->
+				<!-- conteudo da div 
 				<ul class='list-group' style='list-style-type: none; display: inline-block;'>
 							@foreach($imagem_parceiros as $imagem_parceiro)
 								@foreach($parceiros as $parceiro)
@@ -644,7 +656,7 @@
 							class='btn btn-success btn-sm'>Assínar
 							
 					</a>
-				</div>
+				</div>-->
 			</div>
 			<br>
 			

@@ -46,7 +46,8 @@
                 <!-- Navbar Responsiva, toggle -->
 					
 						<!-- Brand (link para pagina inicial e imagem padrão)  -->
-						<a class="navbar-brand" href='/'><img src='../../img/icon/TPaduaDefault.bmp' class='img-responsive' style='width: 90%'></a>
+						<a class="navbar-brand" href='/'><img src='/../../img/icon/TpaduaDefault.bmp' class='img-responsive'
+							 style="width: 90%"></a>
 						
 						<!-- Formulário de Busca por categorias -->
 							<form class='navbar-form navbar-left' action='categorias/search' style='margin-top: 1%'>
@@ -148,7 +149,8 @@
 							
 										
 
-										<div class="carousel-item {{$key === 0 ? 'active' : ''}}" style="width: 100%; height: 100%; padding: 0%; margin: 0%">
+										<div class="carousel-item {{$key === 0 ? 'active' : ''}}"
+										 style="width: 100%; height: 100%; padding: 0%; margin: 0%">
 											<a href="noticias/{{$n_img->id_noticia}}/show">
 											<img src="/{{$n_img->nome_imagem}}" class="img-fluid img-thumbnail"
 												 alt="Carousel Noticias" style="width: 60%; margin-left: 4%">
@@ -208,7 +210,7 @@
 						<?php setlocale(LC_TIME, 'pt-br'); echo "<small>".strftime("%A, %e de %B de %G")."</small>";?>
 						<br>
 						<script type='text/javascript'>
-							localtime = new Date()	;
+							localtime = new Date();
 							document.write(localtime.getHours() + ':' + localtime.getMinutes() + ':' + localtime.getSeconds());
 						</script>
 				
@@ -241,30 +243,14 @@
 					@endforeach
 				
 			</div>
-			
-			
-			<div class="col-3 shadow p-1 mb-2 rounded" style='width: 100%; height: 50%; background-color: #DCDCDC; 
-				opacity: 0.8;  float: right'>
-					<p style="font-size: 0.5rem"><strong>Anuncie Aqui</strong></p>
-					<hr>
-				
-				<div>
-					<p style="font-size: 0.5rem">Anuncie aqui<p>
-					
-					<p style="font-size: 0.5rem">Entre em contato...</p>
-					<a href="#" style="font-size: 0.8rem" >Link de contato</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<br>
-	<!-- Div Ultimas Notícias -->
+			<br>
+			<!-- Div Ultimas Notícias -->
 	<div class="container">
 		<div class="row justify-content-between">
 		<!-- Div de Espaçamento -->	
 		<div class="col-3"></div>
 		<div class="col-3 shadow p-1 mb-2 rounded"  style='width: 100%; height: 75%; background-color: #DCDCDC; opacity: 0.8;
-					 float: right; padding: 1%; margin-top: -20%;'>
+					 float: right; padding: 1%; margin-top: -20%; margin-left: 6%;'>
 					 
 				<!-- Cabeçalho da div -->
 				<div class="col-12" style="padding: 0%; margin: 0%">
@@ -295,18 +281,37 @@
 			</div>
 		</div>
 	</div>
+	<!-- Anuncios -->
+	<div class="col-3"></div>
+			<div class="col-3 shadow p-1 mb-2 rounded" style='width: 100%; height: 50%; background-color: #DCDCDC; 
+				float: right ;opacity: 0.8; '>
+					<p style="font-size: 0.5rem"><strong>Anuncie Aqui</strong></p>
+					<hr>
+				
+				<div>
+					<p style="font-size: 0.5rem">Anuncie aqui<p>
+					
+					<p style="font-size: 0.5rem">Entre em contato...</p>
+					<a href="#" style="font-size: 0.8rem" >Link de contato</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	
 	<!-- Div de Outras Matérias -->
     <hr style="background-color: #D3D3D3">
 	<br>
 
-    <div class="container-fluid d-flex flex-row mb-3">
+    <div class="container-fluid shadow p-1 mb-2 rounded d-flex flex-row mb-3">
         <div class="row justify-content-between d-flex">
-            <div class="col-12" style='width: 100%; height: 100%; background-color: #DCDCDC; opacity: 0.8; 
-				padding: 0%; margin-left: 2%; '>
+            <div class="col-8" style='width: 100%; height: 100%; background-color: #DCDCDC; opacity: 0.8; 
+				padding: 2%; margin-left: 2%; '>
                <p style="font-size: 0.6rem"><strong>Outras Matérias</strong></p>
 				<hr>
-				<div class="row d-flex justify-content-between" style="padding: 0%; margin: 0%">
-				<div class="col-4 border border-light" style="width: 100%; height: 100%; padding 0%; margin: 0%">
+				<div class="row justify-content-between d-flex" style="padding: 0%; margin: 0%">
+			<!-- Div Informativos -->
+				<div class="col-4 border border-light" style="width: 100%; height: 100%; padding: 2%; margin: 0%">
 						<p style="font-size: 0.6rem">
 							
 								<strong>informativo</strong>
@@ -320,15 +325,18 @@
 								
 							<div class="embed-responsive embed-responsive-1by1" align='center'>
 								<video class="embed-responsive-item" src="/storage/videos/{{$i->nome_arquivo}}" 
-								 controls style="width: 100%; height: 90%; margin: 0%">
+								 controls style="width: 90%; height: 90%; margin-top: -10%; margin-left: 4%">
 									
 								</video>
 							</div>
 							
-						<p style="font-size: 0.6rem; margin-top: 0%" class='text-justify-center' align='center'>{{$i->descricao}}</p>
+						<p style="font-size: 0.6rem; margin-top: 0%;" class='text-justify-center' align='center'>
+							{{$i->descricao}}
+						</p>
 						<!-- Link leia mais -->
 						
-						<a href='videos/{{$i->id}}/show' class='btn btn-link' style='font-size: 0.5rem; margin-top: 0%'>
+						<a href='videos/{{$i->id}}/show'  align='center' class='btn btn-link' 
+							style='font-size: 0.5rem; margin-top: 0%'>
 							<p style='font-size: 0.5rem'>
 								<span class='fas fa-eye' style='font-size: 0.5rem'></span>
 									Veja mais
@@ -336,10 +344,10 @@
 							</a>
 						
 						@endforeach
-						<hr>
+					
 				</div>
 				<!-- Div que exibe o ultimo artigo publicado -->
-				<div class="col-4  border border-light" style="width: 100%; height: 100%; padding 0%; margin: 0%">
+				<div class="col-4  border border-light" style="width: 100%; height: 100%; padding: 2%; margin: 0%">
 					<p style="font-size: 0.6rem">
 						<strong>Artigos</strong>
 					</p>
@@ -365,53 +373,48 @@
 								<span class='fas fa-plus' style='font-size: 0.5rem'></span>
 									Veja Mais
 							</a>
-							
-						</p>
+							</p>
 						</div>
-						<hr>
-							
 						@endforeach
-						
-
-					
 				</div>
 				
 			
 			<!-- Arte e cultura -->
-				<div class="col-4 border border-light" style="width: 100%; height: 100%; padding 0%; margin: 0%">
+				<div class="col-4 border border-light" style="width: 100%; height: 100%; padding: 2%; margin: 0%">
 					<p style="font-size: 0.6rem"><strong>Arte e Cultura</strong></p>
 					<hr> 
 					@foreach($arteCultura as $ac)
-						<p style="font-size: 0.5rem; padding: 0%" class="text-justify"><strong>{!!$ac->nome_evento!!}</strong></p>
+						<p style="font-size: 0.6rem; padding: 0%" class="text-justify"><strong>{!!$ac->nome_evento!!}</strong></p>
 						@foreach($imagem_eventos as $img_e)
 							@if($img_e->id_evento == $ac->id)
 							<p>
 								<a href='{{$img_e->nome_imagem}}'>
 									<img src="{{$img_e->nome_imagem}}" alt="{{$img_e->nome_imagem}}" 
-										class="img-fluid img-thumbnail"  style='width: 100%; margin-left: 4%'>
+										class="img-fluid img-thumbnail"  style='width: 75%; height: 90%; margin-left: 4%'>
 								</a>
 							</p>
-							<p style="font-size: 0.5rem">
+							
+							@endif
+						@endforeach
+						<p style="font-size: 0.6rem">{{$ac->descricao_evento}}</p>
+						<p style="font-size: 0.5rem">
 								<a href="/eventos/show">
 									<span class="fas fa-eye"></span>
 										Leia Mais...
 								</a>
-							</p>
-							@endif
-						@endforeach
-						<p style="font-size: 0.5rem">{{$ac->descricao_evento}}</p>
+						</p>
 					@endforeach
-					<hr>
 				</div>
+				
 				<!-- Div Cobertura -->
-				<div class="col-4 border border-light" style="width: 100%; height: 100%; padding 0%; margin: 0%">
+				<div class="col-4 border border-light" style="width: 100%; height: 100%; padding: 2%; margin: 0%">
 						<p style="font-size: 0.6rem"><strong>Cobertura</strong></p> 
 						<hr>
 						@foreach($coberturas as $c)
 							<p style="font-size: 0.6rem"><strong>{{$c->titulo}}</strong></p>
 
 								<!-- Conteudo da noticia -->
-								<p><small style="font-size: 0.6rem">{!! str_limit($c->conteudo, 300) !!}</small></p>
+								<p><small style="font-size: 0.6rem">{!! str_limit($c->conteudo, 350) !!}</small></p>
 
 								<!-- Link Leia Mais -->
 
@@ -427,10 +430,9 @@
 							</a>
 								</p>
 						@endforeach
-						<hr>
 				</div>
 				<!-- cria a div de noticias de Destaque -->
-				<div class="col-4 border border-light" style="width: 100%; height: 100%; padding 0%; margin: 0%">
+				<div class="col-4 border border-light" style="width: 100%; height: 100%; padding: 2%; margin: 0%">
 					<p style="font-size: 0.6rem"><strong>Destaque</strong></p>
 					<hr>
 					@foreach($destaque as $d)
@@ -441,16 +443,15 @@
 									{{$d->titulo}}
 								</a>
 							</p>
-								<small style="font-size: 0.5rem">{!!str_limit($d->conteudo, 300)!!}</small>
+								<small style="font-size: 0.5rem">{!!str_limit($d->conteudo, 350)!!}</small>
 							@endif
 						@endforeach
 						
 					@endforeach
-					<hr>
 				</div>
 
 				<!-- cria a div de noticias de Sobradinho -->
-				<div class="col-4  border border-light" style="width: 100%; height: 100%; padding 0%; margin: 0%">
+				<div class="col-4  border border-light" style="width: 100%; height: 100%; padding: 0%; margin: 0%">
 					<p style="font-size: 0.6rem"><strong>Sobradinho</strong></p>
 					<hr>
 					@foreach($sobradinho as $s)
@@ -463,25 +464,24 @@
 								</a>
 							</p>
 
-								<p><small style="font-size: 0.5rem">{!!str_limit($s->conteudo, 300)!!}</small></p>
+								<p><small style="font-size: 0.5rem">{!!str_limit($s->conteudo, 350)!!}</small></p>
 							@endif
 						@endforeach
 					@endforeach
-					<hr>
 				</div>
 				<!-- Cria a div de notícias de planaltina -->
-				<div class="col-4 border border-light" style="width: 100%; height: 100%; padding 0%; margin: 0%">
+				<div class="col-4 border border-light" style="width: 100%; height: 100%; padding: 2%; margin: 0%">
 					<p style="font-size: 0.6rem"><strong>Planaltina</strong></p>
 					<hr>
 					@foreach($planaltina as $p)
 						@foreach($categorias as $c)
 							@if($p->id_categoria == $c->id && $c->nome_categoria == "Planaltina")
-							<p style="font-size: 0.5rem">
+							<p style="font-size: 0.6rem">
 								<a href="/noticias/{{$p->id}}/show">
 									{{$p->titulo}}
 								</a>
 							</p>
-							<p><small style="font-size: 0.6rem">{!! str_limit($p->conteudo, 300) !!}</small></p>
+							<p><small style="font-size: 0.6rem">{!! str_limit($p->conteudo, 350) !!}</small></p>
 								
 							@endif
 						@endforeach
@@ -490,7 +490,7 @@
 				</div>
 
 				<!-- Divdas Poesias -->
-				<div class="col-4  border border-light" style="width: 100%;height: 100%;paading: 0%; margin: 0%">
+				<div class="col-4  border border-light" style="width: 100%; height: 100%; padding: 2%; margin: 0%">
 						<p style="font-size: 0.6rem"><strong>Poesias</strong></p> 
 						<hr>
 						<!-- Loop que percorre as noticias com a categoria poesia -->
@@ -499,8 +499,10 @@
 							<p style="font-size: 0.6rem" ><strong>{{$p->titulo}}</strong></p>
 
 							<!-- Conteudo da noticia -->
-							<?php echo "<div style='font-size: 0.6rem'><p>".(str_limit($p->conteudo, 300, '...'))."</p></div>" ?>
-
+							<div style='font-size: 0.6rem'>
+								<p>{!! str_limit($p->conteudo, 350) !!}</p>
+							</div>
+						
 							<!-- Link Leia Mais -->
 				
 						<p style='font-size: 0.4rem'>
@@ -579,7 +581,7 @@
 		<div class='row'>
 			<div class='col-2'>
 				<a href='/'>
-					<img src='../../img/icon/TPaduaDefault.bmp' 
+					<img src='/../../img/icon/TpaduaDefault.bmp' 
 						style='min-width: 65px; width: 80%'
 							alt='aliastpadua.com.br' class='img-fluid img-responsive'>
 			</a>

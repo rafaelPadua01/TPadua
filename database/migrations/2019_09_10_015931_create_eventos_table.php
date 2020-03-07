@@ -14,11 +14,11 @@ class CreateEventosTable extends Migration
     public function up()
     {
         Schema::create('eventos', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
 			$table->string('nome_evento');
 			$table->date('data_evento');
 			$table->time('hora_evento');
-			$table->string('descricao_evento');
+			$table->longText('descricao_evento');
 			$table->integer('id_user')->unsigned();
 			$table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();
