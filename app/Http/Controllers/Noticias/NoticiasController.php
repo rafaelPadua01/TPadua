@@ -60,8 +60,6 @@ class NoticiasController extends Controller
 	}
 	public function create()
 	{
-		
-		
 		$categorias = Categoria::all();
 		return view('noticias.create', compact( 'categorias'));
 	}
@@ -108,16 +106,15 @@ class NoticiasController extends Controller
 	
 	public function edit($id)
 	{
-		$noticia = Noticia::find($id);
-		
-		
-		return view('noticias.edit', compact('noticia'));
+		$noticia = Noticia::findOrFail($id);
+		$categorias = Categoria::all();
+ 		return view('noticias.edit', compact('noticia', 'categorias'));
 	}
 	
-	public function update(NoticiaRequest $request, $id)
+	public function update(Request $request, $id)
 	{
-		$noticia = Noticia::find($id)->update($request->all());
-
+		$noticia = Noticia::findOrFail($id)->update($request->all());
+		
 		return redirect('noticias');
 		
 	}

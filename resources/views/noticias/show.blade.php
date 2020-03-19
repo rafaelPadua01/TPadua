@@ -42,7 +42,7 @@
 					<!-- Navbar Responsiva, toggle -->
 					
 						<!-- Brand (link para pagina inicial e imagem padrão)  -->
-						<a class="navbar-brand" href='/'><img src='../../img/icon/TPaduaDefault.bmp' class='img-responsive' style='width: 90%'></a>
+						<a class="navbar-brand" href='/'><img src='/../../img/icon/TpaduaDefault.bmp' class='img-responsive' style='width: 90%'></a>
 						
 				
 				</div>
@@ -710,7 +710,7 @@
 				<div class='row'>
 					<div class='col-2'>
 						<a href='/'>
-								<img src='../../img/icon/TPaduaDefault.bmp' 
+								<img src='/../../img/icon/TpaduaDefault.bmp' 
 										style='min-width: 65px; width: 80%'
 											alt='aliastpadua.com.br' class='img-fluid img-responsive'>
 							</a>
@@ -731,10 +731,11 @@
 										alt='instagram'  class='img-fluid' style='min-width: 22px; width: 10%'>
 							</a>
 							|
-							<a id='wpp' href='/' data-toggle="tooltip" data-placement="top" title="(61) 8481-5924">
+							<a id='wpp' href='https://api.whatsapp.com/send?l=pt_BR&phone=556198481-5924' 
+								data-toggle="tooltip" data-placement="top" title="what'sapp">
 								<img src='../../img/icon/social_medias/whats.png' alt='Whatsapp' 
 										class='img-fluid' style='min-width: 22px; width: 10%'>
-									<p id='wppNumber' class='hidden'>(61) 8481-5924</p>
+									
 							</a>
 							
 							<style>

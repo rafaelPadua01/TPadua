@@ -18,7 +18,7 @@ class SettingsController extends Controller
 			$usuario = Auth::user(); //Resgata usuarios
 			
 			$usuario->username = Request::input('username'); //Pega o username do usuario
-			$usuario->email = Request::input('email'); recebe email do usuario		
+			$usuario->email = Request::input('email'); //recebe email do usuario		
 			
 			if(! Request::input('password') == '') //Verifica a senha, se possui algum valor
 			{

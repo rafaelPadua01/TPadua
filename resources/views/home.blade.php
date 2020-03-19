@@ -56,7 +56,7 @@
 		<!-- Botões de seleção de área -->
 		
 		<a href='categorias' class='btn btn-default btn-sm' data-toggle="tooltip" data-placement="top"
-			title="Lista de categorias e cadastro de noticias">
+			title="Lista de categorias">
 			<i class="fas fa-clipboard-list"></i>
 				Categorias
 		</a>
@@ -116,7 +116,7 @@
 	<a href='eventos' class='btn btn-default btn-sm' data-toggle='tooltip' data-placement='top'
 		title='Lista de Eventos cadastrados'>
 		<i class='fas fa-calendar-check'></i>
-		Eventos 
+		Arte e Cultura
 		
 	</a>
 	<!-- Botão de acesso ao formulário de configurações -->

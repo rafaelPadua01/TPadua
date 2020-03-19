@@ -28,7 +28,7 @@
 		
 		<!-- Form input titulo Noticia -->
 		<div class="form-group">
-			{!! Form::label('titulo', 'titulo:') !!}
+			{!! Form::label('titulo', 'Titulo:') !!}
 				{!! Form::text('titulo', null, ['class' => 'form-control'] )!!}
 		</div>
 		
@@ -37,7 +37,7 @@
 		
 		<div class="form-group">
 		
-			{!! Form::label('categoria', 'Categoria da noticia:') !!}
+			{!! Form::label('categoria', 'Selecione uma categoria:') !!}
 				
 					<select class="form-control" id="id_categoria" name="id_categoria">
 					<option>Escolha a categoria...</option>
@@ -51,7 +51,7 @@
 		</div>
 		
 		<div class="form-group">
-			{!! Form::label('fonte', 'fonte:') !!}
+			{!! Form::label('fonte', 'Fonte:') !!}
 				{!! Form::text('fonte', null, ['class' => 'form-control'] )!!}
 		</div>
 		

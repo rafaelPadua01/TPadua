@@ -30,19 +30,19 @@
 	<!-- link de cadastro de noticias -->
 	
 	
-	<table class='table table-striped table-hover table-bordered'>
-		<thead>
+	<table class='table table-sm table-dark table-striped table-hover table-bordered table-fluid'>
+		<thead class="thead-dark">
 			<tr>
-				<th>id</th>
-				<th>Nome Cat</th>
-				<th>Criado por</th>
-				<th>Ações Cat</th>
+				<th scope="col">id</th>
+				<th scope="col">Categoria</th>
+				<th scope="col">Criado por</th>
+				<th scope="col">Ações</th>
 			</tr>
 		</thead>
 		<tbody>
 		@foreach($categorias as $categoria)
 			<tr>
-				<td>{{$categoria->id}}</td>
+				<th scope="row">{{$categoria->id}}</th>
 				<td>{{$categoria->nome_categoria}}</td>
 				<td>
 					@if($categoria->id_user == Auth::user()->id)
@@ -56,7 +56,7 @@
 						</a>
 						<a href="categorias/{{$categoria->id}}/edit" class='btn btn-sm btn-primary'>Editar Categoria</a>
 					
-						<a href="noticias/{{$categoria->id}}/create" class='btn btn-sm btn-default'>Cadastrar nova noticia</a>
+						<!--<a href="noticias/{{$categoria->id}}/create" class='btn btn-sm btn-default'>Cadastrar nova noticia</a>-->
 					</div>
 				</td>
 			</tr>

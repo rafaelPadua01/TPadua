@@ -21,6 +21,23 @@
 		{{Form::text('titulo', $noticia->titulo, ['class' => 'form-control'])}}
 	</div>
 	
+	<!-- Select categoria -->
+	<div class="form-group">
+		<label>Categoria:</label>
+		@foreach($categorias as $c)
+			@if($noticia->id_categoria == $c->id)
+				{{$c->nome_categoria}}
+			@endif
+		@endforeach
+		<select id='id_categoria' name="id_categoria" class="form-control">
+		@foreach($categorias as $c)
+			
+		<option value="{{$c->id}}">{{$c->nome_categoria}}</option>
+			
+		@endforeach
+ 
+ 		</select>
+	</div>
 	
 	<div class='form-group'>
 		{!! Form::label('fonte', 'Fonte:') !!}

@@ -7,8 +7,17 @@
             
         </div>
         <div class='col-xs-8 col-md-8 col-sm-8 col-lg-8'>
+        
             <h5 align='center'><b>Comentários que receberam alguma denuncia...</b></h5>
             <hr>
+            <div class="btn-goup">
+                <a href="/" class="btn btn-info">
+                    <span>
+                        <i class="glyphicon glyphicon-home"></i>
+                            Voltar para a página inicial
+                    </span>
+                </a>
+            </div>
             <div class="table-responsive-xs">
             <table class="table table-sm table-hover table-bordered table-striped" style="font-size: 1.2rem;">
                 <caption>Lista de Denuncias</caption>

@@ -151,17 +151,17 @@
 
 										<div class="carousel-item {{$key === 0 ? 'active' : ''}}"
 										 style="width: 100%; height: 100%; padding: 0%; margin: 0%">
-											<a href="noticias/{{$n_img->id_noticia}}/show">
+											<a href="noticias/{{$n_img->id_noticia}}/show" align='center'>
 											<img src="/{{$n_img->nome_imagem}}" class="img-fluid img-thumbnail"
-												 alt="Carousel Noticias" style="width: 60%; margin-left: 4%">
+												 alt="Carousel Noticias" style="width: 80%; margin-left: 10%">
 											</a>
-											<br>
-											<div class="col-8 carousel-caption d-none d-md-block" style="width: 100%;background-color: #000;
-													 color: #fff; opacity: 0.7">
+											
+											<div class="col-8 carousel-caption d-none d-md-block" style="width: 100%; padding: 2%; margin: 4%;
+														background-color: #000; color: #fff; opacity: 0.7">
 													 @foreach($noticias as $n)
 													@if($n->id == $n_img->id_noticia)
 												<h6 style="font-size: 0.6rem">
-													{{$n->titulo}}
+													{!! str_limit($n->conteudo, 100) !!}
 												</h6>
 												
 												@endif
@@ -267,7 +267,7 @@
 										<p style="font-size: 0.5rem">
 										<a href="/noticias/{{$n->id}}/show"><strong>{{$n->titulo}}</strong></a>
 										</p>	
-										<p><small style="font-size: 0.5rem">{!! str_limit($n->conteudo, 100)!!}</small></p>
+										<p><small style="font-size: 0.5rem">{!! str_limit($n->conteudo, 150) !!}</small></p>
 											
 										<p><small style="font-size: 0.5rem"><strong>{{$n->created_at}}</strong></small></p>
 									
@@ -489,21 +489,21 @@
 
 				</div>
 
-				<!-- Divdas Poesias -->
+				<!-- Divdas Poesias 
 				<div class="col-4  border border-light" style="width: 100%; height: 100%; padding: 2%; margin: 0%">
 						<p style="font-size: 0.6rem"><strong>Poesias</strong></p> 
 						<hr>
-						<!-- Loop que percorre as noticias com a categoria poesia -->
+						<!-- Loop que percorre as noticias com a categoria poesia 
 						@foreach($poesias as $p)
-						<!-- Titulo da poesia -->
+						<!-- Titulo da poesia 
 							<p style="font-size: 0.6rem" ><strong>{{$p->titulo}}</strong></p>
 
-							<!-- Conteudo da noticia -->
+							<!-- Conteudo da noticia 
 							<div style='font-size: 0.6rem'>
 								<p>{!! str_limit($p->conteudo, 350) !!}</p>
 							</div>
 						
-							<!-- Link Leia Mais -->
+							<!-- Link Leia Mais 
 				
 						<p style='font-size: 0.4rem'>
 							<a href='noticias/{{$p->id}}/show' class='btn btn-link' style='font-size: 0.5rem'>
@@ -517,7 +517,7 @@
 							</a>
 						</p>
 						@endforeach
-				</div>
+				</div> -->
 			<!--
 				<div class="col-3" style="border: 1px solid #000">
 					<p style="font-size: 0.6rem"><strong>Eventos</strong></p>
@@ -537,7 +537,7 @@
 						@endforeach
 					@endforeach
 
-				</div>-->
+				</div> -->
 
 				</div>
 			</div>
